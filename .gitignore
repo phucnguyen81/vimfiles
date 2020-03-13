@@ -1,0 +1,13 @@
+# For changes during runtime
+/dyn/
+/var/
+
+# For vim plugins
+/pack/
+
+# For vim-plug
+/plugged/
+
+# python 3 integration
+/pythonthree/
+
