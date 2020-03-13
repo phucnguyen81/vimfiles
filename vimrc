@@ -33,16 +33,16 @@ let g:my_vim_vardir = expand(simplify(s:this_dir.'/var'))
 if !isdirectory(g:my_vim_vardir)
     call mkdir(g:my_vim_vardir)
 endif
-let g:my_viminfofile = s:VimVarFile('viminfo')
 let g:my_netrw_home = s:VimVarDir('')
-let g:my_scratch_file = s:VimVarFile('scratch.txt')
-let g:my_command_template = s:VimVarFile('command_template.vim')
-let g:my_session_dir = s:VimVarDir('sessions')
-let g:my_nerdtree_bookmarksfile = s:VimVarFile('NERDTreeBookMarks')
+let g:my_viminfofile = s:VimVarFile('viminfo')
 let g:my_undodir = s:VimVarDir('undodir')
 let g:my_backupdir = s:VimVarDir('backupdir')
 let g:my_swapfiles = s:VimVarDir('swapfiles')
+let g:my_session_dir = s:VimVarDir('sessions')
+let g:my_nerdtree_bookmarksfile = s:VimVarFile('NERDTreeBookMarks')
 let g:my_fzf_history_dir = s:VimVarDir('fzf-history')
+let g:my_scratch_file = s:VimVarFile('scratch.txt')
+let g:my_command_template = s:VimVarFile('command_template.vim')
 let g:my_calendar_dir = s:VimVarDir('calendar')
 " }}
 " Initial options {{
@@ -109,7 +109,7 @@ set splitbelow splitright
 " :100  :  save up to 100 lines of command-line history
 " "500  :  save up to 500 lines for each register
 set viminfo='100,f1,:100,"500
-if exists('g:my_viminfofile') && filereadable(g:my_viminfofile)
+if exists('g:my_viminfofile')
     let &viminfofile=g:my_viminfofile
 endif
 
