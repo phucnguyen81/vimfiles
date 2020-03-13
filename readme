@@ -1,7 +1,0 @@
-# On Windows
-Copy corresponding python directory to ~/vimfiles/pythonthree directory
-(use :version to see the python version required)
-
-# On Unix
-Check if has('python3')
-
