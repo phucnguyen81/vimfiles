@@ -462,7 +462,7 @@ Plug 'https://github.com/jpalardy/vim-slime.git'
 Plug 'https://github.com/christoomey/vim-system-copy.git'
 
 " Tabnine auto-completion (using ML/Deep-learning)
-if has('python3_compiled') && has('python3_dynamic') && has('python3')
+if has('python3_compiled') && (has('python3_dynamic') || has('python3'))
     Plug 'https://github.com/codota/tabnine-vim.git'
 endif
 
