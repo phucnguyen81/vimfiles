@@ -257,7 +257,9 @@ if has('mouse')
 endif
 
 if has('unnamedplus')
-    set clipboard+=unnamedplus
+    set clipboard=autoselectplus,unnamedplus
+elseif has('unnamed')
+    set clipboard=autoselect,unnamed
 endif
 
 " Do not change working directory automatically.
