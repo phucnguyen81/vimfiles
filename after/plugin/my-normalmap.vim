@@ -1,6 +1,9 @@
 " Select current paragraph
 nnoremap <Leader>vp {jVO}
 
+" Go to home directory
+nnoremap <Leader>gh :edit ~/<CR>
+
 " Edit vimrc profile
 function! s:EditVimrc()
     if exists('g:my_vimrc') && filereadable(g:my_vimrc)

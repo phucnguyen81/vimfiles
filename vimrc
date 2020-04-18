@@ -97,6 +97,12 @@ if filereadable(expand('~/assets/dict/words'))
 endif
 
 " }}
+" Autocmd {{
+augroup my_autocmd
+    autocmd!
+    autocmd InsertEnter * norm zz
+augroup end
+" }}
 " Common options {{
 
 " Split windows
@@ -140,6 +146,8 @@ set tabstop=4
 set softtabstop=4
 " number of spaces inserted/removed for a single indentation
 set shiftwidth=4
+" Do smart autoindenting when starting a new line
+set smartindent
 " insert spaces for tab
 set expandtab
 " <tab> at start of line is based on 'shiftwidth', not 'tabstop'
@@ -257,7 +265,9 @@ if has('mouse')
 endif
 
 if has('unnamedplus')
-    set clipboard+=unnamedplus
+    set clipboard=autoselectplus,unnamedplus
+elseif has('unnamed')
+    set clipboard=autoselect,unnamed
 endif
 
 " Do not change working directory automatically.
@@ -299,8 +309,10 @@ else
     set listchars=tab:>\ ,trail:-,extends:>,precedes:<
 endif
 
-" Turn off some non-essential options for performance
-set nocursorline nonumber norelativenumber
+" Hightlight current line
+set cursorline
+" No line numbers for performance
+set nonumber norelativenumber
 
 " For performance, do not redraw screen too often.
 " Force redraw with :redraw.
@@ -462,7 +474,7 @@ Plug 'https://github.com/jpalardy/vim-slime.git'
 Plug 'https://github.com/christoomey/vim-system-copy.git'
 
 " Tabnine auto-completion (using ML/Deep-learning)
-if has('python3_compiled') && has('python3_dynamic') && has('python3')
+if has('python3_compiled') && (has('python3_dynamic') || has('python3'))
     Plug 'https://github.com/codota/tabnine-vim.git'
 endif
 
