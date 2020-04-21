@@ -435,7 +435,7 @@ Plug 'https://github.com/mhinz/vim-lookup.git'
 
 " Powershell
 Plug 'https://github.com/PProvost/vim-ps1.git'
-"
+
 " Javascript
 Plug 'https://github.com/othree/yajs.vim.git'
 Plug 'https://github.com/HerringtonDarkholme/yats.vim.git'
@@ -446,6 +446,11 @@ Plug 'https://github.com/othree/javascript-libraries-syntax.vim.git'
 
 " Html
 Plug 'https://github.com/othree/html5.vim.git'
+
+" Improved json syntax highlight
+Plug 'https://github.com/elzr/vim-json.git'
+" Support comments in json
+Plug 'https://github.com/kevinoid/vim-jsonc.git'
 
 " Markdown
 " Plug 'https://github.com/tpope/vim-markdown.git'
