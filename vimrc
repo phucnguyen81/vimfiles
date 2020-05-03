@@ -266,7 +266,7 @@ endif
 
 if has('unnamedplus')
     set clipboard=autoselectplus,unnamedplus
-elseif has('unnamed')
+else
     set clipboard=autoselect,unnamed
 endif
 
@@ -309,9 +309,9 @@ else
     set listchars=tab:>\ ,trail:-,extends:>,precedes:<
 endif
 
-" Hightlight current line
-set cursorline
-" No line numbers for performance
+" Don't hightlight current line
+set nocursorline
+" No line numbers
 set nonumber norelativenumber
 
 " For performance, do not redraw screen too often.
