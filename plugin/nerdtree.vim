@@ -18,9 +18,14 @@ let g:NERDTreeMinimalUI = 1
 
 let g:NERDTreeIgnore = ['\.pyc$', '\~$', '__pycache']
 
-" Toggle nerd tree
-nnoremap <Leader>nt :NERDTreeToggle<CR>
+" Focus on current file in nerd-tree
+nnoremap <Leader>nt :call <SID>FindInNERDTree()<CR>
 
-" see current file in nerd-tree
-nnoremap <Leader>nf :NERDTreeFind<CR>
+" Find current file in NERDTree
+function! s:FindInNERDTree() abort
+    if &filetype ==? 'nerdtree'
+        NERDTreeClose
+    endif
+    NERDTreeFind
+endfunction
 
