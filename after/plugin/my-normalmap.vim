@@ -47,7 +47,7 @@ nnoremap <Leader>gl :normal! g`"<CR>
 nnoremap <Leader>K :<C-u>call myfun#search_doc()<CR>
 
 " Git status
-nnoremap <Leader>gs :<C-u>Gstatus<CR>
+nnoremap <Leader>gs :<C-u>0Git<CR>
 
 " swap moving linewise with logical-linewise
 " TODO this should be near wrap option
@@ -77,6 +77,8 @@ nnoremap <Leader>qa :confirm quitall<CR>
 
 " toggle search highlighting
 nnoremap <Leader>hl :setlocal hlsearch!<CR>
+
+nnoremap g, ,
 
 " select text just pasted (while gv selects text just yanked)
 nnoremap gV `[v`]

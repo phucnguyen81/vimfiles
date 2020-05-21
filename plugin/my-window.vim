@@ -80,7 +80,7 @@ nnoremap <silent> <Leader>wn :vertical new<cr>
 " Resize windows (or use the mouse)
 nnoremap <silent> <Leader>w= :wincmd =<cr>
 nnoremap <silent> <Leader>we :wincmd =<cr>
-nnoremap <silent> <Leader>w< :20wincmd <<cr>
+nnoremap <silent> <Leader>w<lt> :20wincmd <<cr>
 nnoremap <silent> <Leader>w> :20wincmd ><cr>
 nnoremap <silent> <Leader>w- :10wincmd -<cr>
 nnoremap <silent> <Leader>w+ :10wincmd +<cr>

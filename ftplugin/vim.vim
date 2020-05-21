@@ -1,4 +1,5 @@
-set foldmethod=marker foldmarker={{,}}
+setlocal foldmethod=marker foldmarker={{,}}
+setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 setlocal keywordprg=:help
 
