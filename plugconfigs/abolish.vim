@@ -17,4 +17,3 @@ endfunction
 " Smart substitution that handles cases and plurals.
 " Call :Subvert from vim-abolish
 command Isubvert call s:Subvert()
-

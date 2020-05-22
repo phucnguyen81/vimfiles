@@ -1,5 +1,6 @@
 " Init {{
 let g:my_basedir = expand('<sfile>:p:h')
+let g:my_plugconfigsdir = expand(g:my_basedir.'/plugconfigs')
 let g:my_snippets = expand(g:my_basedir.'/snippets')
 let g:my_vardir = expand(g:my_basedir.'/var')
 let g:my_netrw_home = g:my_vardir
@@ -18,7 +19,7 @@ let g:my_dict_eng = expand(g:my_dict_dir.'/eng')
 for dir in [g:my_vardir, g:my_vardir, g:my_netrw_home
   \, g:my_netrw_home, g:my_undodir, g:my_backupdir
   \, g:my_swapfiles, g:my_session_dir, g:my_fzf_history_dir
-  \, g:my_calendar_dir]
+  \, g:my_calendar_dir, g:my_plugconfigsdir]
     if !isdirectory(dir)
         call mkdir(dir, "p")
     endif
@@ -137,7 +138,6 @@ Plug 'https://github.com/skywind3000/vim-preview.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/s3rvac/AutoFenc.git'
@@ -158,6 +158,9 @@ Plug 'https://github.com/kana/vim-textobj-entire.git'
 Plug 'https://github.com/kana/vim-textobj-line.git'
 Plug 'https://github.com/michaeljsmith/vim-indent-object.git'
 Plug 'https://github.com/bps/vim-textobj-python.git'
+
+Plug 'https://github.com/tpope/vim-abolish.git'
+exec 'source '.g:my_plugconfigsdir.'/abolish.vim'
 
 " Status bar
 Plug 'https://github.com/itchyny/lightline.vim.git'
