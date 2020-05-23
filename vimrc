@@ -1,5 +1,7 @@
 " Init {{
 let g:my_basedir = expand('<sfile>:p:h')
+let g:my_plugvim = expand(g:my_basedir.'/autoload/plug.vim')
+let g:my_pluggeddir = expand(g:my_basedir.'/plugged')
 let g:my_plugconfigsdir = expand(g:my_basedir.'/plugconfigs')
 let g:my_pluginsdir = expand(g:my_basedir.'/myplugins')
 let g:my_configsdir = expand(g:my_basedir.'/myconfigs')
@@ -54,7 +56,7 @@ endif
 if isdirectory(g:my_swapfiles)
     exec "set directory=".g:my_swapfiles.'//,.'
 endif
-set expandtab tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
 set visualbell display=lastline virtualedit=block
@@ -145,7 +147,10 @@ augroup end
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 " }}
 " Plugins {{
-call plug#begin()
+if filereadable(g:my_plugvim)
+    exec 'source '.g:my_plugvim
+endif
+call plug#begin(g:my_pluggeddir)
 Plug 'https://github.com/tpope/vim-sensible.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/fzf.vim')
 Plug 'https://github.com/junegunn/fzf.vim.git'
@@ -233,4 +238,4 @@ Plug 'https://github.com/jeffkreeftmeijer/vim-dim.git'
 Plug 'https://github.com/mhartington/oceanic-next.git'
 call plug#end()
 " }}
-" vim:fdm=marker:fmr={{,}}
+" vim:fdm=marker:fmr={{,}}:et:ts=4:sts=4:sw=4
