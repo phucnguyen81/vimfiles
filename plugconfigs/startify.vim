@@ -14,3 +14,4 @@ let g:startify_lists = [
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
 
+nnoremap <Leader>st :Startify<CR>

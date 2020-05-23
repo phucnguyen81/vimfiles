@@ -1,6 +1,5 @@
-if !exists('g:loaded_fzf')
-    finish
-endif
+" Fuzzy search
+Plug 'https://github.com/junegunn/fzf.git'
 
 if exists('g:my_fzf_history_dir') && isdirectory(g:my_fzf_history_dir)
     let g:fzf_history_dir = g:my_fzf_history_dir
@@ -56,4 +55,3 @@ nnoremap <silent> <Leader>fl :call <SID>FindBufferLines()<CR>
 
 " Find lines in loaded buffers
 nnoremap <Leader>fL :Lines<CR>
-

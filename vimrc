@@ -115,17 +115,24 @@ endif
 " }}
 " Mappings {{
 exec 'source '.g:my_configsdir.'/my-buffer.vim'
+exec 'source '.g:my_configsdir.'/my-colorscheme.vim'
 exec 'source '.g:my_configsdir.'/my-command-templates.vim'
+exec 'source '.g:my_configsdir.'/my-commandmap.vim'
 exec 'source '.g:my_configsdir.'/my-commands.vim'
 exec 'source '.g:my_configsdir.'/my-grep.vim'
+exec 'source '.g:my_configsdir.'/my-highlight.vim'
 exec 'source '.g:my_configsdir.'/my-ide.vim'
+exec 'source '.g:my_configsdir.'/my-insertmap.vim'
 exec 'source '.g:my_configsdir.'/my-journal.vim'
 exec 'source '.g:my_configsdir.'/my-newfile.vim'
+exec 'source '.g:my_configsdir.'/my-normalmap.vim'
 exec 'source '.g:my_configsdir.'/my-registers.vim'
 exec 'source '.g:my_configsdir.'/my-sessions.vim'
 exec 'source '.g:my_configsdir.'/my-snippets.vim'
 exec 'source '.g:my_configsdir.'/my-source.vim'
 exec 'source '.g:my_configsdir.'/my-tab.vim'
+exec 'source '.g:my_configsdir.'/my-terminal.vim'
+exec 'source '.g:my_configsdir.'/my-visualmap.vim'
 exec 'source '.g:my_configsdir.'/my-window.vim'
 " }}
 " Autocmd {{
@@ -135,41 +142,41 @@ augroup my_autocmd
 augroup end
 " }}
 " My pluggins {{
-exec 'source '.g:my_pluginsdir.'/nn.vim'
+exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 " }}
 " Plugins {{
 call plug#begin()
 Plug 'https://github.com/tpope/vim-sensible.git'
-Plug 'https://github.com/junegunn/fzf.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/fzf.vim')
 Plug 'https://github.com/junegunn/fzf.vim.git'
-exec 'source '.g:my_plugconfigsdir.'/autosave.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/autosave.vim')
 Plug 'https://github.com/tpope/vim-vinegar.git'
-exec 'source '.g:my_plugconfigsdir.'/rooter.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/rooter.vim')
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-exec 'source '.g:my_plugconfigsdir.'/scratch.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/scratch.vim')
 Plug 'https://github.com/terryma/vim-expand-region.git'
 Plug 'https://github.com/tmhedberg/matchit.git'
 Plug 'https://github.com/godlygeek/tabular.git'
-exec 'source '.g:my_plugconfigsdir.'/easy-align.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/easy-align.vim')
 Plug 'https://github.com/tpope/vim-repeat.git'
 Plug 'https://github.com/skywind3000/vim-preview.git'
-exec 'source '.g:my_plugconfigsdir.'/easymotion.vim'
-exec 'source '.g:my_plugconfigsdir.'/undotree.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/easymotion.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/undotree.vim')
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/s3rvac/AutoFenc.git'
 
-exec 'source '.g:my_plugconfigsdir.'/nerdtree.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/nerdtree.vim')
 Plug 'https://github.com/jistr/vim-nerdtree-tabs.git'
-exec 'source '.g:my_plugconfigsdir.'/netrw.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/netrw.vim')
 
 Plug 'https://github.com/xolox/vim-misc.git'
 Plug 'https://github.com/tpope/vim-scriptease.git'
 Plug 'https://github.com/mhinz/vim-lookup.git'
 Plug 'https://github.com/jszakmeister/vim-togglecursor.git'
-exec 'source '.g:my_plugconfigsdir.'/vim-windowswap.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/vim-windowswap.vim')
 Plug 'https://github.com/freitass/todo.txt-vim.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'
 Plug 'https://github.com/amix/vim-zenroom2.git'
@@ -181,8 +188,8 @@ Plug 'https://github.com/kana/vim-textobj-line.git'
 Plug 'https://github.com/michaeljsmith/vim-indent-object.git'
 Plug 'https://github.com/bps/vim-textobj-python.git'
 
-exec 'source '.g:my_plugconfigsdir.'/abolish.vim'
-exec 'source '.g:my_plugconfigsdir.'/lightline.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/abolish.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/lightline.vim')
 
 " Collection of language packs (syntax, indent, completion, compiler,...)
 " TODO: replace other language plugin with this
@@ -192,26 +199,26 @@ Plug 'https://github.com/PProvost/vim-ps1.git'
 " Javascript/Html/Json/Markdown
 Plug 'https://github.com/othree/yajs.vim.git'
 Plug 'https://github.com/HerringtonDarkholme/yats.vim.git'
-exec 'source '.g:my_plugconfigsdir.'/javascript-libraries-syntax.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/javascript-libraries-syntax.vim')
 Plug 'https://github.com/othree/html5.vim.git'
-exec 'source '.g:my_plugconfigsdir.'/indent_html.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/indent_html.vim')
 Plug 'https://github.com/elzr/vim-json.git'
 Plug 'https://github.com/kevinoid/vim-jsonc.git'
 
 " Integration
 " TODO: replace editorconfig with the more popular version
-exec 'source '.g:my_plugconfigsdir.'/vim-editorconfig.vim'
-Plug 'https://github.com/tyru/open-browser.vim.git'
-exec 'source '.g:my_plugconfigsdir.'/investigate.vim'
-exec 'source '.g:my_plugconfigsdir.'/grepper.vim'
-exec 'source '.g:my_plugconfigsdir.'/quickrun.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/vim-editorconfig.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/openbrowser.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/investigate.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/grepper.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/quickrun.vim')
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
-exec 'source '.g:my_plugconfigsdir.'/dispatch.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/dispatch.vim')
 Plug 'https://github.com/tpope/vim-fugitive.git'
-exec 'source '.g:my_plugconfigsdir.'/ale.vim'
-exec 'source '.g:my_plugconfigsdir.'/vim-slime.vim'
-exec 'source '.g:my_plugconfigsdir.'/vim-system-copy.vim'
-exec 'source '.g:my_plugconfigsdir.'/youcompleteme-tabnine.vim'
+exec 'source '.expand(g:my_plugconfigsdir.'/ale.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/vim-slime.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/vim-system-copy.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/youcompleteme-tabnine.vim')
 
 " Colors/themes
 " TODO: go with a colorscheme pack that contains gruvbox

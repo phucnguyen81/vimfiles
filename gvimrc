@@ -27,9 +27,10 @@ set guifont+=Consolas:h11
 " Select fonts
 command SetFont set guifont=*
 
-" Add system clipboard to the '*' register
-set clipboard+=unnamed
-" Add system clipboard to the '+' register
+" Use system clipboard
 if has('unnamedplus')
-    set clipboard+=unnamedplus
+    set clipboard=autoselectplus,unnamedplus
+else
+    set clipboard=autoselect,unnamed
+
 endif
