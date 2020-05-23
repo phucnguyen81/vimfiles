@@ -21,4 +21,5 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['\.pyc$', '\~$', '__pycache']
 
 " Focus on current file in nerd-tree
+nnoremap <Leader>nt :NERDTree<CR>
 nnoremap <Leader>nf :NERDTreeFind<CR>
