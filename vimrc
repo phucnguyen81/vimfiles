@@ -20,6 +20,7 @@ let g:my_command_template = expand(g:my_vardir.'/command_template.vim')
 let g:my_calendar_dir = expand(g:my_vardir.'/calendar')
 let g:my_dict_dir = expand(g:my_basedir.'/dict')
 let g:my_dict_eng = expand(g:my_dict_dir.'/eng')
+
 for dir in [g:my_vardir, g:my_vardir, g:my_netrw_home
   \, g:my_netrw_home, g:my_undodir, g:my_backupdir
   \, g:my_swapfiles, g:my_session_dir, g:my_fzf_history_dir
