@@ -1,6 +1,8 @@
+Plug 'https://github.com/tpope/vim-abolish.git'
+
 " substitution with :Subvert from vim-abolish plugin
 " :Subvert accounts for plurals and lower/upper cases
-function s:Subvert()
+function s:Subvert() abort
     let l:what = input("Replace what? e.g. facilit{y,ies}: ")
     if empty(l:what)
         return
@@ -16,4 +18,4 @@ endfunction
 
 " Smart substitution that handles cases and plurals.
 " Call :Subvert from vim-abolish
-command Isubvert call s:Subvert()
+command! Isubvert call s:Subvert()

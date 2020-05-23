@@ -122,32 +122,34 @@ call plug#begin()
 Plug 'https://github.com/tpope/vim-sensible.git'
 Plug 'https://github.com/junegunn/fzf.git'
 Plug 'https://github.com/junegunn/fzf.vim.git'
-Plug 'https://github.com/907th/vim-auto-save.git'
+exec 'source '.g:my_plugconfigsdir.'/autosave.vim'
 Plug 'https://github.com/tpope/vim-vinegar.git'
-Plug 'https://github.com/airblade/vim-rooter.git'
+exec 'source '.g:my_plugconfigsdir.'/rooter.vim'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/mtth/scratch.vim.git'
+exec 'source '.g:my_plugconfigsdir.'/scratch.vim'
 Plug 'https://github.com/terryma/vim-expand-region.git'
 Plug 'https://github.com/tmhedberg/matchit.git'
 Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/junegunn/vim-easy-align.git'
+exec 'source '.g:my_plugconfigsdir.'/easy-align.vim'
 Plug 'https://github.com/tpope/vim-repeat.git'
-" Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'https://github.com/skywind3000/vim-preview.git'
-Plug 'https://github.com/easymotion/vim-easymotion.git'
-Plug 'https://github.com/mbbill/undotree.git'
+exec 'source '.g:my_plugconfigsdir.'/easymotion.vim'
+exec 'source '.g:my_plugconfigsdir.'/undotree.vim'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/s3rvac/AutoFenc.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
+
+exec 'source '.g:my_plugconfigsdir.'/nerdtree.vim'
 Plug 'https://github.com/jistr/vim-nerdtree-tabs.git'
+exec 'source '.g:my_plugconfigsdir.'/netrw.vim'
+
 Plug 'https://github.com/xolox/vim-misc.git'
 Plug 'https://github.com/tpope/vim-scriptease.git'
 Plug 'https://github.com/mhinz/vim-lookup.git'
 Plug 'https://github.com/jszakmeister/vim-togglecursor.git'
-Plug 'https://github.com/wesQ3/vim-windowswap.git'
+exec 'source '.g:my_plugconfigsdir.'/vim-windowswap.vim'
 Plug 'https://github.com/freitass/todo.txt-vim.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'
 Plug 'https://github.com/amix/vim-zenroom2.git'
@@ -159,11 +161,8 @@ Plug 'https://github.com/kana/vim-textobj-line.git'
 Plug 'https://github.com/michaeljsmith/vim-indent-object.git'
 Plug 'https://github.com/bps/vim-textobj-python.git'
 
-Plug 'https://github.com/tpope/vim-abolish.git'
 exec 'source '.g:my_plugconfigsdir.'/abolish.vim'
-
-" Status bar
-Plug 'https://github.com/itchyny/lightline.vim.git'
+exec 'source '.g:my_plugconfigsdir.'/lightline.vim'
 
 " Collection of language packs (syntax, indent, completion, compiler,...)
 " TODO: replace other language plugin with this
@@ -173,35 +172,26 @@ Plug 'https://github.com/PProvost/vim-ps1.git'
 " Javascript/Html/Json/Markdown
 Plug 'https://github.com/othree/yajs.vim.git'
 Plug 'https://github.com/HerringtonDarkholme/yats.vim.git'
-Plug 'https://github.com/othree/javascript-libraries-syntax.vim.git'
+exec 'source '.g:my_plugconfigsdir.'/javascript-libraries-syntax.vim'
 Plug 'https://github.com/othree/html5.vim.git'
+exec 'source '.g:my_plugconfigsdir.'/indent_html.vim'
 Plug 'https://github.com/elzr/vim-json.git'
 Plug 'https://github.com/kevinoid/vim-jsonc.git'
-" Markdown
-" Plug 'https://github.com/tpope/vim-markdown.git'
 
 " Integration
 " TODO: replace editorconfig with the more popular version
-Plug 'https://github.com/sgur/vim-editorconfig.git'
+exec 'source '.g:my_plugconfigsdir.'/vim-editorconfig.vim'
 Plug 'https://github.com/tyru/open-browser.vim.git'
-Plug 'https://github.com/keith/investigate.vim.git'
-Plug 'https://github.com/mhinz/vim-grepper.git'
-Plug 'https://github.com/thinca/vim-quickrun.git'
+exec 'source '.g:my_plugconfigsdir.'/investigate.vim'
+exec 'source '.g:my_plugconfigsdir.'/grepper.vim'
+exec 'source '.g:my_plugconfigsdir.'/quickrun.vim'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
-Plug 'https://github.com/tpope/vim-dispatch.git'
+exec 'source '.g:my_plugconfigsdir.'/dispatch.vim'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-" NOTE: ale conflicts with fugitive when doing Gdiff.
-" Need to disable ale in buffer used for &diff.
-Plug 'https://github.com/w0rp/ale.git'
-Plug 'https://github.com/jpalardy/vim-slime.git'
-" Copy/paste system clipboard using external commands.
-" Use `cp` operator for copy, `cv` operator for paste.
-Plug 'https://github.com/christoomey/vim-system-copy.git'
-
-" Tabnine auto-completion (using ML/Deep-learning)
-if has('python3_compiled') && (has('python3_dynamic') || has('python3'))
-    Plug 'https://github.com/codota/tabnine-vim.git'
-endif
+exec 'source '.g:my_plugconfigsdir.'/ale.vim'
+exec 'source '.g:my_plugconfigsdir.'/vim-slime.vim'
+exec 'source '.g:my_plugconfigsdir.'/vim-system-copy.vim'
+exec 'source '.g:my_plugconfigsdir.'/youcompleteme-tabnine.vim'
 
 " Colors/themes
 " TODO: go with a colorscheme pack that contains gruvbox
@@ -216,4 +206,4 @@ Plug 'https://github.com/jeffkreeftmeijer/vim-dim.git'
 Plug 'https://github.com/mhartington/oceanic-next.git'
 call plug#end()
 " }}
-" vim:foldmethod=marker:foldmarker={{,}}
+" vim:fdm=marker:fmr={{,}}
