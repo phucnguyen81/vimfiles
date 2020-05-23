@@ -6,7 +6,7 @@ nnoremap <silent> <Leader>cc :call myfun#close_window()<cr>
 nnoremap <silent> <Leader>wo :only<cr>
 
 " Close a window that can be moved to with :wincmd wincmd_arg
-function s:CloseWindowAtWincmd(wincmd_arg) abort
+function! s:CloseWindowAtWincmd(wincmd_arg) abort
     let l:win = winnr()
     exec "wincmd ".a:wincmd_arg
     if winnr() == l:win

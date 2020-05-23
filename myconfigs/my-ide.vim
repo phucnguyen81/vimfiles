@@ -6,7 +6,7 @@ function! s:Format()
     endif
     exec b:my_format_command
 endfunction
-command Format call s:Format()
+command! Format call s:Format()
 
 function! s:Lint()
     if !exists('b:my_lint_command')
@@ -14,7 +14,7 @@ function! s:Lint()
     endif
     exec b:my_lint_command
 endfunction
-command Lint call s:Lint()
+command! Lint call s:Lint()
 
 function! s:Fix()
     if exists('b:my_fix_command')
@@ -27,7 +27,7 @@ function! s:Fix()
     endif
     throw 'No fix commands available'
 endfunction
-command Fix call s:Fix()
+command! Fix call s:Fix()
 
 function! s:FindReferences()
     if !exists('b:my_find_references_command')
@@ -35,7 +35,7 @@ function! s:FindReferences()
     endif
     exec b:my_find_references_command
 endfunction
-command Refs call s:FindReferences()
+command! Refs call s:FindReferences()
 
 function! s:RenameSymbol()
     if !exists('b:my_rename_symbol_command')
@@ -43,7 +43,7 @@ function! s:RenameSymbol()
     endif
     exec b:my_rename_symbol_command
 endfunction
-command Rn call s:RenameSymbol()
+command! Rn call s:RenameSymbol()
 
 function! s:GotoDefinition()
     if !exists('b:my_goto_definition_command')
@@ -51,7 +51,7 @@ function! s:GotoDefinition()
     endif
     exec b:my_goto_definition_command
 endfunction
-command Def call s:GotoDefinition()
+command! Def call s:GotoDefinition()
 
 function! s:PeekDocumentation()
     if !exists('b:my_peek_documentation_command')
@@ -59,5 +59,5 @@ function! s:PeekDocumentation()
     endif
     exec b:my_peek_documentation_command
 endfunction
-command Peek call s:PeekDocumentation()
+command! Peek call s:PeekDocumentation()
 

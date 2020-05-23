@@ -1,6 +1,6 @@
 " Working with registers
 
-command -nargs=? EditRegister :call s:edit_register('q', <f-args>)
+command! -nargs=? EditRegister :call s:edit_register('q', <f-args>)
 
 function! s:edit_register(default, ...) abort
     let reg = a:default
@@ -19,9 +19,9 @@ function! s:edit_register(default, ...) abort
     " newlines in buffer to register.
     autocmd! BufLeave <buffer>
     exec join(['autocmd BufLeave <buffer>',
-                \ ':call setreg('''.reg.''', getline(1, ''$''))',
-                \ '| :bdelete!',
-                \ ])
+      \ ':call setreg('''.reg.''', getline(1, ''$''))',
+      \ '| :bdelete!',
+      \ ])
 
     echom 'Editing register "'.reg
 endfunction

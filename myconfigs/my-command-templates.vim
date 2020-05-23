@@ -10,13 +10,13 @@ function s:TemplateFile()
     return g:my_command_template
 endfunction
 
-command TGrepper call s:GrepperTemplate()
-command Tls call s:LsTemplate()
+command! TGrepper call s:GrepperTemplate()
+command! Tls call s:LsTemplate()
 
 " Prepare Grepper template file.
 " Help: grepper.txt
 " Source: https://github.com/mhinz/vim-grepper
-function s:GrepperTemplate() abort
+function! s:GrepperTemplate() abort
     let currdir = myfun#current_dir()
     let pattern = expand('<cword>')
 
@@ -36,7 +36,7 @@ function s:GrepperTemplate() abort
     exec 'edit '.fnameescape(s:TemplateFile())
 endfunction
 
-function s:LsTemplate() abort
+function! s:LsTemplate() abort
     let lines = []
     call add(lines, 'let s:b = []')
     call add(lines, '')

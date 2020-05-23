@@ -22,6 +22,6 @@ function! s:source_current_line()
     call s:source_lines([line])
 endfunction
 
-command -range Source <line1>,<line2>call s:source_range()
+command! -range Source <line1>,<line2>call s:source_range()
 xnoremap <C-s><C-v> :call <SID>source_range()<CR>
 nnoremap <C-s><C-v> :call <SID>source_current_line()<CR>

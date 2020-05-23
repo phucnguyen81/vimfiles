@@ -1,6 +1,8 @@
 " Init {{
 let g:my_basedir = expand('<sfile>:p:h')
 let g:my_plugconfigsdir = expand(g:my_basedir.'/plugconfigs')
+let g:my_pluginsdir = expand(g:my_basedir.'/myplugins')
+let g:my_configsdir = expand(g:my_basedir.'/myconfigs')
 let g:my_snippets = expand(g:my_basedir.'/snippets')
 let g:my_vardir = expand(g:my_basedir.'/var')
 let g:my_netrw_home = g:my_vardir
@@ -111,11 +113,29 @@ if !empty(python.dll)
 endif
 
 " }}
+" Mappings {{
+exec 'source '.g:my_configsdir.'/my-buffer.vim'
+exec 'source '.g:my_configsdir.'/my-command-templates.vim'
+exec 'source '.g:my_configsdir.'/my-commands.vim'
+exec 'source '.g:my_configsdir.'/my-grep.vim'
+exec 'source '.g:my_configsdir.'/my-ide.vim'
+exec 'source '.g:my_configsdir.'/my-journal.vim'
+exec 'source '.g:my_configsdir.'/my-newfile.vim'
+exec 'source '.g:my_configsdir.'/my-registers.vim'
+exec 'source '.g:my_configsdir.'/my-sessions.vim'
+exec 'source '.g:my_configsdir.'/my-snippets.vim'
+exec 'source '.g:my_configsdir.'/my-source.vim'
+exec 'source '.g:my_configsdir.'/my-tab.vim'
+exec 'source '.g:my_configsdir.'/my-window.vim'
+" }}
 " Autocmd {{
 augroup my_autocmd
     autocmd!
     autocmd InsertEnter * norm zz
 augroup end
+" }}
+" My pluggins {{
+exec 'source '.g:my_pluginsdir.'/nn.vim'
 " }}
 " Plugins {{
 call plug#begin()

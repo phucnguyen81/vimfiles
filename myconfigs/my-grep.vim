@@ -1,4 +1,5 @@
-" Set up grep functions
+" Set up grep functions.
+" TODO replace with FlyGrep or simply use Rg
 
 if executable('rg')
     let &grepprg = 'rg --no-heading --vimgrep --smart-case $*'
@@ -15,7 +16,8 @@ if executable('rg')
             exec 'grep --fixed-strings '.arg
         endif
     endfunction
+
+    command! -nargs=* -bang Grep call s:grep(<bang>0, <f-args>)
 endif
 
-command -nargs=* -bang Grep call s:grep(<bang>0, <f-args>)
 
