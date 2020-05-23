@@ -140,6 +140,10 @@ exec 'source '.g:my_configsdir.'/my-window.vim'
 " Autocmd {{
 augroup my_autocmd
     autocmd!
+    autocmd VimEnter * let g:netrw_list_hide = join([
+      \ '__pycache__', '\.pyc',
+      \ '\.DAT$', '\.dat$', '^ntuser',
+      \ ], ',')
     autocmd InsertEnter * norm zz
 augroup end
 " }}
