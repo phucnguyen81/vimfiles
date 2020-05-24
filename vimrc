@@ -43,6 +43,9 @@ let g:my_auto_save_enable = 1
 let mapleader = "\<space>"
 let maplocalleader = ","
 
+if has('termiguicolors')
+    set termguicolors
+endif
 set equalalways splitbelow splitright
 set undofile nobackup nowritebackup noswapfile history=1000
 if filereadable(g:my_viminfofile)
@@ -155,7 +158,10 @@ exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 if filereadable(g:my_plugvim)
     exec 'source '.g:my_plugvim
 endif
+
 call plug#begin(g:my_pluggeddir)
+
+exec 'source '.expand(g:my_plugconfigsdir.'/colorschemes.vim')
 Plug 'https://github.com/tpope/vim-sensible.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/fzf.vim')
 Plug 'https://github.com/junegunn/fzf.vim.git'
@@ -230,17 +236,6 @@ exec 'source '.expand(g:my_plugconfigsdir.'/vim-slime.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-system-copy.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/youcompleteme-tabnine.vim')
 
-" Colors/themes
-" TODO: go with a colorscheme pack that contains gruvbox
-Plug 'https://github.com/xolox/vim-colorscheme-switcher.git'
-Plug 'https://github.com/morhetz/gruvbox.git'
-Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
-Plug 'https://github.com/junegunn/seoul256.vim.git'
-Plug 'https://github.com/romainl/flattened.git'
-Plug 'https://github.com/nightsense/carbonized.git'
-Plug 'https://github.com/arcticicestudio/nord-vim.git'
-Plug 'https://github.com/jeffkreeftmeijer/vim-dim.git'
-Plug 'https://github.com/mhartington/oceanic-next.git'
 call plug#end()
 " }}
 " vim:fdm=marker:fmr={{,}}:et:ts=4:sts=4:sw=4

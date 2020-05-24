@@ -6,7 +6,7 @@ set fileencodings=utf-8
 " Set color scheme
 set background=dark
 " silent! colorscheme gruvbox
-silent! colorscheme OceanicNext
+silent! colorscheme flattened_dark
 
 " Show window title and icons
 set title icon
