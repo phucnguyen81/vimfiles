@@ -69,10 +69,6 @@ nnoremap <Leader>lo :lopen<CR>
 nnoremap <Leader>ms :call myfun#maximize_screen()<CR>
 nnoremap <f11> :call myfun#maximize_screen()<CR>
 
-" Change current/local working directory
-nnoremap <Leader>cd :cd <C-r>=fnameescape(myfun#current_dir())<CR>
-nnoremap <Leader>lc :lcd <C-r>=fnameescape(myfun#current_dir())<CR>
-
 nnoremap <Leader>qa :confirm quitall<CR>
 
 " toggle search highlighting
