@@ -32,12 +32,16 @@ endfor
 
 " Hint at completion plugins being used, jedi | lsp
 let g:my_completion_plugin = ''
+
 " Enable/disable auto-completion at startup
 let g:my_auto_completion_on = 1
+
 " Delay in miliseconds during typing before completion kicks in
 let g:my_auto_completion_delay = 2000
+
 " Enable autosave at startup
 let g:my_auto_save_enable = 1
+
 " }}
 " Options {{
 let mapleader = "\<space>"
@@ -64,8 +68,8 @@ set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
 set visualbell display=lastline virtualedit=block
-set nohidden nowrapscan autoread
-set suffixes+=.pyc
+set autoread nohidden nowrapscan
+set suffixes+=.pyc suffixes+=.ts
 set tags=./tags;/
 set wildmenu wildchar=<Tab>
 set wildignore+=*.class,**/classes/** "Java, maven"
@@ -107,7 +111,6 @@ set showcmd
 set cmdheight=1
 set sessionoptions-=options sessionoptions-=blank sessionoptions+=help
 set viewoptions-=options
-
 set includeexpr=myfun#includeexpr(v:fname)
 
 let python = mypy#pythonthree()
@@ -119,7 +122,7 @@ if !empty(python.dll)
 endif
 
 " }}
-" Mappings {{
+" My options {{
 exec 'source '.g:my_configsdir.'/my-buffer.vim'
 exec 'source '.g:my_configsdir.'/my-colorscheme.vim'
 exec 'source '.g:my_configsdir.'/my-command-templates.vim'
@@ -142,7 +145,7 @@ exec 'source '.g:my_configsdir.'/my-visualmap.vim'
 exec 'source '.g:my_configsdir.'/my-window.vim'
 " }}
 " Autocmd {{
-augroup my_autocmd
+augroup my_main_autocmd
     autocmd!
     autocmd VimEnter * let g:netrw_list_hide = join([
       \ '__pycache__', '\.pyc',
@@ -207,20 +210,6 @@ Plug 'https://github.com/bps/vim-textobj-python.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/abolish.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/lightline.vim')
 
-" Collection of language packs (syntax, indent, completion, compiler,...)
-" TODO: replace other language plugin with this
-" Plug 'https://github.com/sheerun/vim-polyglot.git'
-" Powershell
-Plug 'https://github.com/PProvost/vim-ps1.git'
-" Javascript/Html/Json/Markdown
-Plug 'https://github.com/othree/yajs.vim.git'
-Plug 'https://github.com/HerringtonDarkholme/yats.vim.git'
-exec 'source '.expand(g:my_plugconfigsdir.'/javascript-libraries-syntax.vim')
-Plug 'https://github.com/othree/html5.vim.git'
-exec 'source '.expand(g:my_plugconfigsdir.'/indent_html.vim')
-Plug 'https://github.com/elzr/vim-json.git'
-Plug 'https://github.com/kevinoid/vim-jsonc.git'
-
 " Integration
 " TODO: replace editorconfig with the more popular version
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-editorconfig.vim')
@@ -235,6 +224,11 @@ exec 'source '.expand(g:my_plugconfigsdir.'/ale.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-slime.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-system-copy.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/youcompleteme-tabnine.vim')
+
+" Collection of language packs (syntax, indent, completion, compiler,...)
+Plug 'https://github.com/gisphm/vim-polyglot.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/indent_html.vim')
+Plug 'https://github.com/kevinoid/vim-jsonc.git'
 
 call plug#end()
 " }}
