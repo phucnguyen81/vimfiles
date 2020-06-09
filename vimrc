@@ -1,34 +1,62 @@
 " Init {{
 let g:my_basedir = expand('<sfile>:p:h')
-let g:my_plugvim = expand(g:my_basedir.'/autoload/plug.vim')
-let g:my_pluggeddir = expand(g:my_basedir.'/plugged')
-let g:my_plugconfigsdir = expand(g:my_basedir.'/plugconfigs')
-let g:my_pluginsdir = expand(g:my_basedir.'/myplugins')
-let g:my_configsdir = expand(g:my_basedir.'/myconfigs')
-let g:my_snippets = expand(g:my_basedir.'/snippets')
-let g:my_vardir = expand(g:my_basedir.'/var')
-let g:my_netrw_home = g:my_vardir
-let g:my_viminfofile = expand(g:my_vardir.'/viminfo')
-let g:my_undodir = expand(g:my_vardir.'/undodir')
-let g:my_backupdir = expand(g:my_vardir.'/backupdir')
-let g:my_swapfiles = expand(g:my_vardir.'/swapfiles')
-let g:my_session_dir = expand(g:my_vardir.'/sessions')
-let g:my_nerdtree_bookmarksfile = expand(g:my_vardir.'/NERDTreeBookMarks')
-let g:my_fzf_history_dir = expand(g:my_vardir.'/fzf-history')
-let g:my_scratch_file = expand(g:my_vardir.'/scratch.txt')
-let g:my_command_template = expand(g:my_vardir.'/command_template.vim')
-let g:my_calendar_dir = expand(g:my_vardir.'/calendar')
-let g:my_dict_dir = expand(g:my_basedir.'/dict')
-let g:my_dict_eng = expand(g:my_dict_dir.'/eng')
 
-for dir in [g:my_vardir, g:my_vardir, g:my_netrw_home
-  \, g:my_netrw_home, g:my_undodir, g:my_backupdir
-  \, g:my_swapfiles, g:my_session_dir, g:my_fzf_history_dir
-  \, g:my_calendar_dir, g:my_plugconfigsdir]
-    if !isdirectory(dir)
-        call mkdir(dir, "p")
-    endif
-endfor
+let g:my_plugvim = expand(g:my_basedir.'/autoload/plug.vim')
+if !filereadable(g:my_plugvim)
+    echoerr 'Missing vim-plug autoload file at '.g:my_plugvim
+endif
+
+let g:my_pluggeddir = expand(g:my_basedir.'/plugged')
+call mkdir(g:my_pluggeddir, "p")
+
+let g:my_plugconfigsdir = expand(g:my_basedir.'/plugconfigs')
+call mkdir(g:my_plugconfigsdir, "p")
+
+let g:my_pluginsdir = expand(g:my_basedir.'/myplugins')
+call mkdir(g:my_pluginsdir, "p")
+
+let g:my_configsdir = expand(g:my_basedir.'/myconfigs')
+call mkdir(g:my_configsdir, "p")
+
+let g:my_snippets = expand(g:my_basedir.'/snippets')
+call mkdir(g:my_snippets, "p")
+
+let g:my_vardir = expand(g:my_basedir.'/var')
+call mkdir(g:my_vardir, "p")
+
+let g:my_netrw_home = g:my_vardir
+call mkdir(g:my_netrw_home, "p")
+
+let g:my_viminfofile = expand(g:my_vardir.'/viminfo')
+
+let g:my_undodir = expand(g:my_vardir.'/undodir')
+call mkdir(g:my_undodir, "p")
+
+let g:my_backupdir = expand(g:my_vardir.'/backupdir')
+call mkdir(g:my_backupdir, "p")
+
+let g:my_swapfiles = expand(g:my_vardir.'/swapfiles')
+call mkdir(g:my_swapfiles, "p")
+
+let g:my_session_dir = expand(g:my_vardir.'/sessions')
+call mkdir(g:my_session_dir, "p")
+
+let g:my_nerdtree_bookmarksfile = expand(g:my_vardir.'/NERDTreeBookMarks')
+
+let g:my_fzf_history_dir = expand(g:my_vardir.'/fzf-history')
+call mkdir(g:my_fzf_history_dir, "p")
+
+let g:my_scratch_file = expand(g:my_vardir.'/scratch.txt')
+
+let g:my_command_template = expand(g:my_vardir.'/command_template.vim')
+
+let g:my_calendar_dir = expand(g:my_vardir.'/calendar')
+call mkdir(g:my_calendar_dir, "p")
+
+let g:my_dict_dir = expand(g:my_basedir.'/dict')
+call mkdir(g:my_dict_dir, "p")
+
+let g:my_dict_eng = expand(g:my_dict_dir.'/eng')
 
 " Hint at completion plugins being used, jedi | lsp
 let g:my_completion_plugin = ''
@@ -52,18 +80,10 @@ if has('termiguicolors')
 endif
 set equalalways splitbelow splitright
 set undofile nobackup nowritebackup noswapfile history=1000
-if filereadable(g:my_viminfofile)
-    let &viminfofile=g:my_viminfofile
-endif
-if isdirectory(g:my_undodir)
-    exec "set undodir=".g:my_undodir.'//,.'
-endif
-if isdirectory(g:my_backupdir)
-    exec "set backupdir=".g:my_backupdir.'//,.'
-endif
-if isdirectory(g:my_swapfiles)
-    exec "set directory=".g:my_swapfiles.'//,.'
-endif
+let &viminfofile=g:my_viminfofile
+exec "set undodir=".g:my_undodir.'//,.'
+exec "set backupdir=".g:my_backupdir.'//,.'
+exec "set directory=".g:my_swapfiles.'//,.'
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
@@ -86,8 +106,8 @@ set completeopt=menu,menuone,preview,noinsert
 set complete-=t
 set complete-=kspell
 set complete-=k
-if exists('g:my_dictionary') && isdirectory(g:my_dictionary)
-    exec 'set dictionary+='.fnameescape(g:my_dictionary)
+if filereadable(g:my_dict_eng)
+    exec 'set dictionary+='.g:my_dict_eng
 endif
 set noshowmode
 set shortmess+=I shortmess+=c shortmess+=t
@@ -151,17 +171,13 @@ augroup my_main_autocmd
       \ '__pycache__', '\.pyc',
       \ '\.DAT$', '\.dat$', '^ntuser',
       \ ], ',')
-    autocmd InsertEnter * norm zz
+    autocmd InsertEnter * normal! zz
 augroup end
 " }}
 " My pluggins {{
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 " }}
 " Plugins {{
-if filereadable(g:my_plugvim)
-    exec 'source '.g:my_plugvim
-endif
-
 call plug#begin(g:my_pluggeddir)
 
 exec 'source '.expand(g:my_plugconfigsdir.'/colorschemes.vim')
@@ -211,8 +227,7 @@ exec 'source '.expand(g:my_plugconfigsdir.'/abolish.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/lightline.vim')
 
 " Integration
-" TODO: replace editorconfig with the more popular version
-exec 'source '.expand(g:my_plugconfigsdir.'/vim-editorconfig.vim')
+Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/openbrowser.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/investigate.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/grepper.vim')
