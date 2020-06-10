@@ -202,6 +202,7 @@ Plug 'https://github.com/bps/vim-textobj-python.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'
 Plug 'https://github.com/amix/vim-zenroom2.git'
 Plug 'https://github.com/freitass/todo.txt-vim.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/startify.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/abolish.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/easy-align.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/easymotion.vim')
