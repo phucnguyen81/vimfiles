@@ -6,8 +6,8 @@ function! myfun#set_local_indent(width) abort
     exec "setlocal shiftwidth=".a:width
     setlocal expandtab
     setlocal smarttab
-    setlocal autoindent
     setlocal shiftround
+    setlocal autoindent
 endfunction
 
 " Count occurences of given pattern starting at current line

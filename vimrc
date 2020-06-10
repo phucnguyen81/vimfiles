@@ -88,7 +88,7 @@ set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
 set visualbell display=lastline virtualedit=block
-set autoread nohidden nowrapscan
+set autoread hidden nowrapscan
 set suffixes+=.pyc
 set tags=./tags;/
 set wildmenu wildchar=<Tab>
@@ -216,7 +216,7 @@ exec 'source '.expand(g:my_plugconfigsdir.'/netrw.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/fzf.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/grepper.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/quickrun.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/youcompleteme-tabnine.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/tabnine.vim')
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'

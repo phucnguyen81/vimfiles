@@ -2,43 +2,37 @@
 function! mypy#forfile(filename)
     let filename = a:filename
     return { 'python' : s:pythonthree_exe
-            \ , 'file' : s:find_python3_file(filename)
-            \ }
+      \ , 'file' : s:find_python3_file(filename)
+      \ }
 endfunction
 
 " Get python 3 context
 function! mypy#pythonthree()
     return { 'home' : s:pythonthree_dir
-            \ , 'dll' : s:pythonthree_dll
-            \ }
+      \ , 'dll' : s:pythonthree_dll
+      \ }
 endfunction
 
-" Find pythonthree directory on the first entry of runtimepath,
-" which is ~/vimfiles on Windows or ~/.vim on Linux.
+" Find python3 installation in base directory
 function! s:find_pythonthree_dir()
-    for path in split(&runtimepath, ',')
-        let dir = finddir('pythonthree', path)
-        if empty(dir)
-            return ''
-        else
-            return s:fullpath(dir)
-        endif
-    endfor
-    return ''
+    if exists('g:my_basedir')
+      \ && isdirectory(g:my_basedir)
+      \ && isdirectory(expand(g:my_basedir.'/pythonthree'))
+        return expand(g:my_basedir.'/pythonthree')
+    else
+        return ''
+    endif
 endfunction
 
-" Find python3 directory on the first entry of runtimepath,
-" which is ~/vimfiles on Windows or ~/.vim on Linux.
+" Find python3 directory in base directory
 function! s:find_python3_dir()
-    for path in split(&runtimepath, ',')
-        let dir = finddir('python3', path)
-        if empty(dir)
-            return ''
-        else
-            return s:fullpath(dir)
-        endif
-    endfor
-    return ''
+    if exists('g:my_basedir')
+      \ && isdirectory(g:my_basedir)
+      \ && isdirectory(expand(g:my_basedir.'/python3'))
+        return expand(g:my_basedir.'/python3')
+    else
+        return ''
+    endif
 endfunction
 
 " Find a file under python3 directory
