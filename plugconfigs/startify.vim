@@ -16,7 +16,7 @@ let g:startify_commands = [
   \ {'<C-f>': [' Fuzzy find', 'FZF']},
   \ ]
 
-let g:startify_disable_at_vimenter = 1
+let g:startify_disable_at_vimenter = 0
 let g:startify_use_env = 1
 let g:startify_enable_special = 0
 let g:startify_custom_header = []
