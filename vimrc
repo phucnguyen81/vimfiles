@@ -89,7 +89,7 @@ set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
 set visualbell display=lastline virtualedit=block
 set autoread nohidden nowrapscan
-set suffixes+=.pyc suffixes+=.ts
+set suffixes+=.pyc
 set tags=./tags;/
 set wildmenu wildchar=<Tab>
 set wildignore+=*.class,**/classes/** "Java, maven"
