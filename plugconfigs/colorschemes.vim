@@ -1,3 +1,6 @@
+" Required for other plugins
+Plug 'https://github.com/xolox/vim-misc.git'
+
 " Switch colorscheme on <F8>
 Plug 'https://github.com/xolox/vim-colorscheme-switcher.git'
 
