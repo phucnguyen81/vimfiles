@@ -1,13 +1,3 @@
-" Vim internal encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-
-" Set color scheme
-set background=dark
-" silent! colorscheme gruvbox
-silent! colorscheme flattened_dark
-
 " Show window title and icons
 set title icon
 
@@ -24,13 +14,9 @@ set guifont+=Source_Code_Pro:h11
 set guifont+=InputMono_ExLight:h11
 set guifont+=Consolas:h11
 
+" Set color scheme
+set background=dark
+silent! colorscheme gruvbox
+
 " Select fonts
 command SetFont set guifont=*
-
-" Use system clipboard
-if has('unnamedplus')
-    set clipboard=autoselectplus,unnamedplus
-else
-    set clipboard=autoselect,unnamed
-
-endif

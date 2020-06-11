@@ -1,4 +1,4 @@
-" Init {{
+" My options {{
 let g:my_basedir = expand('<sfile>:p:h')
 
 let g:my_plugvim = expand(g:my_basedir.'/autoload/plug.vim')
@@ -142,9 +142,8 @@ if !empty(python.dll)
 endif
 
 " }}
-" My options {{
+" My configs {{
 exec 'source '.g:my_configsdir.'/my-buffer.vim'
-exec 'source '.g:my_configsdir.'/my-colorscheme.vim'
 exec 'source '.g:my_configsdir.'/my-command-templates.vim'
 exec 'source '.g:my_configsdir.'/my-commandmap.vim'
 exec 'source '.g:my_configsdir.'/my-commands.vim'
