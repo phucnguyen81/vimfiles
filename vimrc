@@ -167,12 +167,18 @@ exec 'source '.g:my_configsdir.'/my-window.vim'
 " Autocmd {{
 augroup my_main_autocmd
     autocmd!
-    autocmd VimEnter * let g:netrw_list_hide = join([
+    autocmd VimEnter * call <SID>OnVimEnter()
+    autocmd InsertEnter * normal! zz
+augroup end
+
+function s:OnVimEnter() abort
+    let g:netrw_list_hide = join([
       \ '__pycache__', '\.pyc',
       \ '\.DAT$', '\.dat$', '^ntuser',
       \ ], ',')
-    autocmd InsertEnter * normal! zz
-augroup end
+
+    silent! colorscheme gruvbox
+endfunction
 " }}
 " My pluggins {{
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
