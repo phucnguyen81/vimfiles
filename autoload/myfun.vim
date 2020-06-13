@@ -261,26 +261,29 @@ function! myfun#remove_trailing_spaces() abort
     call setpos('.', save_pos)
 endfunction
 
-function! myfun#show_status() abort
-    let info = []
+function! myfun#show_info() abort
+    let info = [
+      \"HOME: ".expand("$HOME"),
+      \"Virtual Env: ".expand("$VIRTUAL_ENV"),
+      \"vimrc: ".expand('$MYVIMRC'),
+      \"gvimrc: ".expand('$MYGVIMRC'),
+      \"",
+      \"Working dir: ".getcwd(),
+      \"Current dir: ".myfun#current_dir(),
+      \"",
+      \"Path: ".expand('%:p'),
+      \"File: ".expand('%'),
+      \"Buffer: ".bufname(''),
+      \"Window: ".winnr(),
+      \"",
+      \"Session: ".v:this_session,
+      \"Keymap: ".&keymap,
+      \]
 
-    call add(info, "Home: ".expand('~'))
-    call add(info, "vimrc: ".expand('$MYVIMRC'))
-    if !empty(expand('$MYGVIMRC'))
-        call add(info, "gvimrc: ".expand('$MYGVIMRC'))
-    endif
-    call add(info, "Working dir: ".getcwd())
-    call add(info, "Current dir: ".myfun#current_dir())
-    call add(info, "File: ".expand('%'))
-    call add(info, "Path: ".expand('%:p'))
-    call add(info, "Session: ".v:this_session)
-    call add(info, "Buffer: ".bufname(''))
-    call add(info, "Window: ".winnr())
-    call add(info, "Keymap: ".&keymap)
-
-    let fname = tempname()
-    call writefile(info, fname)
-    exec 'split '.fname
+    new
+    setlocal hidden buftype=nofile bufhidden=wipe noswapfile
+    call append(0, info)
+    call cursor(1, 1)
 endfunction
 
 function! s:is_netrw_buffer()
