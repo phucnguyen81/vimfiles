@@ -19,5 +19,3 @@ if executable('rg')
 
     command! -nargs=* -bang Grep call s:grep(<bang>0, <f-args>)
 endif
-
-

@@ -7,54 +7,82 @@ if !filereadable(g:my_plugvim)
 endif
 
 let g:my_pluggeddir = expand(g:my_basedir.'/plugged')
-call mkdir(g:my_pluggeddir, "p")
+if !isdirectory(g:my_pluggeddir)
+    call mkdir(g:my_pluggeddir, "p")
+endif
 
 let g:my_plugconfigsdir = expand(g:my_basedir.'/plugconfigs')
-call mkdir(g:my_plugconfigsdir, "p")
+if !isdirectory(g:my_plugconfigsdir)
+    call mkdir(g:my_plugconfigsdir, "p")
+endif
 
 let g:my_pluginsdir = expand(g:my_basedir.'/myplugins')
-call mkdir(g:my_pluginsdir, "p")
+if !isdirectory(g:my_pluginsdir)
+    call mkdir(g:my_pluginsdir, "p")
+endif
 
 let g:my_configsdir = expand(g:my_basedir.'/myconfigs')
-call mkdir(g:my_configsdir, "p")
+if !isdirectory(g:my_configsdir)
+    call mkdir(g:my_configsdir, "p")
+endif
 
 let g:my_snippets = expand(g:my_basedir.'/snippets')
-call mkdir(g:my_snippets, "p")
+if !isdirectory(g:my_snippets)
+    call mkdir(g:my_snippets, "p")
+endif
 
 let g:my_vardir = expand(g:my_basedir.'/var')
-call mkdir(g:my_vardir, "p")
+if !isdirectory(g:my_vardir)
+    call mkdir(g:my_vardir, "p")
+endif
 
 let g:my_netrw_home = g:my_vardir
-call mkdir(g:my_netrw_home, "p")
+if !isdirectory(g:my_netrw_home)
+    call mkdir(g:my_netrw_home, "p")
+endif
 
 let g:my_viminfofile = expand(g:my_vardir.'/viminfo')
 
 let g:my_undodir = expand(g:my_vardir.'/undodir')
-call mkdir(g:my_undodir, "p")
+if !isdirectory(g:my_undodir)
+    call mkdir(g:my_undodir, "p")
+endif
 
 let g:my_backupdir = expand(g:my_vardir.'/backupdir')
-call mkdir(g:my_backupdir, "p")
+if !isdirectory(g:my_backupdir)
+    call mkdir(g:my_backupdir, "p")
+endif
 
 let g:my_swapfiles = expand(g:my_vardir.'/swapfiles')
-call mkdir(g:my_swapfiles, "p")
+if !isdirectory(g:my_swapfiles)
+    call mkdir(g:my_swapfiles, "p")
+endif
 
 let g:my_session_dir = expand(g:my_vardir.'/sessions')
-call mkdir(g:my_session_dir, "p")
+if !isdirectory(g:my_session_dir)
+    call mkdir(g:my_session_dir, "p")
+endif
 
 let g:my_nerdtree_bookmarksfile = expand(g:my_vardir.'/NERDTreeBookMarks')
 
 let g:my_fzf_history_dir = expand(g:my_vardir.'/fzf-history')
-call mkdir(g:my_fzf_history_dir, "p")
+if !isdirectory(g:my_fzf_history_dir)
+    call mkdir(g:my_fzf_history_dir, "p")
+endif
 
 let g:my_scratch_file = expand(g:my_vardir.'/scratch.txt')
 
 let g:my_command_template = expand(g:my_vardir.'/command_template.vim')
 
 let g:my_calendar_dir = expand(g:my_vardir.'/calendar')
-call mkdir(g:my_calendar_dir, "p")
+if !isdirectory(g:my_calendar_dir)
+    call mkdir(g:my_calendar_dir, "p")
+endif
 
 let g:my_dict_dir = expand(g:my_basedir.'/dict')
-call mkdir(g:my_dict_dir, "p")
+if !isdirectory(g:my_dict_dir)
+    call mkdir(g:my_dict_dir, "p")
+endif
 
 let g:my_dict_eng = expand(g:my_dict_dir.'/eng')
 
