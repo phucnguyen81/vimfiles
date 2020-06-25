@@ -204,6 +204,7 @@ function s:OnVimEnter() abort
       \ '\.DAT$', '\.dat$', '^ntuser',
       \ ], ',')
 
+    set background=dark
     silent! colorscheme gruvbox
 endfunction
 " }}
