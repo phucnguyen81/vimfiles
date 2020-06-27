@@ -7,4 +7,7 @@ if has('python3_compiled')
     " Auto-trigger the completion (or manually with <C-Space>)
     let g:ycm_auto_trigger = 1
 
+    " <Down> or <C-n> for selecting next candidate
+    let g:ycm_key_list_select_completion = ['<Down>']
+
 endif
