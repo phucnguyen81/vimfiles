@@ -39,7 +39,6 @@ function! s:ToggleVietnameseKeymap() abort
     endif
 endfunction
 
-" TODO detech vietnamese and turn on keymap automatically
 command! KeymapVn call s:ToggleVietnameseKeymap()
 
 " Bulk-delete buffers

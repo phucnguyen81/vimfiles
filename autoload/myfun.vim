@@ -262,14 +262,17 @@ function! myfun#remove_trailing_spaces() abort
 endfunction
 
 function! myfun#show_info() abort
+    let virtual_env = exists("$VIRTUAL_ENV") ? expand("$VIRTUAL_ENV") : ""
+    let my_gvimrc = exists("$MYGVIMRC") ? expand("$MYGVIMRC") : ""
+
     let info = [
       \"HOME: ".expand("$HOME"),
-      \"Virtual Env: ".expand("$VIRTUAL_ENV"),
-      \"vimrc: ".expand('$MYVIMRC'),
-      \"gvimrc: ".expand('$MYGVIMRC'),
+      \"Virtual Env: ".virtual_env,
+      \"vimrc: ".expand("$MYVIMRC"),
+      \"gvimrc: ".my_gvimrc,
       \"",
       \"Working dir: ".getcwd(),
-      \"Current dir: ".myfun#current_dir(),
+      \"Context dir: ".myfun#current_dir(),
       \"",
       \"Path: ".expand('%:p'),
       \"File: ".expand('%'),

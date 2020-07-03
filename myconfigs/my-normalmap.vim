@@ -24,7 +24,7 @@ function! s:EditGvimrc()
 endfunction
 nnoremap <Leader>eg :call <SID>EditGvimrc()<CR>
 
-nnoremap <Leader>io :call myfun#show_info()<CR>
+nnoremap <Leader>if :call myfun#show_info()<CR>
 
 " Replace/substitute current whole word, case-sensitive
 nnoremap <Leader>sw :.,$s/\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\>//gc<left><left><left>
