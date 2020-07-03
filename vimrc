@@ -84,7 +84,7 @@ if !isdirectory(g:my_dict_dir)
     call mkdir(g:my_dict_dir, "p")
 endif
 
-let g:my_dict_eng = expand(g:my_dict_dir.'/eng')
+let g:my_dict_eng = expand(g:my_dict_dir.'/words_eng.txt')
 
 " Hint at completion plugins being used, jedi | lsp
 let g:my_completion_plugin = ''
@@ -130,7 +130,7 @@ set wildignore+=*.DS_Store "OSX SHIT"
 set wildignore+=*.luac "Lua byte code"
 set wildignore+=*.pyc "Python Object codes"
 set wildignore+=*.orig,*.rej "Merge resolution files"
-set completeopt=menu,menuone,preview,noinsert
+set completeopt=menuone,longest,popup
 set complete-=t
 set complete-=kspell
 set complete-=k
