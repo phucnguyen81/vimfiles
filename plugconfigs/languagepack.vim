@@ -2,6 +2,7 @@ Plug 'https://github.com/gisphm/vim-polyglot.git'
 Plug 'https://github.com/kevinoid/vim-jsonc.git'
 Plug 'https://github.com/PProvost/vim-ps1.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
+Plug 'https://github.com/tweekmonster/django-plus.vim.git'
 
 " Options for html indent.
 " See: $VIMRUNTIME/indent/html.vim
