@@ -65,6 +65,7 @@ nnoremap <silent> <Leader>w4 4<c-w>w
 nnoremap <silent> <Leader>w5 5<c-w>w
 
 " Arrange windows
+nnoremap <silent> <Leader>wr :wincmd r<cr>
 nnoremap <silent> <Leader>wH :wincmd H<cr>
 nnoremap <silent> <Leader>wL :wincmd L<cr>
 nnoremap <silent> <Leader>wJ :wincmd J<cr>
