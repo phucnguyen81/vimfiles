@@ -116,7 +116,7 @@ set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
 set visualbell display=lastline virtualedit=block
-set autoread hidden nowrapscan
+set autoread hidden nowrap nowrapscan
 set suffixes+=.pyc
 set tags=./tags;/
 set wildmenu wildchar=<Tab>

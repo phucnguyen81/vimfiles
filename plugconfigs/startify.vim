@@ -13,7 +13,9 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
-  \ {'<C-f>': [' Fuzzy find', 'FZF']},
+  \ {'<C-f>': [' Find Files', 'FZF']},
+  \ {'<C-g>': [' Grep', 'Grepper']},
+  \ {'<C-s>': [' Fuzzy Search', 'NN']},
   \ ]
 
 let g:startify_disable_at_vimenter = 0

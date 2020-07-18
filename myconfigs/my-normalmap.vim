@@ -76,6 +76,8 @@ nnoremap <Leader>qa :confirm quitall<CR>
 " toggle search highlighting
 nnoremap <Leader>hl :setlocal hlsearch!<CR>
 
+nnoremap g0 ^
+
 nnoremap g, ,
 
 " select text just pasted (while gv selects text just yanked)
