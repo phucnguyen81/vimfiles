@@ -14,9 +14,11 @@ set guifont+=Source_Code_Pro:h11
 set guifont+=InputMono_ExLight:h11
 set guifont+=Consolas:h11
 
-" Set color scheme
-set background=dark
-silent! colorscheme gruvbox
+" NOTE: If colorscheme is already set in vimrc, setting colorscheme here can
+" cause color issue with the tabline
+"
+" set background=dark
+" silent! colorscheme gruvbox
 
 " Select fonts
 command SetFont set guifont=*
