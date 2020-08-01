@@ -5,10 +5,19 @@ Plug 'https://github.com/itchyny/lightline.vim.git'
 let g:lightline = {
     \ 'colorscheme': 'PaperColor',
     \ 'active': {
-        \ 'left': [ [ 'mode', 'paste' ],
-        \           [ 'readonly', 'relativepath', 'modified' ] ],
+    \   'left': [ [ 'mode', 'paste' ],
+    \           [ 'readonly', 'relativepath', 'modified' ] ],
     \ },
     \ 'inactive': {
-        \ 'left': [ [ 'relativepath' ] ]
+    \   'left': [ [ 'relativepath' ] ]
+    \ },
+    \ 'tabline': {
+    \   'right': []
+    \ },
+    \ 'tab_component': {
+    \   'at': '@'
+    \ },
+    \ 'tab': {
+    \   'active': [ 'tabnum', 'filename', 'modified' ]
     \ }
-\ }
+    \ }

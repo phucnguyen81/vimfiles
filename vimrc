@@ -195,7 +195,7 @@ exec 'source '.g:my_configsdir.'/my-window.vim'
 augroup my_main_autocmd
     autocmd!
     autocmd VimEnter * call <SID>OnVimEnter()
-    autocmd InsertEnter * normal! zz
+    " autocmd InsertEnter * normal! zz
 augroup end
 
 function s:OnVimEnter() abort
