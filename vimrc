@@ -223,6 +223,7 @@ Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/tpope/vim-scriptease.git'
+Plug 'https://github.com/tpope/vim-speeddating.git'
 Plug 'https://github.com/mhinz/vim-lookup.git'
 Plug 'https://github.com/tmhedberg/matchit.git'
 Plug 'https://github.com/godlygeek/tabular.git'
@@ -263,6 +264,7 @@ Plug 'https://github.com/majutsushi/tagbar.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/openbrowser.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/investigate.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-system-copy.vim')
+Plug 'https://github.com/jceb/vim-orgmode.git'
 
 exec 'source '.expand(g:my_plugconfigsdir.'/lightline.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/languagepack.vim')
