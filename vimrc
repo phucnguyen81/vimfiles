@@ -201,7 +201,7 @@ augroup my_main_autocmd
     autocmd!
     autocmd VimEnter * call <SID>OnVimEnter()
     " autocmd InsertEnter * normal! zz
-	autocmd BufNewFile * call <SID>OnBufNewFile()
+    autocmd BufNewFile * call <SID>OnBufNewFile()
 augroup end
 
 function s:OnVimEnter() abort
@@ -227,6 +227,7 @@ endfunction
 " }}
 " My pluggins {{
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
+exec 'source '.expand(g:my_pluginsdir.'/snippets.vim')
 " }}
 " Plugins {{
 call plug#begin(g:my_pluggeddir)
