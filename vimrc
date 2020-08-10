@@ -201,7 +201,6 @@ augroup my_main_autocmd
     autocmd!
     autocmd VimEnter * call <SID>OnVimEnter()
     " autocmd InsertEnter * normal! zz
-    autocmd BufNewFile * call <SID>OnBufNewFile()
 augroup end
 
 function s:OnVimEnter() abort
@@ -214,16 +213,6 @@ function s:OnVimEnter() abort
     silent! colorscheme gruvbox
 endfunction
 
-" On new file, read template file into buffer
-function s:OnBufNewFile() abort
-    let extension = expand('%:e')
-    if !empty(extension)
-        let template = expand(g:my_templates.'/template.'.extension)
-        if filereadable(template)
-            exec '-1read '.fnameescape(template)
-        endif
-    endif
-endfunction
 " }}
 " My pluggins {{
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')

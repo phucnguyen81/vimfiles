@@ -3,14 +3,16 @@
 " the current file extension.
 function! s:ReadTemplate(...) abort
     if empty(a:000)
-        let filename = expand('<cWORD>')
-    else
-        let filename = a:1
+        exec 'Explore '.fnameescape(g:my_templates)
+        return
     endif
+
+    let filename = a:1
     let extension = expand('%:e')
     let template1 = findfile(filename, g:my_templates)
     let template2 = findfile(filename.'.'.extension, g:my_templates)
     let template = empty(template1) ? template2 : template1
+
     if filereadable(template)
         if empty(a:000)
             normal! diW
@@ -18,6 +20,7 @@ function! s:ReadTemplate(...) abort
         exec '-1read '.fnameescape(template)
         return
     endif
+
     let templatename = filename 
     if (match(templatename, '\.') == -1) && !empty(extension)
         let templatename = templatename.'.'.extension
@@ -27,5 +30,22 @@ function! s:ReadTemplate(...) abort
     endif
 endfunction
 
-" TODO auto-completion on template names
+" On new file, read template file into buffer
+function s:OnBufNewFile() abort
+    let extension = expand('%:e')
+    if !empty(extension)
+        let template = expand(g:my_templates.'/template.'.extension)
+        if filereadable(template)
+            exec '-1read '.fnameescape(template)
+        endif
+    endif
+endfunction
+
+augroup my_template_autocmd
+    autocmd!
+    autocmd BufNewFile * call <SID>OnBufNewFile()
+augroup end
+
+" TODO auto-completion of template name
 command! -nargs=? Template call <SID>ReadTemplate(<f-args>)
+
