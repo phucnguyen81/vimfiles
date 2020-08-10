@@ -284,6 +284,12 @@ exec 'source '.expand(g:my_plugconfigsdir.'/investigate.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-system-copy.vim')
 Plug 'https://github.com/jceb/vim-orgmode.git'
 
+" Snippets
+Plug 'https://github.com/tomtom/tlib_vim.git'
+Plug 'https://github.com/MarcWeber/vim-addon-mw-utils.git'
+Plug 'https://github.com/garbas/vim-snipmate.git'
+Plug 'https://github.com/honza/vim-snippets.git'
+
 exec 'source '.expand(g:my_plugconfigsdir.'/lightline.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/languagepack.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/colorschemes.vim')
