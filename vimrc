@@ -227,7 +227,7 @@ endfunction
 " }}
 " My pluggins {{
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
-exec 'source '.expand(g:my_pluginsdir.'/snippets.vim')
+exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
 " }}
 " Plugins {{
 call plug#begin(g:my_pluggeddir)
@@ -288,7 +288,8 @@ Plug 'https://github.com/jceb/vim-orgmode.git'
 Plug 'https://github.com/tomtom/tlib_vim.git'
 Plug 'https://github.com/MarcWeber/vim-addon-mw-utils.git'
 Plug 'https://github.com/garbas/vim-snipmate.git'
-Plug 'https://github.com/honza/vim-snippets.git'
+" Skip vim-snippets, use my own snippets
+" Plug 'https://github.com/honza/vim-snippets.git'
 
 exec 'source '.expand(g:my_plugconfigsdir.'/lightline.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/languagepack.vim')
