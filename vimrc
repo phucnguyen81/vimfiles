@@ -31,6 +31,11 @@ if !isdirectory(g:my_snippets)
     call mkdir(g:my_snippets, "p")
 endif
 
+let g:my_templates = expand(g:my_basedir.'/templates')
+if !isdirectory(g:my_templates)
+    call mkdir(g:my_templates, "p")
+endif
+
 let g:my_vardir = expand(g:my_basedir.'/var')
 if !isdirectory(g:my_vardir)
     call mkdir(g:my_vardir, "p")
@@ -196,6 +201,7 @@ augroup my_main_autocmd
     autocmd!
     autocmd VimEnter * call <SID>OnVimEnter()
     " autocmd InsertEnter * normal! zz
+	autocmd BufNewFile * call <SID>OnBufNewFile()
 augroup end
 
 function s:OnVimEnter() abort
@@ -206,6 +212,17 @@ function s:OnVimEnter() abort
 
     set background=dark
     silent! colorscheme gruvbox
+endfunction
+
+" On new file, read template file into buffer
+function s:OnBufNewFile() abort
+    let extension = expand('%:e')
+    if !empty(extension)
+        let template = expand(g:my_templates.'/template.'.extension)
+        if filereadable(template)
+            exec '-1read '.fnameescape(template)
+        endif
+    endif
 endfunction
 " }}
 " My pluggins {{
