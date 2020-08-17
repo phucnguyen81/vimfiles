@@ -52,7 +52,6 @@ nnoremap <Leader>K :<C-u>call myfun#search_doc()<CR>
 nnoremap <Leader>gs :<C-u>0Git<CR>
 
 " swap moving linewise with logical-linewise
-" TODO this should be near wrap option
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 nnoremap <silent> gj j

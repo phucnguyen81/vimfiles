@@ -226,7 +226,11 @@ Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'https://github.com/tpope/vim-repeat.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/tpope/vim-commentary.git'
+
+" WIP: Replacing vim-commentary with tcomment_vim
+" Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/tomtom/tcomment_vim.git'
+
 Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/tpope/vim-scriptease.git'
