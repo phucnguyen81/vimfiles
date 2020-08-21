@@ -30,6 +30,12 @@ function! s:ReadTemplate(...) abort
     endif
 endfunction
 
+function! s:ReplaceWordWithTemplate()
+    let word = expand("<cWORD>")
+    normal! diW
+    call s:ReadTemplate(word)
+endfunction
+
 " On new file, read template file into buffer
 function s:OnBufNewFile() abort
     let extension = expand('%:e')
@@ -49,3 +55,4 @@ augroup end
 " TODO auto-completion of template name
 command! -nargs=? Template call <SID>ReadTemplate(<f-args>)
 
+inoremap <C-j> <Esc>:<C-u>call <SID>ReplaceWordWithTemplate()<CR>
