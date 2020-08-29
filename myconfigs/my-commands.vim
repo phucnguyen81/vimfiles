@@ -72,7 +72,7 @@ command! LineNumberOn set number relativenumber cursorline
 command! LineNumberOff set nonumber norelativenumber nocursorline
 
 " Generate tags file
-command! Ctags call myfun#create_tags()
+command! -bang Ctags call myfun#create_tags(<bang>0)
 
 " Open current path
 command! -complete=file Open call myfun#open_current_path()

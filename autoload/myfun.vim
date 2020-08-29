@@ -502,7 +502,7 @@ endfunction
 " Ctrl-] (or :tag) jumps to tag under cursor
 " g<ctrl-]> jumps to ambiguous tags
 " Ctrl-t (or :pop) jumps back up the tag stack
-function! myfun#create_tags() abort
+function! myfun#create_tags(absolute_path) abort
     let dir = myfun#current_dir()
     let dir = input("Create tags for directory: ", dir, 'dir')
     if empty(dir)
@@ -512,11 +512,21 @@ function! myfun#create_tags() abort
         throw 'Not a directory: '.dir
     endif
 
-    split
-    exec 'lcd '.fnameescape(dir)
     " -R: recursively down sub-dir
     " -V: verbose
-    exec "!ctags -R -V --exclude=.git --exclude=__pycache__ ."
+    let cmd = "!ctags -R -V"
+    if a:absolute_path
+        " tags-relative=never: don't use paths in the tags file
+        let cmd = cmd." --tag-relative=never"
+    endif
+    for name in ['.git', '__pycache__', '.venv', '.code', 'node_modules']
+        let cmd = cmd." --exclude=".name
+    endfor
+    let cmd = cmd." ."
+
+    split
+    exec 'lcd '.fnameescape(dir)
+    exec cmd
 endfunction
 
 function! myfun#search_doc(...) abort

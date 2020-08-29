@@ -124,6 +124,10 @@ set visualbell display=lastline virtualedit=block
 set autoread hidden nowrap nowrapscan
 set suffixes+=.pyc
 set tags=./tags;/
+set tags+=./tags2;/
+set tags+=./tags3;/
+set tags+=./tags4;/
+set tags+=./tags5;/
 set wildmenu wildchar=<Tab>
 set wildignore+=*.class,**/classes/** "Java, maven"
 set wildignore+=.hg,.git,.svn " Version Controls"
