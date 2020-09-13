@@ -97,6 +97,32 @@ function! myfun#delete_buffer(...) abort
     exec 'bdelete! '.bufnr
 endfunction
 
+" Custom complete function for getting filenames in directory of current file.
+" Usage: -complete=customlist,myfun#list_file_names
+function! myfun#list_file_names(A, L, P)
+    let dir = expand('%:h')
+    if isdirectory(dir)
+      return map(globpath(dir, '*.*', 1, 1),
+          \ {key, filename -> fnamemodify(filename, ':t')})
+    else
+        return []
+    endif
+endfunction
+
+" Save current file using a new name under the same directory.
+function! myfun#save_as(new_name, overwrite) abort
+    let new_name = a:new_name
+    let overwrite = a:overwrite
+    let dir = expand('%:h')
+    if isdirectory(dir)
+        if overwrite
+            exec 'saveas '.fnameescape(dir.'/'.new_name)
+        else
+            exec 'saveas! '.fnameescape(dir.'/'.new_name)
+        endif
+    endif
+endfunction
+
 " Make parent directory of current file.
 function! myfun#make_dir() abort
     let curfile = myfun#current_file()
@@ -418,7 +444,7 @@ function! myfun#select_dir()
 endfunction
 
 function! myfun#get_visual_selection() abort
-    " Cannot find this in built-in Vim script function!
+    " NOTE: to check visual mode is active, do mode() == 'v'
     let [line_start, column_start] = getpos("'<")[1:2]
     let [line_end, column_end] = getpos("'>")[1:2]
     let lines = getline(line_start, line_end)
@@ -519,7 +545,10 @@ function! myfun#create_tags(absolute_path) abort
         " tags-relative=never: don't use paths in the tags file
         let cmd = cmd." --tag-relative=never"
     endif
-    for name in ['.git', '__pycache__', '.venv', '.code', 'node_modules']
+    for name in [
+        \ '.git', '.venv', '.code',
+        \ 'node_modules', '__pycache__'
+        \ ]
         let cmd = cmd." --exclude=".name
     endfor
     let cmd = cmd." ."

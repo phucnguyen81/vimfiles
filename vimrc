@@ -276,7 +276,10 @@ exec 'source '.expand(g:my_plugconfigsdir.'/ale.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-slime.vim')
 Plug 'https://github.com/skywind3000/vim-preview.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
+
+" Built-in search engines: plugged/open-browser.vim/autoload/vital/__openbrowser__/OpenBrowser/Config.vim
 exec 'source '.expand(g:my_plugconfigsdir.'/openbrowser.vim')
+
 exec 'source '.expand(g:my_plugconfigsdir.'/investigate.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-system-copy.vim')
 Plug 'https://github.com/jceb/vim-orgmode.git'

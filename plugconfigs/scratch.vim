@@ -11,5 +11,14 @@ endif
 " Disable default mappings
 let g:scratch_no_mappings = 1
 
-nmap gs :<C-u>Scratch<CR>
+" TODO move this to scratch filetype plugin?
+function! s:toggle_scratch()
+    if &filetype ==? 'scratch'
+        close
+    else
+        Scratch
+    endif
+endfunction
+
+nmap gs :<C-u>call <SID>toggle_scratch()<CR>
 xmap gs <Plug>(scratch-selection-reuse)
