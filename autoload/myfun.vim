@@ -99,26 +99,39 @@ endfunction
 
 " Custom complete function for getting filenames in directory of current file.
 " Usage: -complete=customlist,myfun#list_file_names
-function! myfun#list_file_names(A, L, P)
+function! myfun#list_file_names(ArgList, L, P)
     let dir = expand('%:h')
     if isdirectory(dir)
-      return map(globpath(dir, '*.*', 1, 1),
-          \ {key, filename -> fnamemodify(filename, ':t')})
+        let prefix = a:ArgList
+        return map(globpath(dir, prefix.'*.*', 1, 1),
+            \ {key, filename -> fnamemodify(filename, ':t')})
     else
         return []
     endif
 endfunction
 
-" Save current file using a new name under the same directory.
-function! myfun#save_as(new_name, overwrite) abort
-    let new_name = a:new_name
-    let overwrite = a:overwrite
+" Edit a file under the directory of current file
+function! myfun#edit(filename) abort
+    let filename = a:filename
     let dir = expand('%:h')
     if isdirectory(dir)
-        if overwrite
-            exec 'saveas '.fnameescape(dir.'/'.new_name)
+        let filepath = expand(dir.'/'.filename)
+        exec 'edit '.fnameescape(filepath)
+    endif
+endfunction
+
+" Save current file using a new name under the same directory.
+function! myfun#save_as(new_name) abort
+    let new_name = a:new_name
+    let dir = expand('%:h')
+    if isdirectory(dir)
+        let new_path = expand(dir.'/'.new_name)
+        if filereadable(new_path)
+            if input('Overwrite '.new_path.' (y/n)? ') ==? 'y'
+                exec 'saveas! '.fnameescape(new_path)
+            endif
         else
-            exec 'saveas! '.fnameescape(dir.'/'.new_name)
+            exec 'saveas '.fnameescape(new_path)
         endif
     endif
 endfunction

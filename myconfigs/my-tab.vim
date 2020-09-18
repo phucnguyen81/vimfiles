@@ -10,7 +10,8 @@ nnoremap <silent> <Leader>tc :tabclose<cr>
 nnoremap <silent> <Leader>to :tabonly<cr>
 
 " Go to next tab (also 'gt')
-" <Tab> is reserved for vim, should not bind it
+" NOTE: <Tab> is reserved for vim, should not bind it
+nnoremap <silent> <C-Space> :tabnext<cr>
 nnoremap <silent> <Leader>tl :tabnext<cr>
 nnoremap <silent> T :tabnext<cr>
 
@@ -18,7 +19,8 @@ nnoremap <silent> T :tabnext<cr>
 nnoremap <silent> <Leader>th :tabprevious<cr>
 nnoremap <silent> <S-Tab> :tabprevious<cr>
 
-" Go to tab by number
+" Go to tab
+noremap <silent> <Leader>t0 :tabfirst<cr>
 noremap <silent> <Leader>t1 1gt
 noremap <silent> <Leader>t2 2gt
 noremap <silent> <Leader>t3 3gt
@@ -28,7 +30,16 @@ noremap <silent> <Leader>t6 6gt
 noremap <silent> <Leader>t7 7gt
 noremap <silent> <Leader>t8 8gt
 noremap <silent> <Leader>t9 9gt
-noremap <silent> <Leader>t0 :tablast<cr>
+noremap <silent> <Leader>t$ :tablast<cr>
+noremap <silent> 1<Leader> 1gt
+noremap <silent> 2<Leader> 2gt
+noremap <silent> 3<Leader> 3gt
+noremap <silent> 4<Leader> 4gt
+noremap <silent> 5<Leader> 5gt
+noremap <silent> 6<Leader> 6gt
+noremap <silent> 7<Leader> 7gt
+noremap <silent> 8<Leader> 8gt
+noremap <silent> 9<Leader> 9gt
 
 " Move tab to the right, wrap around if needed
 function s:MoveTabRight(count) abort

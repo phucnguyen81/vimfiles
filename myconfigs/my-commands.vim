@@ -1,6 +1,3 @@
-command! -nargs=1 -bang -complete=customlist,myfun#list_file_names
-    \ Saveas call myfun#save_as(<f-args>, <bang>0)
-
 " Change current working directory and show it
 function! s:ChangeDirectory(...) abort
     let dir = a:0 ? a:1 : myfun#current_dir()
@@ -9,7 +6,7 @@ function! s:ChangeDirectory(...) abort
 endfunction
 command! -nargs=? -complete=dir CD call s:ChangeDirectory(<f-args>)
 
-" Redirect output of ex command
+" Redirect output of ex command to file
 function! s:RedirCommand(cmd) abort
     redir => message
     silent execute a:cmd

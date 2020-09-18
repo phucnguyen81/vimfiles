@@ -1,3 +1,9 @@
+" Edit files relative to current file
+nnoremap <Leader>E :edit <C-R>=expand('%:h')<CR>/
+
+" Saveas file relative to current file
+nnoremap <Leader>S :saveas <C-R>=expand('%:h')<CR>/
+
 " Select current paragraph
 nnoremap <Leader>vp {jVO}
 
@@ -8,9 +14,9 @@ nnoremap <Leader>gh :edit ~/<CR>
 function! s:EditVimrc()
     if exists('g:my_vimrc') && filereadable(g:my_vimrc)
         exec 'edit '.fnameescape(g:my_vimrc)
-        return
+    else
+        edit $MYVIMRC
     endif
-    edit $MYVIMRC
 endfunction
 nnoremap <Leader>ev :call <SID>EditVimrc()<CR>
 
@@ -18,9 +24,9 @@ nnoremap <Leader>ev :call <SID>EditVimrc()<CR>
 function! s:EditGvimrc()
     if exists('g:my_gvimrc') && filereadable(g:my_gvimrc)
         exec 'edit '.fnameescape(g:my_gvimrc)
-        return
+    else
+        edit $MYGVIMRC
     endif
-    edit $MYGVIMRC
 endfunction
 nnoremap <Leader>eg :call <SID>EditGvimrc()<CR>
 
@@ -28,11 +34,11 @@ nnoremap <Leader>if :call myfun#show_info()<CR>
 
 " Replace/substitute current whole word, case-sensitive
 nnoremap <Leader>sw :.,$s/\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\>//gc<left><left><left>
-nnoremap <Leader>Sw :1,.s/\V\C\<<C-r>=escape(expand("<cWORD>"),'/\')<CR>\>//gc<left><left><left>
+nnoremap <Leader>sW :1,.s/\V\C\<<C-r>=escape(expand("<cWORD>"),'/\')<CR>\>//gc<left><left><left>
 
 " Search/find forward/backward for whole word, case-sensitive
 nnoremap <Leader>fw /\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\><left><left>
-nnoremap <Leader>Fw ?\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\><left><left>
+nnoremap <Leader>fW ?\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\><left><left>
 
 " Grep in current file, populate location list, case-sensitive
 nnoremap <Leader>lg :lvimgrep /\V\c<C-r>=escape(expand('<cword>'), '/\')<CR>/ %<Left><Left><Left>
