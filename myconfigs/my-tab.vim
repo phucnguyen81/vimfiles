@@ -11,9 +11,10 @@ nnoremap <silent> <Leader>to :tabonly<cr>
 
 " Go to next tab (also 'gt')
 " NOTE: <Tab> is reserved for vim, should not bind it
+" NOTE: <C-Space> might not work for console vim, use T instead
 nnoremap <silent> <C-Space> :tabnext<cr>
-nnoremap <silent> <Leader>tl :tabnext<cr>
 nnoremap <silent> T :tabnext<cr>
+nnoremap <silent> <Leader>tl :tabnext<cr>
 
 " Go to previous tab (also 'gT')
 nnoremap <silent> <Leader>th :tabprevious<cr>
