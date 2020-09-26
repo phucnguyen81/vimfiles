@@ -1,7 +1,12 @@
-- [ ] Description
-- [ ] Understanding
-- [ ] Reproduce outcomes
-- [ ] Add tests and code based on requirements
-- [ ] Bench test
-- [ ] Make pull request
-- [ ] Self-review pull requests
+- [ ] Understand requirements
+- [ ] Search for existing solutions/code
+- [ ] Add code (based on requirements)
+  - Add tests to cover requirements
+  - Add contracts (pre-condition, post-condition, invariant)
+  - Add necessary comments
+- [ ] Do final test based on requirements
+- [ ] Submit task
+  - [ ] Make pull request (assign self)
+  - [ ] Self-review the pull request
+  - [ ] Send pull request (assgin others)
+  - [ ] Change task status

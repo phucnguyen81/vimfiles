@@ -1,0 +1,15 @@
+- [ ] Understand the description of the bug
+- [ ] Describe what the correct behavior should be
+- [ ] Reproduce the bug
+- [ ] Find the root cause of the bug outcomes
+  - Re-trace data flow
+  - Print to console
+  - Use debugger
+- [ ] Fix the root cause
+  - [ ] Add/update tests
+  - [ ] Add/update comments
+- [ ] Do bench test based on description
+- [ ] Submit fix
+  - [ ] Make pull request (assign self)
+  - [ ] Self-review pull requests
+  - [ ] Send pull request (assign others)
