@@ -5,12 +5,12 @@ endif
 " Shortcut to escape to normal mode
 tnoremap <C-\><C-\> <C-\><C-n>
 
-command -nargs=? Shell call s:Shell(<f-args>)
+command! -nargs=? Shell call s:Shell(<f-args>)
 nnoremap <Leader>sh :<C-u>call <SID>Shell()<CR>
 
-command -nargs=? Term call s:TerminalStart(<f-args>)
+command! -nargs=? Term call s:TerminalStart(<f-args>)
 
-command -bang -range TermSend <line1>,<line2>call s:TerminalSend(<bang>0)
+command! -bang -range TermSend <line1>,<line2>call s:TerminalSend(<bang>0)
 nnoremap <C-s><C-s> :call <SID>TerminalSend(0)<CR>
 nnoremap <C-s><C-e> :call <SID>TerminalWaitCr()<CR>
 nnoremap <Leader>ts :call <SID>TerminalSend(0)<CR>
@@ -18,10 +18,13 @@ xnoremap <C-s><C-s> :call <SID>TerminalSend(0)<CR>
 xnoremap <C-s><C-e> :call <SID>TerminalSend(1)<CR>
 xnoremap <Leader>ts :call <SID>TerminalSend(0)<CR>
 
-command -bang Ptpython call s:Ptpython(<bang>0)
-command Vifm call <SID>Vifm()
+command! Vifm call <SID>Vifm()
+command! Vifmc call <SID>Vifmc()
+command! Lf call <SID>Lf()
 
-" Most common way to start terminal
+command! -bang Ptpython call s:Ptpython(<bang>0)
+
+" Common way to start terminal
 function! s:terminal_start(command)
     let command = a:command
     let buf = term_start(command, {
@@ -34,7 +37,7 @@ function! s:terminal_start(command)
     return buf
 endfunction
 
-" General way to start terminal
+" Run a wincmd before starting a terminal
 function! s:start_terminal(command, wincmd) abort
     let command = a:command
     let wincmd = a:wincmd
@@ -209,4 +212,28 @@ function! s:Vifm() abort
     exec 'lcd '.fnameescape(curdir)
     let command = join(['vifm', left_side, '.'])
     call s:terminal_start(command)
+endfunction
+
+" Show files selected with vifm
+function! s:Vifmc() abort
+    let curdir = myfun#current_dir()
+
+    -tabnew
+    exec 'lcd '.fnameescape(curdir)
+    let tmpfile = tempname()
+    exec 'edit '.fnameescape(tmpfile)
+    write
+    autocmd BufEnter <buffer> edit!
+
+    -tabnew
+    let command = 'vifm --choose-files "'.tmpfile.'" .'
+    call s:terminal_start(command)
+endfunction
+
+function! s:Lf() abort
+    let curdir = myfun#current_dir()
+
+    -tabnew
+    exec 'lcd '.fnameescape(curdir)
+    call s:terminal_start('lf')
 endfunction
