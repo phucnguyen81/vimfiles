@@ -12,20 +12,20 @@ function! s:FindFile() abort
     let curdir = myfun#current_dir()
     exec ':FZF '.fnameescape(curdir)
 endfunction
-nnoremap <silent> <C-p> :call <SID>FindFile()<CR>
-nnoremap <silent> <Leader>ff :call <SID>FindFile()<CR>
+nnoremap <silent> <C-p> :<C-u>call <SID>FindFile()<CR>
+nnoremap <silent> <Leader>ff :<C-u>call <SID>FindFile()<CR>
 
 " Find recent files and buffers
-nnoremap <Leader>fh :History<CR>
+nnoremap <Leader>fh :<C-u>History<CR>
 
 " Find buffers
-nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fb :<C-u>Buffers<CR>
 
 " Find commands
-nnoremap <Leader>fc :Commands<CR>
+nnoremap <Leader>fc :<C-u>Commands<CR>
 
 " Find lines in current buffers
-nnoremap <Leader>fl :BLines<CR>
+nnoremap <Leader>fl :<C-u>BLines<CR>
 
 " Find lines in loaded buffers
-nnoremap <Leader>fL :Lines<CR>
+nnoremap <Leader>fL :<C-u>Lines<CR>

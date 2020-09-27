@@ -3,6 +3,7 @@ Plug 'https://github.com/kevinoid/vim-jsonc.git'
 Plug 'https://github.com/PProvost/vim-ps1.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'https://github.com/tweekmonster/django-plus.vim.git'
+Plug 'https://github.com/masukomi/vim-markdown-folding.git'
 
 " Options for html indent.
 " See: $VIMRUNTIME/indent/html.vim
@@ -15,5 +16,5 @@ let g:html_indent_inctags = "html,body,head,tbody"
 " Don't increase indent after these tags
 let g:html_indent_autotags = "p"
 
-" vim-markdown
+" Folding with vim-markdown does not work properly
 let g:vim_markdown_folding_disabled = 1

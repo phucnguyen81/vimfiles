@@ -1,0 +1,23 @@
+- [ ] Understand requirements
+- [ ] Search for existing solutions/code
+- [ ] Add code (based on requirements)
+  - [ ] Add tests to cover requirements
+  - [ ] Add contracts (pre-condition, post-condition, invariant)
+  - [ ] Add necessary comments
+- [ ] Refactor
+  - [ ] Improve time efficency
+  - [ ] Improve space efficency
+  - [ ] Improve dependency efficency
+- [ ] Clean up
+  - [ ] Remove duplications
+  - [ ] Improve names
+  - [ ] Remove unused symbols
+  - [ ] Fix typos
+- [ ] Do final test based on requirements
+  - [ ] Cover multiple os
+  - [ ] Cover multiple browsers
+- [ ] Submit task
+  - [ ] Make pull request (assign self)
+  - [ ] Self-review the pull request
+  - [ ] Send pull request (assgin others)
+  - [ ] Change task status

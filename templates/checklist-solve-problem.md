@@ -1,0 +1,4 @@
+- [ ] Understand the problem statement
+- [ ] Describe the outcomes
+- [ ] Find solutions to similar problems
+- [ ] Solve part of the problem (smaller outcome)
