@@ -204,17 +204,25 @@ exec 'source '.g:my_configsdir.'/my-window.vim'
 augroup my_main_autocmd
     autocmd!
     autocmd VimEnter * call <SID>OnVimEnter()
-    " autocmd InsertEnter * normal! zz
+    autocmd VimLeave * call <SID>OnVimLeave()
 augroup end
 
 function s:OnVimEnter() abort
+    " Set netrw_list_hide here since it is set somewhere else before vimenter
     let g:netrw_list_hide = join([
       \ '__pycache__', '\.pyc',
       \ '\.DAT$', '\.dat$', '^ntuser',
       \ ], ',')
 
+    " Set colorscheme, should be called only once during startup
     set background=dark
     silent! colorscheme gruvbox
+endfunction
+
+function s:OnVimLeave() abort
+    " Save default session
+    let default_session = expand(g:my_session_dir.'/default.vim')
+    exec 'mksession! '.fnameescape(default_session)
 endfunction
 
 " }}
