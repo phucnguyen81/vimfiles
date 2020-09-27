@@ -70,6 +70,11 @@ endif
 
 let g:my_nerdtree_bookmarksfile = expand(g:my_vardir.'/NERDTreeBookMarks')
 
+let g:my_fzf_default_command = ''
+if executable('fd')
+    " Ignore files with ~/.fdignore
+    let g:my_fzf_default_command = 'fd --no-ignore-vcs'
+endif
 let g:my_fzf_history_dir = expand(g:my_vardir.'/fzf-history')
 if !isdirectory(g:my_fzf_history_dir)
     call mkdir(g:my_fzf_history_dir, "p")

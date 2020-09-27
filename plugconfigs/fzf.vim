@@ -10,8 +10,23 @@ endif
 " Fuzzy-find files in working directory
 function! s:FindFile() abort
     let curdir = myfun#current_dir()
-    exec ':FZF '.fnameescape(curdir)
+    if empty(g:my_fzf_default_command)
+        exec ':FZF '.fnameescape(curdir)
+        return
+    endif
+    call fzf#run({
+        \ 'dir': curdir,
+        \ 'source': g:my_fzf_default_command,
+        \ 'options': [
+            \ '--multi', '--reverse',
+            \ '--bind=change:top,ctrl-d:page-down,ctrl-u:page-up',
+            \ ],
+        \ 'sink': 'edit',
+        \ 'down': '50%'
+        \ })
 endfunction
+
+" Fuzzy find files
 nnoremap <silent> <C-p> :<C-u>call <SID>FindFile()<CR>
 nnoremap <silent> <Leader>ff :<C-u>call <SID>FindFile()<CR>
 
