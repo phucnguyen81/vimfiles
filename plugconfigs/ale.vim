@@ -2,7 +2,7 @@
 Plug 'https://github.com/w0rp/ale.git'
 
 let g:ale_enabled = 1
-" Automatic linting is too aggressive in many cases
+" Disable automatic linting since it is too aggressive
 " (e.g. with Gdiff in fugitive)
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
@@ -22,5 +22,10 @@ augroup end
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
+
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> ]w <Plug>(ale_next)
+nmap <silent> ]W <Plug>(ale_last)
 
 nnoremap <Leader>al :ALELint<CR>
