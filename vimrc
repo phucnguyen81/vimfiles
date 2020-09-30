@@ -281,7 +281,7 @@ exec 'source '.expand(g:my_plugconfigsdir.'/fzf.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/grepper.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/quickrun.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/tabnine.vim')
-Plug 'https://github.com/tpope/vim-fugitive.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/fugitive.vim')
 Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/dispatch.vim')

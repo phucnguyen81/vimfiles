@@ -4,7 +4,7 @@ if !exists('g:my_session_dir')
     finish
 endif
 
-command! -nargs=0 Sessions call s:sessions()
+command! -nargs=0 Sessions exec 'edit '.fnameescape(g:my_session_dir)
 nnoremap <Leader>ss :call <SID>sessions()<CR>
 
 function! s:sessions() abort
