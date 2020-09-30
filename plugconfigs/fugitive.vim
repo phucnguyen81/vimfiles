@@ -7,7 +7,7 @@ function! s:GitSync() abort
     endif
 
     " Set local current directory in new buffer
-    split
+    -tabnew
     exec 'lcd '.fnameescape(curdir)
     edit! .
 
