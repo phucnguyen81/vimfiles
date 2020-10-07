@@ -1,8 +1,6 @@
 " Open templates directory
 function! s:TemplatesDir() abort
-    -tabnew
-    exec 'lcd '.fnameescape(g:my_templates)
-    edit .
+    exec 'edit '.fnameescape(g:my_templates)
 endfunction
 
 " Fuzzy select a template file to read into current buffer

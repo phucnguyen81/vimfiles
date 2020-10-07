@@ -1,23 +1,44 @@
-- [ ] Understand requirements
-- [ ] Search for existing solutions/code
-- [ ] Add code (based on requirements)
-  - [ ] Add tests to cover requirements
+# Checklist
+- [ ] Understand expected outcomes
+  - [ ] Rephrase the outcomes
+  - [ ] Work with the system as if the outcomes had been achieved
+- [ ] Search for existing solutions
+  - [ ] From people
+  - [ ] From the system itself
+  - [ ] From the internet
+  - [ ] Multiple alternatives
+- [ ] Choose amount alternatives
+  - [ ] Simplicity (least assumptions about context)
+  - [ ] Risks and contingency plans
+- [ ] Make a plan (good enough to produce outcomes)
+  - [ ] List the steps involved
+  - [ ] Evaluate efforts
+  - [ ] Work on models/prototypes
+- [ ] Execute the plan
+  - [ ] Add code
+  - [ ] Add tests to cover outcomes
   - [ ] Add contracts (pre-condition, post-condition, invariant)
   - [ ] Add necessary comments
 - [ ] Refactor
-  - [ ] Improve time efficency
-  - [ ] Improve space efficency
   - [ ] Improve dependency efficency
+  - [ ] Improve space efficency
+  - [ ] Improve time efficency
 - [ ] Clean up
   - [ ] Remove duplications
-  - [ ] Improve names
+  - [ ] Improve names to match intent and context
   - [ ] Remove unused symbols
   - [ ] Fix typos
-- [ ] Do final test based on requirements
-  - [ ] Cover multiple os
-  - [ ] Cover multiple browsers
+- [ ] Do final test
+  - [ ] Compare each actual outcome to the expected outcome
+  - [ ] Cover each os
+  - [ ] Cover each browser
 - [ ] Submit task
   - [ ] Make pull request (assign self)
   - [ ] Self-review the pull request
-  - [ ] Send pull request (assgin others)
-  - [ ] Change task status
+    - [ ] Each change should be necessary to produce the outcomes
+    - [ ] Each change should have alternatives
+  - [ ] Send pull request (assign others)
+  - [ ] Update task status
+- [ ] Resolve change requests
+  - [ ] Set up notification of change requests
+  - [ ] What are the steps needed to prevent the change requests?
