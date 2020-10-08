@@ -240,6 +240,7 @@ endfunction
 " My pluggins {{
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
+exec 'source '.expand(g:my_pluginsdir.'/todo.vim')
 " }}
 " Plugins {{
 call plug#begin(g:my_pluggeddir)
