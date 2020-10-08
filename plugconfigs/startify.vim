@@ -7,15 +7,16 @@ endif
 
 " What to show on Startify screen.
 let g:startify_lists = [
-  \ { 'type': 'dir',       'header': ['   Recently opened'] },
-  \ { 'type': 'sessions',  'header': ['   Sessions']       },
   \ { 'type': 'commands',  'header': ['   Commands'] },
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+  \ { 'type': 'dir',       'header': ['   Recently opened'] },
   \ ]
 
 let g:startify_commands = [
-  \ {'<C-f>': [' Find Files', 'FZF']},
-  \ {'<C-g>': [' Grep', 'Grepper']},
-  \ {'<C-s>': [' Fuzzy Search', 'NN']},
+  \ {'<C-d>': [' Doing', 'Doing']},
+  \ {'<C-f>': [' Fuzzy Search', 'NN']},
+  \ {'<C-s>': [' Sessions', 'Sessions']},
+  \ {'<C-t>': [' Templates', 'Tpl']},
   \ ]
 
 let g:startify_disable_at_vimenter = 0
