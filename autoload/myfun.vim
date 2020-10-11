@@ -1,3 +1,27 @@
+" Run a list of shell commands in the terminal.
+function! myfun#run_terminal_commands(commands, curdir) abort
+    " Set local current directory in new buffer
+    -tabnew
+    exec 'lcd '.fnameescape(curdir)
+
+    " Open a terminal
+    let buf = term_start(&shell, {
+        \ 'curwin': 1,
+        \ 'term_finish': 'close',
+        \ })
+
+    " Close buffer on terminal exit
+    if exists('*term_setkill')
+        call term_setkill(buf, 'term')
+    endif
+
+    " Enter each command into the terminal
+    for cmd in commands
+        call term_sendkeys(buf, cmd)
+        call term_sendkeys(buf, "\<CR>")
+    endfor
+endfunction
+
 " Set common local options for identation of width.
 " Here width is the number of spaces for a tab.
 function! myfun#set_local_indent(width) abort
