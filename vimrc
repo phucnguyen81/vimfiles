@@ -231,9 +231,16 @@ function s:OnVimEnter() abort
 endfunction
 
 function s:OnVimLeave() abort
-    " Save default session
-    let default_session = expand(g:my_session_dir.'/default.vim')
-    exec 'mksession! '.fnameescape(default_session)
+    " Save session for current directory
+    let curdir = getcwd()
+    let parentdir = fnamemodify(curdir, ':h:t')
+    let session = parentdir.'_'.fnamemodify(curdir, ':t')
+    let session_file = expand(g:my_session_dir.'/'.session.'.vim')
+    exec 'mksession! '.fnameescape(session_file)
+
+    " Save as latest session
+    let latest_session = expand(g:my_session_dir.'/most-recent.vim')
+    exec 'mksession! '.fnameescape(latest_session)
 endfunction
 
 " }}
