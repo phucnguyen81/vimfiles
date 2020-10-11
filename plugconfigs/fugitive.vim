@@ -9,32 +9,15 @@ function! s:GitSync() abort
     " Set local current directory in new buffer
     -tabnew
     exec 'lcd '.fnameescape(curdir)
-    let tmpfile = tempname()
-    exec 'edit '.tmpfile
 
-    call append(line('$'), '--------------')
-    read !git status
-    update
-
-    call append(line('$'), '--------------')
-    read !git add .
-    update
-
-    call append(line('$'), '--------------')
-    read !git commit --message=Sync
-    update
-
+    Git status
+    Git add .
+    Git commit --message=Sync
     if empty(system('git remote'))
         return
     endif
-
-    call append(line('$'), '--------------')
-    read !git pull --rebase=merges
-    update
-
-    call append(line('$'), '--------------')
-    read !git push
-    update
+    Git pull --rebase=merges
+    Git push
 endfunction
 
 command! -bar -nargs=0 Gsync call <SID>GitSync()
