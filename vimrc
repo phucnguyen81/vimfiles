@@ -235,11 +235,11 @@ function s:OnVimLeave() abort
     let curdir = getcwd()
     let parentdir = fnamemodify(curdir, ':h:t')
     let session = parentdir.'_'.fnamemodify(curdir, ':t')
-    let session_file = expand(g:my_session_dir.'/'.session.'.vim')
+    let session_file = expand(g:my_session_dir.'/'.session)
     exec 'mksession! '.fnameescape(session_file)
 
     " Save as latest session
-    let latest_session = expand(g:my_session_dir.'/most-recent.vim')
+    let latest_session = expand(g:my_session_dir.'/most-recent')
     exec 'mksession! '.fnameescape(latest_session)
 endfunction
 

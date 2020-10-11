@@ -9,12 +9,11 @@ function! s:GitSync() abort
     " Set local current directory in new buffer
     -tabnew
     exec 'lcd '.fnameescape(curdir)
-    edit! .
 
     Git add .
     Git commit --message=Sync
     if !empty(system('git remote'))
-        Git pull
+        Git pull --rebase=merges
         Git push
     endif
 endfunction
