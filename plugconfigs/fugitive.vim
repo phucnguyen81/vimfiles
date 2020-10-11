@@ -55,6 +55,7 @@ function! GitSync2() abort
         return
     endif
 
+
     call term_sendkeys(buf, 'git pull --rebase=merges')
     call term_sendkeys(buf, "\<CR>")
 
