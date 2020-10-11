@@ -10,12 +10,17 @@ function! s:GitSync() abort
     -tabnew
     exec 'lcd '.fnameescape(curdir)
 
-    Git add .
-    Git commit --message=Sync
-    if !empty(system('git remote'))
-        Git pull --rebase=merges
-        Git push
+    call append(line('$'), '--------------')
+    read !git status
+    call append(line('$'), '--------------')
+    read !git add .
+    read !git commit --message=Sync
+    call append(line('$'), '--------------')
+    if empty(system('git remote'))
+        return
     endif
+    read !git pull --rebase=merges
+    read !git push
 endfunction
 
 command! -bar -nargs=0 Gsync call <SID>GitSync()
