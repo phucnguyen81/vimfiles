@@ -9,9 +9,11 @@ function! s:GitSync() abort
     " Set local current directory in new buffer
     -tabnew
     exec 'lcd '.fnameescape(curdir)
+    if !isdirectory('.git')
+        throw 'No .git directory found in '.curdir
+    endif
 
     0Git
-    checktime
     Git add .
     Git commit --message=Sync
     if empty(system('git remote'))
