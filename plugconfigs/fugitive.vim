@@ -11,6 +11,7 @@ function! s:GitSync() abort
     exec 'lcd '.fnameescape(curdir)
 
     0Git
+    checktime
     Git add .
     Git commit --message=Sync
     if empty(system('git remote'))
