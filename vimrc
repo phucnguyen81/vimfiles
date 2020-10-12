@@ -1,15 +1,14 @@
 " My options {{
 let g:my_basedir = expand('<sfile>:p:h')
 
-let g:my_docdir = expand(g:my_basedir.'/doc')
-if !isdirectory(g:my_docdir)
-    call mkdir(g:my_docdir, "p")
-endif
-let g:my_doing_file = expand(g:my_docdir.'/doing.md')
-
 let g:my_plugvim = expand(g:my_basedir.'/autoload/plug.vim')
 if !filereadable(g:my_plugvim)
     echoerr 'Missing vim-plug autoload file at '.g:my_plugvim
+endif
+
+let g:my_docdir = expand(g:my_basedir.'/doc')
+if !isdirectory(g:my_docdir)
+    call mkdir(g:my_docdir, "p")
 endif
 
 let g:my_pluggeddir = expand(g:my_basedir.'/plugged')
@@ -46,6 +45,8 @@ let g:my_vardir = expand(g:my_basedir.'/var')
 if !isdirectory(g:my_vardir)
     call mkdir(g:my_vardir, "p")
 endif
+
+let g:my_doing_file = expand(g:my_vardir.'/doing.md')
 
 let g:my_netrw_home = g:my_vardir
 if !isdirectory(g:my_netrw_home)
