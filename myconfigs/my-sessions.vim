@@ -16,7 +16,7 @@ function! s:sessions() abort
     let options = [
         \ '--multi',
         \ '--print-query',
-        \ '--bind=esc:cancel,ctrl-g:cancel,ctrl-y:backward-kill-word',
+        \ '--bind=change:top,esc:cancel,ctrl-g:cancel,ctrl-y:backward-kill-word',
         \ '--expect=ctrl-n,ctrl-d,ctrl-s,ctrl-x,ctrl-e',
         \ ]
     if !empty(v:this_session)
