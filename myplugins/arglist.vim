@@ -8,11 +8,12 @@ endfunction
 " Write arglist to current file
 function! s:WriteArglist() abort
     let curfile = expand('%')
-    if filereadable(curfile)
-        let arglist = argv(-1)
-        call writefile(arglist, curfile)
-        edit
+    if !filereadable(curfile)
+        write
     endif
+    let arglist = argv()
+    call writefile(arglist, curfile)
+    edit
 endfunction
 
 " Replace arglist with filenames from current buffer
