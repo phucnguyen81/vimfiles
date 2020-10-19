@@ -1,4 +1,18 @@
-" Manage argument list
+" Edit the arglist file
+function! s:EditArglist() abort
+    let arglist_file = expand(g:my_vardir.'/'.v:servername.'.arglist')
+    exec 'edit '.fnameescape(arglist_file)
+endfunction
+
+" Write arglist to current file
+function! s:WriteArglist() abort
+    let curfile = expand('%')
+    if filereadable(curfile)
+        let arglist = argv(-1)
+        call writefile(arglist, curfile)
+        edit
+    endif
+endfunction
 
 " Replace arglist with filenames from current buffer
 function! s:UpdateArglist() abort
@@ -12,23 +26,11 @@ function! s:UpdateArglist() abort
             exec 'argadd '.fnameescape(filename)
         endif
     endfor
-
-    " Edit the first file in arglist
-    if argc()
-        0argument
-    endif
-endfunction
-
-" Write arglist to a file.
-function! s:EditArglist() abort
-    let arglist_file = expand(g:my_vardir.'/'.v:servername.'.arglist')
-    let arglist = argv(-1)
-    call writefile(arglist, arglist_file)
-    exec 'edit '.fnameescape(arglist_file)
 endfunction
 
 augroup my_arglist_augroup
   autocmd!
+  autocmd BufEnter *.arglist :call <SID>WriteArglist()
   autocmd BufLeave *.arglist :call <SID>UpdateArglist()
 augroup END
 
