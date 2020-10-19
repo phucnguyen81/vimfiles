@@ -24,6 +24,7 @@ function! s:UpdateArglist() abort
     for line in getline(1, '$')
         " TODO trim() is not available in vim 8.0, add it to myfun
         " let filename = trim(line)
+        let filename = line
         if filereadable(filename)
             exec 'argadd '.fnameescape(filename)
         endif
