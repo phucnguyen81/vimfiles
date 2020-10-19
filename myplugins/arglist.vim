@@ -1,6 +1,7 @@
 " Edit the arglist file
 function! s:EditArglist() abort
-    let arglist_file = expand(g:my_vardir.'/'.v:servername.'.arglist')
+    let pid = getpid()
+    let arglist_file = expand(g:my_vardir.'/vim_pid_'.pid.'.arglist')
     exec 'edit '.fnameescape(arglist_file)
 endfunction
 
@@ -21,7 +22,8 @@ function! s:UpdateArglist() abort
 
     " Add filenames from current buffer to arglist
     for line in getline(1, '$')
-        let filename = trim(line)
+        " TODO trim() is not available in vim 8.0, add it to myfun
+        " let filename = trim(line)
         if filereadable(filename)
             exec 'argadd '.fnameescape(filename)
         endif
