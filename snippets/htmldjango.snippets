@@ -48,13 +48,9 @@ snippet empty
 snippet if
 	{% if ${1} %}
 		${0}
+	{% elif ${2} %}
+	{% else ${3} %}
 	{% endif %}
-snippet el
-	{% else %}
-		${1}
-snippet eif
-	{% elif ${1} %}
-		${0}
 snippet ifchanged
 	{% ifchanged %}${1}{% endifchanged %}
 snippet ifequal
@@ -140,3 +136,17 @@ snippet urlizetrunc
 	urlizetrunc:${0}
 snippet wordwrap
 	wordwrap:${0}
+snippet <form
+	<form method="post" action="{% url '${0:mail:send-email}' %}">
+		{% csrf_token %}
+		<label for="subject">Subject</label>
+		<input type="text" name="subject" id="subject" value="">
+		<br>
+		<label for="message">Message</label>
+		<textarea name="message" id="message" rows="8" cols="40"></textarea>
+		<br>
+		<label for="recipients">Recipients</label>
+		<input type="text" name="recipients" id="recipients" value="">
+		<br>
+		<button type="submit">Submit</button>
+	</form>

@@ -1,0 +1,9 @@
+snippet import:view
+	from django.shortcuts import render, redirect
+	from django.urls import reverse
+snippet def:view
+	def ${1:view_note}(request, note_id):
+		"""${0}"""
+		note = get_object_or_404(Note, pk=note_id)
+		context = {'note': note}
+		return render(request, 'notes/note-details.html', context)

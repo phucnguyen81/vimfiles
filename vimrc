@@ -133,7 +133,7 @@ set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
 set visualbell display=lastline virtualedit=block
-set autoread hidden nowrap nowrapscan
+set autoread hidden wrap nowrapscan
 set suffixes+=.pyc
 set tags=./tags;/
 set tags+=./tags2;/
@@ -246,6 +246,7 @@ endfunction
 
 " }}
 " My pluggins {{
+exec 'source '.expand(g:my_pluginsdir.'/arglist.vim')
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
 exec 'source '.expand(g:my_pluginsdir.'/todo.vim')
@@ -275,9 +276,12 @@ Plug 'https://github.com/s3rvac/AutoFenc.git'
 Plug 'https://github.com/kana/vim-textobj-user.git'
 Plug 'https://github.com/kana/vim-textobj-entire.git'
 Plug 'https://github.com/kana/vim-textobj-line.git'
+Plug 'https://github.com/vim-scripts/argtextobj.vim.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/argwrap.vim')
 Plug 'https://github.com/michaeljsmith/vim-indent-object.git'
 Plug 'https://github.com/bps/vim-textobj-python.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/limelight.vim')
 Plug 'https://github.com/amix/vim-zenroom2.git'
 Plug 'https://github.com/freitass/todo.txt-vim.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/startify.vim')
@@ -303,7 +307,7 @@ exec 'source '.expand(g:my_plugconfigsdir.'/dispatch.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/ale.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-slime.vim')
 Plug 'https://github.com/skywind3000/vim-preview.git'
-Plug 'https://github.com/majutsushi/tagbar.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/tagbar.vim')
 
 " Built-in search engines: plugged/open-browser.vim/autoload/vital/__openbrowser__/OpenBrowser/Config.vim
 exec 'source '.expand(g:my_plugconfigsdir.'/openbrowser.vim')
