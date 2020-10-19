@@ -1,8 +1,11 @@
-" Edit files relative to current file
-nnoremap <Leader>E :edit <C-R>=expand('%:h')<CR>/
+" Edit another file
+nnoremap <Leader>ed :edit <C-R>=expand('%:h')<CR>
 
-" Saveas file relative to current file
-nnoremap <Leader>S :saveas <C-R>=expand('%:h')<CR>/
+" Saveas another file
+nnoremap <Leader>sa :saveas <C-R>=expand('%:h')<CR>
+
+" Add current file to arglist
+nnoremap <Leader>add :argadd<CR>
 
 " Select current paragraph
 nnoremap <Leader>vp {jVO}
@@ -52,10 +55,10 @@ nnoremap <Leader>vG :noautocmd vimgrep /\V\C<C-r>=escape(expand('<cWORD>'), '/\'
 nnoremap <Leader>gl :normal! g`"<CR>
 
 " Search for definition
-nnoremap <Leader>K :<C-u>call myfun#search_doc()<CR>
+nnoremap <Leader>K :call myfun#search_doc()<CR>
 
 " Git status
-nnoremap <Leader>gs :<C-u>0Git<CR>
+nnoremap <Leader>gs :0Git<CR>
 
 " swap moving linewise with logical-linewise
 nnoremap <silent> j gj
@@ -64,10 +67,10 @@ nnoremap <silent> gj j
 nnoremap <silent> gk k
 
 " Clear messages and search highlight together
-nnoremap <C-l> :<C-u>call myfun#clear_screen()<CR><C-l>
+nnoremap <C-l> :call myfun#clear_screen()<CR><C-l>
 
-nnoremap <f3> :<C-u>call myfun#open_current_path()<CR>
-nnoremap <Leader>oo :<C-u>call myfun#open_current_path()<CR>
+nnoremap <f3> :call myfun#open_current_path()<CR>
+nnoremap <Leader>oo :call myfun#open_current_path()<CR>
 
 " Open quickfix/location list
 nnoremap <Leader>co :copen<CR>
