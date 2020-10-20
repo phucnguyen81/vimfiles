@@ -15,9 +15,7 @@ let g:startify_lists = [
 let g:startify_commands = [
   \ {'<C-d>': [' Doing', 'Doing']},
   \ {'<C-a>': [' Arglist', 'Args']},
-  \ {'<C-f>': [' Fuzzy Search', 'NN']},
   \ {'<C-s>': [' Sessions', 'Sessions']},
-  \ {'<C-t>': [' Templates', 'Tpl']},
   \ ]
 
 let g:startify_disable_at_vimenter = 0
@@ -26,8 +24,10 @@ let g:startify_enable_special = 0
 let g:startify_custom_header = []
 let g:startify_update_oldfiles = 1
 let g:startify_change_to_dir = 0
-let g:startify_files_number = 10
+let g:startify_change_to_vcs_root = 0
+let g:startify_files_number = 7
 let g:startify_session_dir = g:my_session_dir
+let g:startify_session_number = 7
 let g:startify_session_sort = 1
 let g:startify_session_autoload = 0
 let g:startify_session_persistence = 0

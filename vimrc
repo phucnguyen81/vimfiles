@@ -273,13 +273,8 @@ Plug 'https://github.com/tmhedberg/matchit.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 Plug 'https://github.com/jszakmeister/vim-togglecursor.git'
 Plug 'https://github.com/s3rvac/AutoFenc.git'
-Plug 'https://github.com/kana/vim-textobj-user.git'
-Plug 'https://github.com/kana/vim-textobj-entire.git'
-Plug 'https://github.com/kana/vim-textobj-line.git'
-Plug 'https://github.com/vim-scripts/argtextobj.vim.git'
+exec 'source '.expand(g:my_plugconfigsdir.'/text_objects.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/argwrap.vim')
-Plug 'https://github.com/michaeljsmith/vim-indent-object.git'
-Plug 'https://github.com/bps/vim-textobj-python.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/limelight.vim')
 Plug 'https://github.com/amix/vim-zenroom2.git'
