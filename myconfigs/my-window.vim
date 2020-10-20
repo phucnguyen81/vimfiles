@@ -37,8 +37,6 @@ nnoremap <silent> <Leader>cW :call <SID>CloseWindowAtWincmd('W')<cr>
 
 " move to window at clockwise direction
 nnoremap <silent> <C-n> :wincmd w<cr>
-" move to window at counter-clockwise direction
-nnoremap <silent> <C-m> :wincmd W<cr>
 
 " move to top left window
 nnoremap <silent> <Leader>wt :wincmd t<cr>

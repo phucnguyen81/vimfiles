@@ -18,11 +18,11 @@ nnoremap <Leader>if :call myfun#show_context_info()<CR>
 
 " Replace/substitute current whole word, case-sensitive
 nnoremap <Leader>sw :.,$s/\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\>//gc<left><left><left>
-nnoremap <Leader>sW :1,.s/\V\C\<<C-r>=escape(expand("<cWORD>"),'/\')<CR>\>//gc<left><left><left>
+nnoremap <Leader>sW :.,$s/\V\C\<<C-r>=escape(expand("<cWORD>"),'/\')<CR>\>//gc<left><left><left>
 
-" Search/find forward/backward for whole word, case-sensitive
-nnoremap <Leader>fw /\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\><left><left>
-nnoremap <Leader>fW ?\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\><left><left>
+" Search for whole word, case-sensitive
+nnoremap <Leader>/w /\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\><left><left>
+nnoremap <Leader>?w ?\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\><left><left>
 
 " Grep in current file, populate location list, case-sensitive
 nnoremap <Leader>lg :lvimgrep /\V\c<C-r>=escape(expand('<cword>'), '/\')<CR>/ %<Left><Left><Left>

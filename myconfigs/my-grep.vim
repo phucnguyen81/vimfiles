@@ -1,9 +1,9 @@
 " Set up grep functions.
-" TODO replace with FlyGrep or simply use Rg
+" TODO consider FlyGrep or Rg for alternatives
 
 if executable('rg')
     let &grepprg = 'rg --no-heading --vimgrep --smart-case $*'
-    let &grepformat = '%f:%l:%c:%m'
+    set grepformat=%f:%l:%c:%m
 
     function! s:grep(wholeword, ...)
         let wholeword = a:wholeword
