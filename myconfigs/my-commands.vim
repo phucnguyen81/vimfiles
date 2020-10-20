@@ -57,7 +57,7 @@ command! DelHiddenBuffers call myfun#delete_hidden_buffers()
 command! DelNowindowBuffers call myfun#delete_nowindow_buffers()
 
 " Show current status (extras to status line)
-command! Info call myfun#show_info()
+command! Info call myfun#show_context_info()
 
 command! Indent normal m'gg=G``
 

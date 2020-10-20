@@ -23,9 +23,7 @@ function! s:UpdateArglist() abort
 
     " Add filenames from current buffer to arglist
     for line in getline(1, '$')
-        " TODO trim() is not available in vim 8.0, add it to myfun
-        " let filename = trim(line)
-        let filename = line
+        let filename = myfun#trim(line)
         if filereadable(filename)
             exec 'argadd '.fnameescape(filename)
         endif
@@ -38,5 +36,10 @@ augroup my_arglist_augroup
   autocmd BufLeave *.arglist :call <SID>UpdateArglist()
 augroup END
 
+" Edit arglist
 command! Args call <SID>EditArglist()
 nnoremap <Leader>ea :<C-u>call <SID>EditArglist()<CR>
+
+" Add current file to arglist
+nnoremap <Leader>aa :argadd<CR>:args<CR>
+

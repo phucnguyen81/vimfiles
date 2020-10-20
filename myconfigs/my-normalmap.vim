@@ -1,39 +1,20 @@
 " Edit another file
 nnoremap <Leader>ed :edit <C-R>=expand('%:h')<CR>
 
-" Saveas another file
+" Save as another file
 nnoremap <Leader>sa :saveas <C-R>=expand('%:h')<CR>
-
-" Add current file to arglist
-nnoremap <Leader>add :argadd<CR>
-
-" Select current paragraph
-nnoremap <Leader>vp {jVO}
 
 " Go to home directory
 nnoremap <Leader>gh :edit ~/<CR>
 
 " Edit vimrc profile
-function! s:EditVimrc()
-    if exists('g:my_vimrc') && filereadable(g:my_vimrc)
-        exec 'edit '.fnameescape(g:my_vimrc)
-    else
-        edit $MYVIMRC
-    endif
-endfunction
-nnoremap <Leader>ev :call <SID>EditVimrc()<CR>
+nnoremap <Leader>ev :call myfun#edit_my_vimrc()<CR>
 
 " Edit gvimrc profile
-function! s:EditGvimrc()
-    if exists('g:my_gvimrc') && filereadable(g:my_gvimrc)
-        exec 'edit '.fnameescape(g:my_gvimrc)
-    else
-        edit $MYGVIMRC
-    endif
-endfunction
-nnoremap <Leader>eg :call <SID>EditGvimrc()<CR>
+nnoremap <Leader>eg :call myfun#edit_my_gvimrc()<CR>
 
-nnoremap <Leader>if :call myfun#show_info()<CR>
+" Show current context info
+nnoremap <Leader>if :call myfun#show_context_info()<CR>
 
 " Replace/substitute current whole word, case-sensitive
 nnoremap <Leader>sw :.,$s/\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\>//gc<left><left><left>

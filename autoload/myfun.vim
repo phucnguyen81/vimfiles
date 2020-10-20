@@ -134,6 +134,24 @@ function! myfun#list_file_names(ArgList, L, P)
     endif
 endfunction
 
+" Edit vimrc profile
+function! myfun#edit_my_vimrc()
+    if exists('g:my_vimrc') && filereadable(g:my_vimrc)
+        exec 'edit '.fnameescape(g:my_vimrc)
+    else
+        edit $MYVIMRC
+    endif
+endfunction
+
+" Edit gvimrc profile
+function! myfun#edit_my_gvimrc()
+    if exists('g:my_gvimrc') && filereadable(g:my_gvimrc)
+        exec 'edit '.fnameescape(g:my_gvimrc)
+    else
+        edit $MYGVIMRC
+    endif
+endfunction
+
 " Edit a file under the directory of current file
 function! myfun#edit(filename) abort
     let filename = a:filename
@@ -324,29 +342,37 @@ function! myfun#remove_trailing_spaces() abort
     call setpos('.', save_pos)
 endfunction
 
-function! myfun#show_info() abort
+" Trim spaces
+function! myfun#trim(astring)
+    return substitute(substitute(astring, '\s\+$', '', ''), '^\s\+', '', '')
+endfunction
+
+function! myfun#show_context_info() abort
     let virtual_env = exists("$VIRTUAL_ENV") ? expand("$VIRTUAL_ENV") : ""
-    let my_gvimrc = exists("$MYGVIMRC") ? expand("$MYGVIMRC") : ""
+    let vimrc = exists("$MYVIMRC") ? expand("$MYVIMRC") : ""
+    let gvimrc = exists("$MYGVIMRC") ? expand("$MYGVIMRC") : ""
+    let project_dir = myfun#current_dir()
+    let session =  v:this_session
 
     let info = [
-      \"HOME: ".expand("$HOME"),
-      \"Virtual Env: ".virtual_env,
-      \"vimrc: ".expand("$MYVIMRC"),
-      \"gvimrc: ".my_gvimrc,
-      \"",
-      \"Working dir: ".getcwd(),
-      \"Context dir: ".myfun#current_dir(),
-      \"",
-      \"Path: ".expand('%:p'),
-      \"File: ".expand('%'),
-      \"Buffer: ".bufname(''),
-      \"Window: ".winnr(),
-      \"",
-      \"Session: ".v:this_session,
-      \"Keymap: ".&keymap,
-      \]
+        \"Directory: ".getcwd(),
+        \"Name: ".expand('%'),
+        \"Path: ".expand('%:p'),
+        \"Buffer: ".bufname(''),
+        \"Window: ".winnr(),
+        \"",
+        \"Project: ".project_dir,
+        \"Session: ".session,
+        \"Virtual Env: ".virtual_env,
+        \"",
+        \"HOME: ".expand("$HOME"),
+        \"vimrc: ".vimrc,
+        \"gvimrc: ".gvimrc,
+        \"",
+        \"Keymap: ".&keymap,
+        \]
 
-    new
+    enew
     setlocal hidden buftype=nofile bufhidden=wipe noswapfile
     call append(0, info)
     call cursor(1, 1)
@@ -384,7 +410,7 @@ function! myfun#current_dir()
 endfunction
 
 function! s:slash() abort
-  return !exists("+shellslash") || &shellslash ? '/' : '\'
+    return !exists("+shellslash") || &shellslash ? '/' : '\'
 endfunction
 
 " Return absolute paths for files in range first..second.
