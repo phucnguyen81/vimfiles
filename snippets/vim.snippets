@@ -12,6 +12,10 @@ snippet f function
 	function! ${1:function_name}(${2})
 		${0}
 	endfunction
+snippet function function
+	function! ${1:function_name}(${2})
+		${0}
+	endfunction
 snippet t try ... catch statement
 	try
 		${1:${VISUAL}}
@@ -41,7 +45,14 @@ snippet ife if ... else statement
 	else
 		${0}
 	endif
+snippet autocmd autocmd
+	autocmd ${1:BufRead,BufNewFile} ${2:*.ext,*.ext3|<buffer[=N]>} ${0}
 snippet au augroup ... autocmd block
+	augroup ${1:AU_NAME}
+		" this one is which you're most likely to use?
+		autocmd ${2:BufRead,BufNewFile} ${3:*.ext,*.ext3|<buffer[=N]>} ${0}
+	augroup end
+snippet augroup augroup ... autocmd block
 	augroup ${1:AU_NAME}
 		" this one is which you're most likely to use?
 		autocmd ${2:BufRead,BufNewFile} ${3:*.ext,*.ext3|<buffer[=N]>} ${0}
