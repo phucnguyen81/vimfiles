@@ -10,10 +10,6 @@ nnoremap <Leader>bf :bfirst<CR>
 nnoremap <Leader>bl :blast<CR>
 " Go to next modified buffer
 nnoremap <Leader>bm :bmodified<CR>
-" Show buffers
-nnoremap <Leader>ls :ls<cr>
-" Show all buffers
-nnoremap <Leader>LS :ls!<cr>
 
 " Write current buffer to file
 nnoremap <Leader>ww :call myfun#make_dir()<CR>:write!<CR>
