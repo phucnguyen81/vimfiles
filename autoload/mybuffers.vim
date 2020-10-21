@@ -1,12 +1,6 @@
 " For each line, the buffer numbers is found at the beginning of the line
 let s:buffer_number_pattern = '^\s*\d\+\s'
 
-augroup my_buffers_augroup
-    autocmd!
-    autocmd BufEnter *.buffers call s:MapKeys()
-    autocmd BufLeave *.buffers call s:UpdateBuffers()
-augroup END
-
 " Load the buffer corresponding to current line
 function! s:LoadBuffer() abort
     let current_line = getline('.')
@@ -55,3 +49,9 @@ function! mybuffers#buffers() abort
     new
     exec 'edit '.fnameescape(buffers_file)
 endfunction
+
+augroup my_buffers_augroup
+    autocmd!
+    autocmd BufEnter *.buffers call s:MapKeys()
+    autocmd BufLeave *.buffers call s:UpdateBuffers()
+augroup END
