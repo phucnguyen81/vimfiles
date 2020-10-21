@@ -8,7 +8,7 @@ augroup my_buffers_augroup
 augroup END
 
 " Load the buffer corresponding to current line
-function! s:Buffer() abort
+function! s:LoadBuffer() abort
     let current_line = getline('.')
     let bufnr = str2nr(matchstr(current_line, s:buffer_number_pattern))
     if !empty(bufnr)
@@ -18,7 +18,7 @@ endfunction
 
 " Go to buffer on <CR>
 function! s:MapKeys()
-    noremap <silent> <buffer> <CR> :call <SID>Buffer()<CR>
+    noremap <silent> <buffer> <CR> :call <SID>LoadBuffer()<CR>
 endfunction
 
 " Delete buffers not listed in current buffer
