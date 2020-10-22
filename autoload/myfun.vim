@@ -343,8 +343,8 @@ function! myfun#remove_trailing_spaces() abort
 endfunction
 
 " Trim spaces
-function! myfun#trim(astring)
-    return substitute(substitute(astring, '\s\+$', '', ''), '^\s\+', '', '')
+function! myfun#trim(text)
+    return substitute(substitute(a:text, '\s\+$', '', ''), '^\s\+', '', '')
 endfunction
 
 function! myfun#show_context_info() abort

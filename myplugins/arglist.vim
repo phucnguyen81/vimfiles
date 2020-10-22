@@ -1,45 +1,48 @@
-" Edit the arglist file
-function! s:EditArglist() abort
-    let pid = getpid()
-    let arglist_file = expand(g:my_vardir.'/vim_pid_'.pid.'.arglist')
-    exec 'edit '.fnameescape(arglist_file)
+" Work with arglist
+function! s:Arglist() abort
+    new
+    call setbufvar('%', 'my_arglist', 1)
+    call s:EnterArglist()
 endfunction
 
-" Write arglist to current file
-function! s:WriteArglist() abort
-    let curfile = expand('%')
-    if !filereadable(curfile)
-        write
+" If applicable, write arglist to current buffer
+function! s:EnterArglist() abort
+    if getbufvar('%', 'my_arglist')
+        call deletebufline('%', 1, '$')
+        let Getfullpath = {key, filename -> fnamemodify(filename, ':p')}
+        let argfiles = map(argv(), Getfullpath)
+        call append(0, argfiles)
+        call cursor(1, 1)
     endif
-    let arglist = argv()
-    call writefile(arglist, curfile)
-    edit
 endfunction
 
-" Replace arglist with filenames from current buffer
-function! s:UpdateArglist() abort
-    " Delete all entries in arglist
-    %argdelete
+" If applicable, replace arglist with filenames from current buffer
+function! s:LeaveArglist() abort
+    if getbufvar('%', 'my_arglist')
+        " Delete all entries in arglist
+        %argdelete
 
-    " Add filenames from current buffer to arglist
-    for line in getline(1, '$')
-        let filename = myfun#trim(line)
-        if filereadable(filename)
-            exec 'argadd '.fnameescape(filename)
-        endif
-    endfor
+        " Add filenames from current buffer to arglist
+        for line in getline(1, '$')
+            let filename = myfun#trim(line)
+            if filereadable(filename)
+                exec 'argadd '.fnameescape(filename)
+            endif
+        endfor
+
+        bdelete!
+    endif
 endfunction
 
 augroup my_arglist_augroup
   autocmd!
-  autocmd BufEnter *.arglist :call <SID>WriteArglist()
-  autocmd BufLeave *.arglist :call <SID>UpdateArglist()
+  autocmd BufEnter * :call s:EnterArglist()
+  autocmd BufLeave * :call s:LeaveArglist()
 augroup END
 
-" Edit arglist
-command! Args call <SID>EditArglist()
-nnoremap <Leader>ea :<C-u>call <SID>EditArglist()<CR>
+" Work with arglist
+command! Args call <SID>Arglist()
+nnoremap <Leader>as :<C-u>call <SID>Arglist()<CR>
 
 " Add current file to arglist
 nnoremap <Leader>aa :argadd<CR>:args<CR>
-
