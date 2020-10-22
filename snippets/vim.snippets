@@ -13,7 +13,7 @@ snippet f function
 		${0}
 	endfunction
 snippet function function
-	function! ${1:function_name}(${2})
+	function! ${1:function_name}(${2}) abort
 		${0}
 	endfunction
 snippet t try ... catch statement
@@ -35,15 +35,11 @@ snippet wh while loop
 	while ${1}
 		${0:${VISUAL}}
 	endw
-snippet if if statement
+snippet if if-else blocks
 	if ${1}
-		${0:${VISUAL}}
-	endif
-snippet ife if ... else statement
-	if ${1}
-		${2:${VISUAL}}
-	else
 		${0}
+	elseif ${2}
+	else
 	endif
 snippet autocmd autocmd
 	autocmd ${1:BufRead,BufNewFile} ${2:*.ext,*.ext3|<buffer[=N]>} ${0}
