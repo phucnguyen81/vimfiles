@@ -86,6 +86,12 @@ function! s:EnterMyBuffers() abort
     endif
 endfunction
 
+augroup my_buffers_augroup
+    autocmd!
+    autocmd BufEnter * call s:EnterMyBuffers()
+    autocmd BufLeave * call s:LeaveMyBuffers()
+augroup END
+
 " Show buffer list
 function! mybuffers#buffers() abort
     new
@@ -93,9 +99,3 @@ function! mybuffers#buffers() abort
     noremap <silent> <buffer> <CR> :call <SID>LoadBuffer()<CR>
     call s:EnterMyBuffers()
 endfunction
-
-augroup my_buffers_augroup
-    autocmd!
-    autocmd BufEnter * call s:EnterMyBuffers()
-    autocmd BufLeave * call s:LeaveMyBuffers()
-augroup END
