@@ -39,7 +39,8 @@ function! s:LeaveMyBuffers() abort
     if getbufvar('%', s:my_buffers_name)
         let buffers = []
 
-        " Find buffer numbers as the first number in each line
+        " Find buffer numbers as the first number in each line.
+        " TODO: use map() here
         for line in getline(1, '$')
             let bufnr = str2nr(matchstr(line, s:buffer_number_pattern))
             if bufexists(bufnr)
