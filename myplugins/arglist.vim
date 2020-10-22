@@ -9,7 +9,7 @@ endfunction
 function! s:EnterArglist() abort
     if getbufvar('%', 'my_arglist')
         call deletebufline('%', 1, '$')
-        let Getfullpath = {key, filename -> fnamemodify(filename, ':p')}
+        let Getfullpath = {key, filename -> fnamemodify(filename, ':~')}
         let argfiles = map(argv(), Getfullpath)
         call append(0, argfiles)
         call cursor(1, 1)
