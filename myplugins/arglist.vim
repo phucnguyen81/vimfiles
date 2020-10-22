@@ -1,13 +1,15 @@
+let s:my_arglist_name = 'my_arglist'
+
 " Work with arglist
 function! s:Arglist() abort
     new
-    call setbufvar('%', 'my_arglist', 1)
+    call setbufvar('%', s:my_arglist_name, 1)
     call s:EnterArglist()
 endfunction
 
 " If applicable, write arglist to current buffer
 function! s:EnterArglist() abort
-    if getbufvar('%', 'my_arglist')
+    if getbufvar('%', s:my_arglist_name)
         call deletebufline('%', 1, '$')
         let Getfullpath = {key, filename -> fnamemodify(filename, ':~')}
         let argfiles = map(argv(), Getfullpath)
@@ -18,13 +20,13 @@ endfunction
 
 " If applicable, replace arglist with filenames from current buffer
 function! s:LeaveArglist() abort
-    if getbufvar('%', 'my_arglist')
+    if getbufvar('%', s:my_arglist_name)
         " Delete all entries in arglist
         %argdelete
 
         " Add filenames from current buffer to arglist
         for line in getline(1, '$')
-            let filename = myfun#trim(line)
+            let filename = expand(myfun#trim(line))
             if filereadable(filename)
                 exec 'argadd '.fnameescape(filename)
             endif
