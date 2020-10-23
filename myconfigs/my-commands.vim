@@ -1,8 +1,8 @@
 " Change current working directory and show it
 function! s:ChangeDirectory(...) abort
-    let dir = a:0 ? a:1 : myfun#current_dir()
-    call chdir(dir)
-    edit ./
+    let dir = a:0 ? a:1 : myfun#project_dir()
+    exec 'lcd '.fnameescape(dir)
+    silent edit ./
 endfunction
 command! -nargs=? -complete=dir CD call s:ChangeDirectory(<f-args>)
 

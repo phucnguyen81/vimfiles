@@ -9,7 +9,7 @@ if executable('rg')
         let wholeword = a:wholeword
         let arg = empty(a:000) ? expand('<cword>') : join(a:000)
         split
-        exec 'lcd '.fnameescape(myfun#current_dir())
+        exec 'lcd '.fnameescape(myfun#project_dir())
         if wholeword
             exec 'grep --word-regexp '.arg
         else

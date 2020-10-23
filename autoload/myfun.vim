@@ -351,7 +351,7 @@ function! myfun#show_context_info() abort
     let virtual_env = exists("$VIRTUAL_ENV") ? expand("$VIRTUAL_ENV") : ""
     let vimrc = exists("$MYVIMRC") ? expand("$MYVIMRC") : ""
     let gvimrc = exists("$MYGVIMRC") ? expand("$MYGVIMRC") : ""
-    let project_dir = myfun#current_dir()
+    let project_dir = myfun#project_dir()
     let session =  v:this_session
 
     let info = [
@@ -383,7 +383,7 @@ function! s:is_netrw_buffer()
 endfunction
 
 " Return directory most relevant to current buffer
-function! myfun#current_dir()
+function! myfun#project_dir()
     if (&filetype ==? 'netrw')
         \ && exists('b:netrw_curdir')
         \ && isdirectory(b:netrw_curdir)
@@ -444,7 +444,7 @@ function! myfun#current_path()
         let path = expand('%:p')
     endif
     if empty(path)
-        let path = myfun#current_dir()
+        let path = myfun#project_dir()
     endif
     return path
 endfunction
@@ -496,14 +496,14 @@ function! myfun#select_file() abort
     " Browse only, not save file, title is the file path
     return browse(0,
         \ 'Select file',
-        \ myfun#current_dir(),
+        \ myfun#project_dir(),
         \ expand('%:p:t'))
 endfunction
 
 " Let user select a directory from system browser.
 " Return the selected directory.
 function! myfun#select_dir()
-    return browsedir('Select dir', myfun#current_dir())
+    return browsedir('Select dir', myfun#project_dir())
 endfunction
 
 function! myfun#get_visual_selection() abort
@@ -592,7 +592,7 @@ endfunction
 " g<ctrl-]> jumps to ambiguous tags
 " Ctrl-t (or :pop) jumps back up the tag stack
 function! myfun#create_tags(absolute_path) abort
-    let dir = myfun#current_dir()
+    let dir = myfun#project_dir()
     let dir = input("Create tags for directory: ", dir, 'dir')
     if empty(dir)
         return
