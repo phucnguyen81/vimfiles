@@ -12,15 +12,17 @@ snippet f function
 	function! ${1:function_name}(${2})
 		${0}
 	endfunction
-snippet function function
-	function! ${1:function_name}(${2}) abort
+snippet func function
+	func! ${1:function_name}(${2}) abort
 		${0}
-	endfunction
-snippet t try ... catch statement
+	endfunc
+snippet try try ... catch statement
 	try
-		${1:${VISUAL}}
-	catch ${2}
-		${0}
+		${0:${VISUAL}}
+	catch
+		throw v:exception
+	finally
+		echom 'Done'
 	endtry
 snippet for for ... in loop
 	for ${1} in ${2}
