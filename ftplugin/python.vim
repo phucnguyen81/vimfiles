@@ -1,16 +1,8 @@
-setlocal expandtab
-setlocal autoindent
-setlocal smarttab
-setlocal formatoptions=croql
-setlocal foldmethod=indent
-setlocal foldlevel=10
-
+setlocal expandtab autoindent smarttab
+setlocal formatoptions=croql foldmethod=indent foldlevel=10
 setlocal keywordprg=pydoc
-
 setlocal suffixesadd+=.py
-
-" For dispatch plugin
-let b:dispatch = 'python %'
+compiler python
 
 " For lsp plugin
 if exists('g:my_completion_plugin') && (g:my_completion_plugin == 'lsp')
@@ -31,10 +23,9 @@ if exists('g:my_completion_plugin') && (g:my_completion_plugin == 'jedi')
 endif
 
 " For ale plugin
-if exists('g:loaded_ale')
+if exists(':ALELint')
     let b:my_lint_command = 'ALELint'
 endif
-
 if exists(':ALEFix') && executable('autopep8')
     let b:my_fix_command = 'ALEFix autopep8'
 endif
