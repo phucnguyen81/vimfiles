@@ -250,15 +250,6 @@ function! myfun#delete_nofile_buffers()
     endfor
 endfunction
 
-" Delete all hidden buffers
-function! myfun#delete_hidden_buffers()
-    for buf in getbufinfo()
-        if buf.listed && buf.hidden
-            exec 'bdelete! '.buf.bufnr
-        endif
-    endfor
-endfunction
-
 " Delete all buffers not shown in windows
 function! myfun#delete_nowindow_buffers()
     for buf in getbufinfo()

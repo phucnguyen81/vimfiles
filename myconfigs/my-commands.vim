@@ -30,7 +30,8 @@ command! -nargs=? -bang Count call myfun#count(<bang>0, <f-args>)
 " TODO detect indentation, see sleuth plugin from tpope
 command! -nargs=1 SetLocalIndent call myfun#set_local_indent(<f-args>)
 
-command! RuntimePath :split | :call append(0, split(&runtimepath, ','))
+" Print runtimepath
+command! Prtp new | call append(0, split(&runtimepath, ',')) | call cursor(1,1)
 
 function! s:ToggleVietnameseKeymap() abort
     if exists('b:saved_keymap')
@@ -46,13 +47,10 @@ function! s:ToggleVietnameseKeymap() abort
         setlocal timeoutlen=3000
     endif
 endfunction
-
 command! KeymapVn call s:ToggleVietnameseKeymap()
 
 " Bulk-delete buffers
 command! DelNofileBuffers call myfun#delete_nofile_buffers()
-
-command! DelHiddenBuffers call myfun#delete_hidden_buffers()
 
 command! DelNowindowBuffers call myfun#delete_nowindow_buffers()
 
