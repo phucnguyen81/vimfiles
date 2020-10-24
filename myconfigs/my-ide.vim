@@ -60,4 +60,3 @@ function! s:PeekDocumentation()
     exec b:my_peek_documentation_command
 endfunction
 command! Peek call s:PeekDocumentation()
-

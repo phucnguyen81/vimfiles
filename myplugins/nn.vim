@@ -39,7 +39,7 @@ let s:bind_options = [
 function! s:nn_here(...) abort
     let arg = a:000
     if empty(arg)
-        let dir = myfun#project_dir()
+        let dir = myproject#project_dir()
         let hint = ''
     else
         let dir = arg[0]

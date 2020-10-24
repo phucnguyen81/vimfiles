@@ -1,6 +1,6 @@
 " Change current working directory and show it
 function! s:ChangeDirectory(...) abort
-    let dir = a:0 ? a:1 : myfun#project_dir()
+    let dir = a:0 ? a:1 : myproject#project_dir()
     exec 'lcd '.fnameescape(dir)
     silent edit ./
 endfunction

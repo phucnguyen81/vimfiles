@@ -203,6 +203,7 @@ exec 'source '.g:my_configsdir.'/my-insertmap.vim'
 exec 'source '.g:my_configsdir.'/my-journal.vim'
 exec 'source '.g:my_configsdir.'/my-newfile.vim'
 exec 'source '.g:my_configsdir.'/my-normalmap.vim'
+exec 'source '.g:my_configsdir.'/my-project.vim'
 exec 'source '.g:my_configsdir.'/my-registers.vim'
 exec 'source '.g:my_configsdir.'/my-sessions.vim'
 exec 'source '.g:my_configsdir.'/my-snippets.vim'
@@ -304,6 +305,7 @@ exec 'source '.expand(g:my_plugconfigsdir.'/ale.vim')
 exec 'source '.expand(g:my_plugconfigsdir.'/vim-slime.vim')
 Plug 'https://github.com/skywind3000/vim-preview.git'
 exec 'source '.expand(g:my_plugconfigsdir.'/tagbar.vim')
+exec 'source '.expand(g:my_plugconfigsdir.'/anyjump.vim')
 
 " Built-in search engines: plugged/open-browser.vim/autoload/vital/__openbrowser__/OpenBrowser/Config.vim
 exec 'source '.expand(g:my_plugconfigsdir.'/openbrowser.vim')

@@ -1,7 +1,7 @@
 Plug 'https://github.com/tpope/vim-fugitive.git'
 
 function! s:GitSync() abort
-    let curdir = myfun#project_dir()
+    let curdir = myproject#project_dir()
     if input('Sync '.curdir.'? (y/n) ') !=? 'y'
         return
     endif

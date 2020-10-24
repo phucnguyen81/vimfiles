@@ -9,7 +9,7 @@ endif
 
 " Fuzzy-find files in working directory
 function! s:FindFile() abort
-    let curdir = myfun#project_dir()
+    let curdir = myproject#project_dir()
     if empty(g:my_fzf_default_command)
         exec ':FZF '.fnameescape(curdir)
         return

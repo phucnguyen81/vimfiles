@@ -342,7 +342,7 @@ function! myfun#show_context_info() abort
     let virtual_env = exists("$VIRTUAL_ENV") ? expand("$VIRTUAL_ENV") : ""
     let vimrc = exists("$MYVIMRC") ? expand("$MYVIMRC") : ""
     let gvimrc = exists("$MYGVIMRC") ? expand("$MYGVIMRC") : ""
-    let project_dir = myfun#project_dir()
+    let project_dir = myproject#project_dir()
     let session =  v:this_session
 
     let info = [
@@ -371,33 +371,6 @@ endfunction
 
 function! s:is_netrw_buffer()
     return (&filetype ==? 'netrw') && exists('b:netrw_curdir')
-endfunction
-
-" Return directory most relevant to current buffer
-function! myfun#project_dir()
-    if (&filetype ==? 'netrw')
-        \ && exists('b:netrw_curdir')
-        \ && isdirectory(b:netrw_curdir)
-        return expand(b:netrw_curdir)
-    endif
-    " git_dir from fugitive plugin
-    if (&filetype ==? 'fugitive')
-        \ && exists('b:git_dir')
-        \ && isdirectory(b:git_dir)
-        return fnamemodify(b:git_dir, ':h')
-    endif
-    " TODO replace vim-rooter/FindRootDirectory with my own function
-    if exists('*FindRootDirectory')
-        let curdir = FindRootDirectory()
-        if isdirectory(curdir)
-            return curdir
-        endif
-    endif
-    let curdir = expand('%:p:h')
-    if isdirectory(curdir)
-        return curdir
-    endif
-    return getcwd()
 endfunction
 
 function! s:slash() abort
@@ -435,7 +408,7 @@ function! myfun#current_path()
         let path = expand('%:p')
     endif
     if empty(path)
-        let path = myfun#project_dir()
+        let path = myproject#project_dir()
     endif
     return path
 endfunction
@@ -487,14 +460,14 @@ function! myfun#select_file() abort
     " Browse only, not save file, title is the file path
     return browse(0,
         \ 'Select file',
-        \ myfun#project_dir(),
+        \ myproject#project_dir(),
         \ expand('%:p:t'))
 endfunction
 
 " Let user select a directory from system browser.
 " Return the selected directory.
 function! myfun#select_dir()
-    return browsedir('Select dir', myfun#project_dir())
+    return browsedir('Select dir', myproject#project_dir())
 endfunction
 
 function! myfun#get_visual_selection() abort
@@ -583,7 +556,7 @@ endfunction
 " g<ctrl-]> jumps to ambiguous tags
 " Ctrl-t (or :pop) jumps back up the tag stack
 function! myfun#create_tags(absolute_path) abort
-    let dir = myfun#project_dir()
+    let dir = myproject#project_dir()
     let dir = input("Create tags for directory: ", dir, 'dir')
     if empty(dir)
         return

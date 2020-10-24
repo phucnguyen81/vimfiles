@@ -17,7 +17,7 @@ command! Tls call s:LsTemplate()
 " Help: grepper.txt
 " Source: https://github.com/mhinz/vim-grepper
 function! s:GrepperTemplate() abort
-    let currdir = myfun#project_dir()
+    let currdir = myproject#project_dir()
     let pattern = expand('<cword>')
 
     let t = []
