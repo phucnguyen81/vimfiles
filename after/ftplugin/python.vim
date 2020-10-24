@@ -1,7 +1,7 @@
-" In Python, macro definitions come after 'def' or 'class'
-setlocal define=^\\s*\\<\\(def\\\|class\\)\\>
+" In Python, definitions come after 'def' or 'class'
+let &l:define='^\s*\<\(def\|class\)\>'
 
-" In Python, the included module come between 'from/import' and 'as'
+" In Python, the included file come between 'from/import' and 'as'
 setlocal include=^\\s*\\(from\\\|import\\)\\s*\\zs\\(\\S\\+\\s\\{-}\\)*\\ze\\($\\\|\ as\\)
 
 " Extract filepath matched in 'include'
