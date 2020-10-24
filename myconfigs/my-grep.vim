@@ -1,1 +1,1 @@
-command! -nargs=* -bang Grep call myvim#ripgrep(getcwd(), <bang>0, <f-args>)
+command! -nargs=* -bang Grep call my#grep#ripgrep(getcwd(), <bang>0, <f-args>)

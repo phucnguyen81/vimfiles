@@ -94,7 +94,7 @@ augroup my_buffers_augroup
 augroup END
 
 " Show buffer list
-func! mybuffers#buffers() abort
+func! my#buffer#buffers() abort
     new
     call setbufvar('%', s:my_buffers_name, 1)
     noremap <silent> <buffer> <CR> :call <SID>LoadBuffer()<CR>

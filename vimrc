@@ -251,7 +251,6 @@ exec 'source '.expand(g:my_pluginsdir.'/arglist.vim')
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
 exec 'source '.expand(g:my_pluginsdir.'/todo.vim')
-exec 'source '.expand(g:my_pluginsdir.'/mybuffers.vim')
 " }}
 " Plugins {{
 call plug#begin(g:my_pluggeddir)

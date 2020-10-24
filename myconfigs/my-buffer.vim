@@ -1,3 +1,5 @@
+" Show buffers
+nnoremap <Leader>ls :call my#buffer#buffers()<CR>
 " Go to next buffer
 nnoremap <silent> <Leader>bn :bnext<cr>
 " Go to previous buffer
@@ -62,4 +64,3 @@ nnoremap <silent> <Leader>dl :call myfun#delete_buffer_at('l')<cr>
 nnoremap <silent> <Leader>dw :call myfun#delete_buffer_at('w')<cr>
 " delete first buffer counter-clockwise
 nnoremap <silent> <Leader>dW :call myfun#delete_buffer_at('W')<cr>
-
