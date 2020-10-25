@@ -269,13 +269,13 @@ exec 'source '.expand(g:my_configsdir.'/my-sessions.vim')
 exec 'source '.expand(g:my_configsdir.'/my-snippets.vim')
 exec 'source '.expand(g:my_configsdir.'/my-source.vim')
 exec 'source '.expand(g:my_configsdir.'/my-tab.vim')
+exec 'source '.expand(g:my_configsdir.'/my-template.vim')
 exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
 exec 'source '.expand(g:my_configsdir.'/my-visualmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-window.vim')
 " }}
 " My pluggins {{
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
-exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
 " }}
 " Autocmd {{
 augroup my_main_autocmd
