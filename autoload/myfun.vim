@@ -414,6 +414,13 @@ function! myfun#open_current_path()
     redraw!
 endfunction
 
+" Yank context path
+func! myfun#yank_path() abort
+    let path = myfun#current_path()
+    call setreg('', path)
+    call setreg('+', path)
+endfunc
+
 function! myfun#open(path)
     let path = shellescape(a:path)
 

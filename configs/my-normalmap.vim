@@ -1,5 +1,5 @@
 " Yank path of current file
-nnoremap <silent> <Leader>yp :call setreg('+', expand('%:p'))<CR>:call setreg('', expand('%:p'))<CR>
+nnoremap <silent> <Leader>yp :call myfun#yank_path()<CR>
 
 " Edit another file
 nnoremap <Leader>ed :edit <C-R>=expand('%:h')<CR>
