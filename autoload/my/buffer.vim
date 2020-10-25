@@ -97,6 +97,7 @@ augroup END
 func! my#buffer#buffers() abort
     new
     call setbufvar('%', s:my_buffers_name, 1)
+    setlocal bufhidden=wipe buftype=nofile
     noremap <silent> <buffer> <CR> :call <SID>LoadBuffer()<CR>
     call s:EnterMyBuffers()
 endfunc
