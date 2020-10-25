@@ -361,7 +361,7 @@ function! myfun#show_context_info() abort
         \]
 
     enew
-    call my#buffer#settemp()
+    setlocal hidden buftype=nofile bufhidden=wipe noswapfile
     call append(0, info)
     call cursor(1, 1)
 endfunction
