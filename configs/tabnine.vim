@@ -8,7 +8,7 @@ let g:ycm_auto_trigger = 1
 " <Down> or <C-n> for selecting next candidate
 let g:ycm_key_list_select_completion = ['<Down>']
 
-" filetypes for turning off completion
+" filetypes for turning off completion (just need keys, values are ignored)
 let s:disable_completion = {
     \ 'fugitive': 1,
     \ 'gitcommit': 1,

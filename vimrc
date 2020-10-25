@@ -98,6 +98,8 @@ endif
 
 let g:my_dict_eng = expand(g:my_dict_dir.'/words_eng.txt')
 
+let g:my_auto_save_enable = 1
+
 " Hint at completion plugins being used, jedi | lsp | tabnine
 let g:my_completion_plugin = $VIM_COMPLETION_ENGINE
 
@@ -255,7 +257,6 @@ exec 'source '.expand(g:my_configsdir.'/vim-slime.vim')
 Plug 'https://github.com/skywind3000/vim-preview.git'
 exec 'source '.expand(g:my_configsdir.'/tagbar.vim')
 exec 'source '.expand(g:my_configsdir.'/anyjump.vim')
-exec 'source '.expand(g:my_configsdir.'/floaterm.vim')
 
 if g:my_completion_plugin ==? 'tabnine'
     exec 'source '.expand(g:my_configsdir.'/tabnine.vim')

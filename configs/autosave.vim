@@ -1,4 +1,6 @@
 " Automatically save changes to disk
+" TODO: rewrite this for myself, just need a list of
+" filetypes to do auto-save
 Plug 'https://github.com/907th/vim-auto-save'
 
 if exists('g:my_auto_save_enable')
@@ -13,9 +15,6 @@ let g:auto_save_events = ["CursorHold"]
 if &updatetime < 500
     echoerr '&updatetime ' &updatetime 'is too small, might cause problems'
 endif
-
-" Alias
-command ToggleAutoSave :AutoSaveToggle
 
 " Disable autosave in diff mode.
 augroup my_autosave_disable
