@@ -16,19 +16,14 @@ if !isdirectory(g:my_pluggeddir)
     call mkdir(g:my_pluggeddir, "p")
 endif
 
-let g:my_plugconfigsdir = expand(g:my_basedir.'/plugconfigs')
-if !isdirectory(g:my_plugconfigsdir)
-    call mkdir(g:my_plugconfigsdir, "p")
+let g:my_configsdir = expand(g:my_basedir.'/configs')
+if !isdirectory(g:my_configsdir)
+    call mkdir(g:my_configsdir, "p")
 endif
 
 let g:my_pluginsdir = expand(g:my_basedir.'/myplugins')
 if !isdirectory(g:my_pluginsdir)
     call mkdir(g:my_pluginsdir, "p")
-endif
-
-let g:my_configsdir = expand(g:my_basedir.'/myconfigs')
-if !isdirectory(g:my_configsdir)
-    call mkdir(g:my_configsdir, "p")
 endif
 
 let g:my_snippets = expand(g:my_basedir.'/snippets')
@@ -186,6 +181,75 @@ if filereadable($VIM_PYTHONTHREE_DLL)
     let &pythonthreehome = fnamemodify($VIM_PYTHONTHREE_DLL, ':h')
 endif
 " }}
+" Plugins {{
+call plug#begin(g:my_pluggeddir)
+
+Plug 'https://github.com/tpope/vim-sensible.git'
+Plug 'https://github.com/tpope/vim-vinegar.git'
+Plug 'https://github.com/tpope/vim-repeat.git'
+Plug 'https://github.com/tpope/vim-unimpaired.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+
+" WIP: Replacing vim-commentary with tcomment_vim
+" Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/tomtom/tcomment_vim.git'
+
+Plug 'https://github.com/tpope/vim-endwise.git'
+Plug 'https://github.com/tpope/vim-eunuch.git'
+Plug 'https://github.com/tpope/vim-scriptease.git'
+Plug 'https://github.com/tpope/vim-speeddating.git'
+Plug 'https://github.com/mhinz/vim-lookup.git'
+Plug 'https://github.com/tmhedberg/matchit.git'
+Plug 'https://github.com/godlygeek/tabular.git'
+Plug 'https://github.com/jszakmeister/vim-togglecursor.git'
+Plug 'https://github.com/s3rvac/AutoFenc.git'
+exec 'source '.expand(g:my_configsdir.'/text_objects.vim')
+exec 'source '.expand(g:my_configsdir.'/argwrap.vim')
+Plug 'https://github.com/junegunn/goyo.vim.git'
+exec 'source '.expand(g:my_configsdir.'/limelight.vim')
+Plug 'https://github.com/amix/vim-zenroom2.git'
+Plug 'https://github.com/freitass/todo.txt-vim.git'
+exec 'source '.expand(g:my_configsdir.'/startify.vim')
+exec 'source '.expand(g:my_configsdir.'/abolish.vim')
+exec 'source '.expand(g:my_configsdir.'/easy-align.vim')
+exec 'source '.expand(g:my_configsdir.'/easymotion.vim')
+exec 'source '.expand(g:my_configsdir.'/undotree.vim')
+exec 'source '.expand(g:my_configsdir.'/autosave.vim')
+exec 'source '.expand(g:my_configsdir.'/rooter.vim')
+exec 'source '.expand(g:my_configsdir.'/scratch.vim')
+exec 'source '.expand(g:my_configsdir.'/vim-windowswap.vim')
+
+exec 'source '.expand(g:my_configsdir.'/nerdtree.vim')
+exec 'source '.expand(g:my_configsdir.'/netrw.vim')
+exec 'source '.expand(g:my_configsdir.'/fzf.vim')
+exec 'source '.expand(g:my_configsdir.'/grepper.vim')
+exec 'source '.expand(g:my_configsdir.'/quickrun.vim')
+exec 'source '.expand(g:my_configsdir.'/tabnine.vim')
+exec 'source '.expand(g:my_configsdir.'/fugitive.vim')
+Plug 'https://github.com/editorconfig/editorconfig-vim.git'
+Plug 'https://github.com/skywind3000/asyncrun.vim.git'
+exec 'source '.expand(g:my_configsdir.'/dispatch.vim')
+exec 'source '.expand(g:my_configsdir.'/ale.vim')
+exec 'source '.expand(g:my_configsdir.'/vim-slime.vim')
+Plug 'https://github.com/skywind3000/vim-preview.git'
+exec 'source '.expand(g:my_configsdir.'/tagbar.vim')
+exec 'source '.expand(g:my_configsdir.'/anyjump.vim')
+
+" Built-in search engines: plugged/open-browser.vim/autoload/vital/__openbrowser__/OpenBrowser/Config.vim
+exec 'source '.expand(g:my_configsdir.'/openbrowser.vim')
+
+exec 'source '.expand(g:my_configsdir.'/investigate.vim')
+exec 'source '.expand(g:my_configsdir.'/vim-system-copy.vim')
+Plug 'https://github.com/jceb/vim-orgmode.git'
+
+exec 'source '.expand(g:my_configsdir.'/snipmate.vim')
+
+exec 'source '.expand(g:my_configsdir.'/lightline.vim')
+exec 'source '.expand(g:my_configsdir.'/languagepack.vim')
+exec 'source '.expand(g:my_configsdir.'/colorschemes.vim')
+
+call plug#end()
+" }}
 " My configs {{
 exec 'source '.expand(g:my_configsdir.'/my-arglist.vim')
 exec 'source '.expand(g:my_configsdir.'/my-buffer.vim')
@@ -208,6 +272,10 @@ exec 'source '.expand(g:my_configsdir.'/my-tab.vim')
 exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
 exec 'source '.expand(g:my_configsdir.'/my-visualmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-window.vim')
+" }}
+" My pluggins {{
+exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
+exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
 " }}
 " Autocmd {{
 augroup my_main_autocmd
@@ -241,78 +309,5 @@ function s:OnVimLeave() abort
     exec 'mksession! '.fnameescape(latest_session)
 endfunction
 
-" }}
-" My pluggins {{
-exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
-exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
-" }}
-" Plugins {{
-call plug#begin(g:my_pluggeddir)
-
-Plug 'https://github.com/tpope/vim-sensible.git'
-Plug 'https://github.com/tpope/vim-vinegar.git'
-Plug 'https://github.com/tpope/vim-repeat.git'
-Plug 'https://github.com/tpope/vim-unimpaired.git'
-Plug 'https://github.com/tpope/vim-surround.git'
-
-" WIP: Replacing vim-commentary with tcomment_vim
-" Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/tomtom/tcomment_vim.git'
-
-Plug 'https://github.com/tpope/vim-endwise.git'
-Plug 'https://github.com/tpope/vim-eunuch.git'
-Plug 'https://github.com/tpope/vim-scriptease.git'
-Plug 'https://github.com/tpope/vim-speeddating.git'
-Plug 'https://github.com/mhinz/vim-lookup.git'
-Plug 'https://github.com/tmhedberg/matchit.git'
-Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/jszakmeister/vim-togglecursor.git'
-Plug 'https://github.com/s3rvac/AutoFenc.git'
-exec 'source '.expand(g:my_plugconfigsdir.'/text_objects.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/argwrap.vim')
-Plug 'https://github.com/junegunn/goyo.vim.git'
-exec 'source '.expand(g:my_plugconfigsdir.'/limelight.vim')
-Plug 'https://github.com/amix/vim-zenroom2.git'
-Plug 'https://github.com/freitass/todo.txt-vim.git'
-exec 'source '.expand(g:my_plugconfigsdir.'/startify.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/abolish.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/easy-align.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/easymotion.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/undotree.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/autosave.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/rooter.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/scratch.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/vim-windowswap.vim')
-
-exec 'source '.expand(g:my_plugconfigsdir.'/nerdtree.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/netrw.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/fzf.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/grepper.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/quickrun.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/tabnine.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/fugitive.vim')
-Plug 'https://github.com/editorconfig/editorconfig-vim.git'
-Plug 'https://github.com/skywind3000/asyncrun.vim.git'
-exec 'source '.expand(g:my_plugconfigsdir.'/dispatch.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/ale.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/vim-slime.vim')
-Plug 'https://github.com/skywind3000/vim-preview.git'
-exec 'source '.expand(g:my_plugconfigsdir.'/tagbar.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/anyjump.vim')
-
-" Built-in search engines: plugged/open-browser.vim/autoload/vital/__openbrowser__/OpenBrowser/Config.vim
-exec 'source '.expand(g:my_plugconfigsdir.'/openbrowser.vim')
-
-exec 'source '.expand(g:my_plugconfigsdir.'/investigate.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/vim-system-copy.vim')
-Plug 'https://github.com/jceb/vim-orgmode.git'
-
-exec 'source '.expand(g:my_plugconfigsdir.'/snipmate.vim')
-
-exec 'source '.expand(g:my_plugconfigsdir.'/lightline.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/languagepack.vim')
-exec 'source '.expand(g:my_plugconfigsdir.'/colorschemes.vim')
-
-call plug#end()
 " }}
 " vim:fdm=marker:fmr={{,}}:et:ts=4:sts=4:sw=4
