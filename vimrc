@@ -262,6 +262,7 @@ exec 'source '.expand(g:my_configsdir.'/my-ide.vim')
 exec 'source '.expand(g:my_configsdir.'/my-insertmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-journal.vim')
 exec 'source '.expand(g:my_configsdir.'/my-newfile.vim')
+exec 'source '.expand(g:my_configsdir.'/my-nn.vim')
 exec 'source '.expand(g:my_configsdir.'/my-normalmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-project.vim')
 exec 'source '.expand(g:my_configsdir.'/my-registers.vim')
@@ -273,9 +274,6 @@ exec 'source '.expand(g:my_configsdir.'/my-template.vim')
 exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
 exec 'source '.expand(g:my_configsdir.'/my-visualmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-window.vim')
-" }}
-" My pluggins {{
-exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 " }}
 " Autocmd {{
 augroup my_main_autocmd

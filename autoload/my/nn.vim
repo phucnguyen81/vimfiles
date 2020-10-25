@@ -1,6 +1,3 @@
-command -nargs=* NN call s:nn_here(<f-args>)
-nnoremap <silent> <Leader>nn :<C-u>call <SID>nn_here()<CR>
-
 " Parent folder of this script (not account for symbolic links)
 let s:script_dir = expand('<sfile>:p:h')
 let s:nn_preview = ''
@@ -30,7 +27,7 @@ let s:bind_options = [
     \ ]
 
 " Start search/create files in current/specified directory
-function! s:nn_here(...) abort
+function! my#nn#start(...) abort
     let arg = a:000
     if empty(arg)
         let dir = my#project#dir()
