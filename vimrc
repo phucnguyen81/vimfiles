@@ -192,26 +192,27 @@ endif
 
 " }}
 " My configs {{
-exec 'source '.g:my_configsdir.'/my-buffer.vim'
-exec 'source '.g:my_configsdir.'/my-command-templates.vim'
-exec 'source '.g:my_configsdir.'/my-commandmap.vim'
-exec 'source '.g:my_configsdir.'/my-commands.vim'
-exec 'source '.g:my_configsdir.'/my-grep.vim'
-exec 'source '.g:my_configsdir.'/my-highlight.vim'
-exec 'source '.g:my_configsdir.'/my-ide.vim'
-exec 'source '.g:my_configsdir.'/my-insertmap.vim'
-exec 'source '.g:my_configsdir.'/my-journal.vim'
-exec 'source '.g:my_configsdir.'/my-newfile.vim'
-exec 'source '.g:my_configsdir.'/my-normalmap.vim'
-exec 'source '.g:my_configsdir.'/my-project.vim'
-exec 'source '.g:my_configsdir.'/my-registers.vim'
-exec 'source '.g:my_configsdir.'/my-sessions.vim'
-exec 'source '.g:my_configsdir.'/my-snippets.vim'
-exec 'source '.g:my_configsdir.'/my-source.vim'
-exec 'source '.g:my_configsdir.'/my-tab.vim'
-exec 'source '.g:my_configsdir.'/my-terminal.vim'
-exec 'source '.g:my_configsdir.'/my-visualmap.vim'
-exec 'source '.g:my_configsdir.'/my-window.vim'
+exec 'source '.expand(g:my_configsdir.'/my-arglist.vim')
+exec 'source '.expand(g:my_configsdir.'/my-buffer.vim')
+exec 'source '.expand(g:my_configsdir.'/my-command-templates.vim')
+exec 'source '.expand(g:my_configsdir.'/my-commandmap.vim')
+exec 'source '.expand(g:my_configsdir.'/my-commands.vim')
+exec 'source '.expand(g:my_configsdir.'/my-grep.vim')
+exec 'source '.expand(g:my_configsdir.'/my-highlight.vim')
+exec 'source '.expand(g:my_configsdir.'/my-ide.vim')
+exec 'source '.expand(g:my_configsdir.'/my-insertmap.vim')
+exec 'source '.expand(g:my_configsdir.'/my-journal.vim')
+exec 'source '.expand(g:my_configsdir.'/my-newfile.vim')
+exec 'source '.expand(g:my_configsdir.'/my-normalmap.vim')
+exec 'source '.expand(g:my_configsdir.'/my-project.vim')
+exec 'source '.expand(g:my_configsdir.'/my-registers.vim')
+exec 'source '.expand(g:my_configsdir.'/my-sessions.vim')
+exec 'source '.expand(g:my_configsdir.'/my-snippets.vim')
+exec 'source '.expand(g:my_configsdir.'/my-source.vim')
+exec 'source '.expand(g:my_configsdir.'/my-tab.vim')
+exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
+exec 'source '.expand(g:my_configsdir.'/my-visualmap.vim')
+exec 'source '.expand(g:my_configsdir.'/my-window.vim')
 " }}
 " Autocmd {{
 augroup my_main_autocmd
@@ -247,7 +248,6 @@ endfunction
 
 " }}
 " My pluggins {{
-exec 'source '.expand(g:my_pluginsdir.'/arglist.vim')
 exec 'source '.expand(g:my_pluginsdir.'/nn.vim')
 exec 'source '.expand(g:my_pluginsdir.'/templates.vim')
 " }}
