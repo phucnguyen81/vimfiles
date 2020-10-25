@@ -49,7 +49,7 @@ function! s:start_terminal(command, wincmd) abort
         return
     endif
 
-    let curdir = myproject#project_dir()
+    let curdir = my#project#dir()
     if empty(wincmd)
         call myfun#split_window()
     else
@@ -206,7 +206,7 @@ function! s:Vifm() abort
     else
         let left_side = '--select "'.curfile.'"'
     endif
-    let curdir = myproject#project_dir()
+    let curdir = my#project#dir()
 
     -tabnew
     exec 'lcd '.fnameescape(curdir)
@@ -216,7 +216,7 @@ endfunction
 
 " Show files selected with vifm
 function! s:Vifmc() abort
-    let curdir = myproject#project_dir()
+    let curdir = my#project#dir()
 
     -tabnew
     exec 'lcd '.fnameescape(curdir)
@@ -231,7 +231,7 @@ function! s:Vifmc() abort
 endfunction
 
 function! s:Lf() abort
-    let curdir = myproject#project_dir()
+    let curdir = my#project#dir()
 
     -tabnew
     exec 'lcd '.fnameescape(curdir)

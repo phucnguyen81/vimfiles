@@ -1,9 +1,3 @@
-" TODO prepare to open source nn.vim
-" (configurations, doc files, see tpope's and fzf plugins)
-
-" TODO ctrl-x opens embedded urls
-" (with python or openbrowser ? => provide default and add configuration)
-
 command -nargs=* NN call s:nn_here(<f-args>)
 nnoremap <silent> <Leader>nn :<C-u>call <SID>nn_here()<CR>
 
@@ -39,7 +33,7 @@ let s:bind_options = [
 function! s:nn_here(...) abort
     let arg = a:000
     if empty(arg)
-        let dir = myproject#project_dir()
+        let dir = my#project#dir()
         let hint = ''
     else
         let dir = arg[0]

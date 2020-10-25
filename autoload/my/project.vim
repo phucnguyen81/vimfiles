@@ -1,5 +1,5 @@
 " Return the project directory under current context
-func! myproject#project_dir()
+func! my#project#dir() abort
     if (&filetype ==? 'netrw')
         \ && exists('b:netrw_curdir')
         \ && isdirectory(b:netrw_curdir)
@@ -23,16 +23,4 @@ func! myproject#project_dir()
         return curdir
     endif
     return getcwd()
-endfunc
-
-" Run :make using project dir as current dir
-func! myproject#make() abort
-    let save_dir = getcwd()
-    try
-        exec 'lcd '.fnameescape(myproject#project_dir())
-        make
-    finally
-        exec 'lcd '.fnameescape(save_dir)
-        botright copen
-    endtry
 endfunc
