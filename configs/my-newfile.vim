@@ -16,4 +16,3 @@ augroup newfile_mkdir
     autocmd!
     autocmd BufNewFile * call s:MakeParentDirs()
 augroup END
-

@@ -175,6 +175,31 @@ set showcmd
 set cmdheight=1
 set sessionoptions-=options sessionoptions-=blank sessionoptions+=help
 set viewoptions-=options
+if has('gui_running')
+    " Show window title and icons
+    set title icon
+
+    " Don't need menus, scroll bars, tab line...
+    set guioptions=c
+
+    " Don't blink cursor for n-v-c modes
+    set guicursor+=n-v-c:blinkon0
+
+    " Fonts to try
+    set guifont=Ubuntu\ Mono\ 12
+    set guifont+=IBM_Plex_Mono:h11
+    set guifont+=Source_Code_Pro:h11
+    set guifont+=InputMono_ExLight:h11
+    set guifont+=Consolas:h11
+
+    " Select fonts
+    command SetFont set guifont=*
+
+    " NOTE: Colorscheme is already set on VimEnter, setting colorscheme here can
+    " cause color issue with the tabline
+    " set background=dark
+    " silent! colorscheme gruvbox
+endif
 " Integrate with python3
 if filereadable($VIM_PYTHONTHREE_DLL)
     let &pythonthreedll = $VIM_PYTHONTHREE_DLL

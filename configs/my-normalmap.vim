@@ -1,3 +1,6 @@
+" Yank path of current file
+nnoremap <silent> <Leader>yp :call setreg('+', expand('%:p'))<CR>:call setreg('', expand('%:p'))<CR>
+
 " Edit another file
 nnoremap <Leader>ed :edit <C-R>=expand('%:h')<CR>
 
