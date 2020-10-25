@@ -601,9 +601,8 @@ endfunction
 
 " Source:
 " https://damien.pobel.fr/post/configure-neovim-vim-gf-javascript-import/
-" TODO more robust solution (detect root directory, specific to javascript,
 " ...)
-function! myfun#find_node_modules_filename(fname) abort
+function! myfun#node_modules_include(fname) abort
     let nodeModules = "./node_modules/"
     let packageJsonPath = nodeModules . a:fname . "/package.json"
 
@@ -613,12 +612,3 @@ function! myfun#find_node_modules_filename(fname) abort
         return nodeModules . a:fname
     endif
 endfunction
-
-" Used in 'includeexpr' to resolve file names
-function! myfun#includeexpr(filename) abort
-    let fname = myfun#find_node_modules_filename(a:filename)
-    if filereadable(fname)
-        return fname
-    endif
-endfunction
-

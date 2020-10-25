@@ -180,7 +180,6 @@ set showcmd
 set cmdheight=1
 set sessionoptions-=options sessionoptions-=blank sessionoptions+=help
 set viewoptions-=options
-set includeexpr=myfun#includeexpr(v:fname)
 " Integrate with python3
 if filereadable($VIM_PYTHONTHREE_DLL)
     let &pythonthreedll = $VIM_PYTHONTHREE_DLL

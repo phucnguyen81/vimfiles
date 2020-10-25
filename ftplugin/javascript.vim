@@ -1,11 +1,10 @@
+compiler javascript
 setlocal suffixesadd+=.js
 setlocal suffixesadd+=.jsx
+setlocal includeexpr=myfun#node_modules_include(v:fname)
 if executable('prettier')
     setlocal formatprg=prettier
 endif
-
-" For dispatch plugin
-let b:dispatch='node %'
 
 " For ale plugin
 if exists('g:loaded_ale')
