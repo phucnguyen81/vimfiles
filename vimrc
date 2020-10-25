@@ -181,15 +181,11 @@ set cmdheight=1
 set sessionoptions-=options sessionoptions-=blank sessionoptions+=help
 set viewoptions-=options
 set includeexpr=myfun#includeexpr(v:fname)
-
-let python = mypy#pythonthree()
-if !empty(python.home)
-    let &pythonthreehome = python.home
+" Integrate with python3
+if filereadable($VIM_PYTHONTHREE_DLL)
+    let &pythonthreedll = $VIM_PYTHONTHREE_DLL
+    let &pythonthreehome = fnamemodify($VIM_PYTHONTHREE_DLL, ':h')
 endif
-if !empty(python.dll)
-    let &pythonthreedll = python.dll
-endif
-
 " }}
 " My configs {{
 exec 'source '.expand(g:my_configsdir.'/my-arglist.vim')
