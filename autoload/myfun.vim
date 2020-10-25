@@ -79,7 +79,7 @@ function! myfun#maximize_screen()
     if has('win32')
         simalt ~x
     elseif executable('wmctrl')
-        call system("wmctrl -ir ".v:windowid." -b toggle,fullscreen")
+        call system("wmctrl -ir ".v:windowid." -b add,maximized_vert,maximized_horz")
         redraw!
     elseif exists(':Fullscreen')
         execute ':Fullscreen'
