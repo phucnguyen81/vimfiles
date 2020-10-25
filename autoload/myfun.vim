@@ -334,6 +334,7 @@ function! myfun#trim(text)
     return substitute(substitute(a:text, '\s\+$', '', ''), '^\s\+', '', '')
 endfunction
 
+" TODO: move to my#project#info
 function! myfun#show_context_info() abort
     let virtual_env = exists("$VIRTUAL_ENV") ? expand("$VIRTUAL_ENV") : ""
     let vimrc = exists("$MYVIMRC") ? expand("$MYVIMRC") : ""
@@ -360,7 +361,7 @@ function! myfun#show_context_info() abort
         \]
 
     enew
-    setlocal hidden buftype=nofile bufhidden=wipe noswapfile
+    call my#buffer#settemp()
     call append(0, info)
     call cursor(1, 1)
 endfunction

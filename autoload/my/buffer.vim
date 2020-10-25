@@ -100,3 +100,8 @@ func! my#buffer#buffers() abort
     noremap <silent> <buffer> <CR> :call <SID>LoadBuffer()<CR>
     call s:EnterMyBuffers()
 endfunc
+
+" Set options for a temporary buffer
+func! my#buffer#settemp() abort
+    setlocal hidden buftype=nofile bufhidden=wipe noswapfile
+endfunc
