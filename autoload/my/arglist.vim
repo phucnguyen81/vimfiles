@@ -33,7 +33,7 @@ func! s:LeaveArglist() abort
             endif
         endfor
 
-        bdelete!
+        bwipe!
     endif
 endfunc
 
@@ -47,6 +47,7 @@ augroup END
 func! my#arglist#edit() abort
     new
     call setbufvar('%', s:my_arglist_name, 1)
+    setlocal bufhidden=wipe buftype=nofile
     nnoremap <silent> <buffer> <CR> :<C-u>call <SID>EditFile()<CR>
     call s:EnterArglist()
 endfunc

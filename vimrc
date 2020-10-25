@@ -98,17 +98,14 @@ endif
 
 let g:my_dict_eng = expand(g:my_dict_dir.'/words_eng.txt')
 
-" Hint at completion plugins being used, jedi | lsp
-let g:my_completion_plugin = ''
+" Hint at completion plugins being used, jedi | lsp | tabnine
+let g:my_completion_plugin = $VIM_COMPLETION_ENGINE
 
 " Enable/disable auto-completion at startup
 let g:my_auto_completion_on = 1
 
 " Delay in miliseconds during typing before completion kicks in
 let g:my_auto_completion_delay = 2000
-
-" Enable autosave at startup
-let g:my_auto_save_enable = 1
 
 " }}
 " Options {{
@@ -249,7 +246,6 @@ exec 'source '.expand(g:my_configsdir.'/netrw.vim')
 exec 'source '.expand(g:my_configsdir.'/fzf.vim')
 exec 'source '.expand(g:my_configsdir.'/grepper.vim')
 exec 'source '.expand(g:my_configsdir.'/quickrun.vim')
-exec 'source '.expand(g:my_configsdir.'/tabnine.vim')
 exec 'source '.expand(g:my_configsdir.'/fugitive.vim')
 Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
@@ -259,6 +255,11 @@ exec 'source '.expand(g:my_configsdir.'/vim-slime.vim')
 Plug 'https://github.com/skywind3000/vim-preview.git'
 exec 'source '.expand(g:my_configsdir.'/tagbar.vim')
 exec 'source '.expand(g:my_configsdir.'/anyjump.vim')
+exec 'source '.expand(g:my_configsdir.'/floaterm.vim')
+
+if g:my_completion_plugin ==? 'tabnine'
+    exec 'source '.expand(g:my_configsdir.'/tabnine.vim')
+endif
 
 " Built-in search engines: plugged/open-browser.vim/autoload/vital/__openbrowser__/OpenBrowser/Config.vim
 exec 'source '.expand(g:my_configsdir.'/openbrowser.vim')
