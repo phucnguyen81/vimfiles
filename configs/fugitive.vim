@@ -11,21 +11,26 @@ func! s:GitSync() abort
     endif
 
     botright copen
-    redraw!
+    redraw
     let save_dir = getcwd()
     try
         exec 'lcd '.fnameescape(project_dir)
         compiler git
         make status
+        redraw
         make add .
+        redraw
         make commit --message=Sync
-        redraw!
+        redraw
         if empty(system('git remote'))
             return
         endif
         make pull --rebase=merges
+        redraw
         make push
+        redraw
         make status
+        redraw!
 
         " 0Git
         " Git add .
