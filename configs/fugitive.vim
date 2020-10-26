@@ -9,7 +9,7 @@ function! s:GitSync() abort
         return
     endif
 
-    copen
+    botright copen
     redraw!
     let save_dir = getcwd()
     try
