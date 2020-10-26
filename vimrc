@@ -3,7 +3,7 @@ let g:my_basedir = expand('<sfile>:p:h')
 
 let g:my_plugvim = expand(g:my_basedir.'/autoload/plug.vim')
 if !filereadable(g:my_plugvim)
-    echoerr 'Missing vim-plug autoload file at '.g:my_plugvim
+    echoerr 'Cannot read vim-plug file at '.g:my_plugvim
 endif
 
 let g:my_docdir = expand(g:my_basedir.'/doc')
@@ -74,7 +74,7 @@ let g:my_nerdtree_bookmarksfile = expand(g:my_vardir.'/NERDTreeBookMarks')
 
 let g:my_fzf_default_command = ''
 if executable('fd')
-    " Ignore files with ~/.fdignore
+    " fd config file is at ~/.fdignore
     let g:my_fzf_default_command = 'fd --no-ignore-vcs'
 endif
 let g:my_fzf_history_dir = expand(g:my_vardir.'/fzf-history')
@@ -84,6 +84,7 @@ endif
 
 let g:my_scratch_file = expand(g:my_vardir.'/scratch.txt')
 
+" TODO: consider removing this (replace with temp buffer?)
 let g:my_command_template = expand(g:my_vardir.'/command_template.vim')
 
 let g:my_calendar_dir = expand(g:my_vardir.'/calendar')
@@ -98,7 +99,7 @@ endif
 
 let g:my_dict_eng = expand(g:my_dict_dir.'/words_eng.txt')
 
-let g:my_auto_save_enable = 1
+let g:my_auto_save_on = 1
 
 " Hint at completion plugins being used, jedi | lsp | tabnine
 let g:my_completion_plugin = $VIM_COMPLETION_ENGINE

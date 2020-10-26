@@ -1,10 +1,12 @@
-" Run make (use compiler settings)
+" Compile/run current file (see compiler section in quickfix)
 command! -nargs=0 Pmake call my#make#make(my#project#dir())
 nnoremap <Leader>pm :call my#make#make(my#project#dir())<CR>
 
-" Grep for words/whole-words
-command! -nargs=* -bang Pgrep call my#grep#ripgrep(
-    \ my#project#dir(), <bang>0, <f-args>)
+" Search for words/whole-words
+command! -nargs=* -bang Pgrep call
+    \ my#grep#ripgrep(my#project#dir(), <bang>0, <f-args>)
+nnoremap <Leader>pg :call
+    \ my#grep#ripgrep(my#project#dir(), 1, expand('<cword>'))<CR>
 
 " Fuzzy-find files in project directory
 function! s:FindFile() abort
@@ -14,4 +16,4 @@ function! s:FindFile() abort
     call my#find#fuzzyfind(dir, source)
 endfunction
 command! -nargs=0 Pfind call <SID>FindFile()
-nnoremap <silent> <C-p> :<C-u>call <SID>FindFile()<CR>
+nnoremap <silent> <C-p> :call <SID>FindFile()<CR>

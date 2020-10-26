@@ -1,10 +1,8 @@
 " Automatically save changes to disk
-" TODO: rewrite this for myself, just need a list of
-" filetypes to do auto-save
-Plug 'https://github.com/907th/vim-auto-save'
+Plug 'https://github.com/907th/vim-auto-save.git'
 
-if exists('g:my_auto_save_enable')
-    let g:auto_save = g:my_auto_save_enable
+if exists('g:my_auto_save_on')
+    let g:auto_save = g:my_auto_save_on
 endif
 
 " Events such as InsertLeave and TextChanged have performance problems when
@@ -15,6 +13,9 @@ let g:auto_save_events = ["CursorHold"]
 if &updatetime < 500
     echoerr '&updatetime ' &updatetime 'is too small, might cause problems'
 endif
+
+" Write only current buffer, do not write all buffers
+let g:auto_save_write_all_buffers = 0 
 
 " Disable autosave in diff mode.
 augroup my_autosave_disable
