@@ -6,9 +6,6 @@ func! s:GitSync() abort
     if empty(finddir('.git', project_dir))
         throw 'No .git directory found in '.project_dir
     endif
-    if input('Sync '.project_dir.'? (y/n) ') !=? 'y'
-        return
-    endif
 
     botright copen
     let save_dir = getcwd()
@@ -16,6 +13,9 @@ func! s:GitSync() abort
         exec 'lcd '.fnameescape(project_dir)
         compiler git
         make status | redraw
+        if input('Sync '.project_dir.'? (y/n) ') !=? 'y'
+            return
+        endif
         make add . | redraw
         make commit --message=Sync | redraw
         if !empty(system('git remote'))
