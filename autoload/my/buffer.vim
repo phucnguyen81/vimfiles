@@ -6,10 +6,12 @@ let s:my_buffers_name = 'my_buffers'
 func! s:CompareBufInfo(buf1, buf2) abort
     let buf1 = a:buf1
     let buf2 = a:buf2
-    if buf1.lastused > buf2.lastused
-        return 1
-    elseif buf1.lastused < buf2.lastused
-        return -1
+    if has_key(buf1, 'lastused') && has_key(buf2, 'lastused')
+        if buf1.lastused > buf2.lastused
+            return 1
+        elseif buf1.lastused < buf2.lastused
+            return -1
+        endif
     elseif buf1.bufnr > buf2.bufnr
         return 1
     elseif buf1.bufnr < buf2.bufnr
@@ -74,7 +76,7 @@ endfunc
 func! s:EnterMyBuffers() abort
     if getbufvar('%', s:my_buffers_name)
         let curbuf = bufnr('%')
-        call deletebufline('%', 1, '$')
+        %delete "_
         let buflines = []
         for buf in s:GetBufInfo()
             if !getbufvar(buf.bufnr, s:my_buffers_name)

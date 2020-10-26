@@ -561,7 +561,7 @@ endfunction
 " Ctrl-t (or :pop) jumps back up the tag stack
 function! myfun#create_tags(absolute_path) abort
     let dir = my#project#dir()
-    let dir = input("Create tags for directory: ", dir, 'dir')
+    let dir = input('Create tags for directory: ', dir, 'dir')
     if empty(dir)
         return
     endif
@@ -571,22 +571,32 @@ function! myfun#create_tags(absolute_path) abort
 
     " -R: recursively down sub-dir
     " -V: verbose
-    let cmd = "!ctags -R -V"
+    if executable('universal-ctags')
+        let cmd = '!universal-ctags -R -V'
+    elseif executable('ctags')
+        let cmd = '!ctags -R -V'
+    else
+        throw 'Missing ctags executables.'
+    endif
     if a:absolute_path
         " tags-relative=never: don't use paths in the tags file
-        let cmd = cmd." --tag-relative=never"
+        let cmd = cmd.' --tag-relative=never'
     endif
     for name in [
         \ '.git', '.venv', '.code',
         \ 'node_modules', '__pycache__'
         \ ]
-        let cmd = cmd." --exclude=".name
+        let cmd = cmd.' --exclude='.name
     endfor
-    let cmd = cmd." ."
+    let cmd = cmd.' .'
 
-    split
-    exec 'lcd '.fnameescape(dir)
-    exec cmd
+    let save_dir = getcwd()
+    try
+        exec 'lcd '.fnameescape(dir)
+        exec cmd
+    finally
+        exec 'lcd '.fnameescape(save_dir)
+    endtry
 endfunction
 
 function! myfun#search_doc(...) abort

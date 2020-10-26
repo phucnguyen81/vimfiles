@@ -256,7 +256,9 @@ exec 'source '.expand(g:my_configsdir.'/ale.vim')
 exec 'source '.expand(g:my_configsdir.'/vim-slime.vim')
 Plug 'https://github.com/skywind3000/vim-preview.git'
 exec 'source '.expand(g:my_configsdir.'/tagbar.vim')
-exec 'source '.expand(g:my_configsdir.'/anyjump.vim')
+if has('popupwin')
+    exec 'source '.expand(g:my_configsdir.'/anyjump.vim')
+endif
 
 if g:my_completion_plugin ==? 'tabnine'
     exec 'source '.expand(g:my_configsdir.'/tabnine.vim')

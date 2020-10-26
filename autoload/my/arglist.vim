@@ -11,7 +11,7 @@ endfunc
 " If applicable, write arglist to current buffer
 func! s:EnterArglist() abort
     if getbufvar('%', s:my_arglist_name)
-        call deletebufline('%', 1, '$')
+        %delete "_
         let Getfullpath = {key, filename -> fnamemodify(filename, ':~')}
         let argfiles = map(argv(), Getfullpath)
         call append(0, argfiles)
