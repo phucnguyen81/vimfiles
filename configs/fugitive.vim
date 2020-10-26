@@ -12,17 +12,20 @@ func! s:GitSync() abort
     try
         exec 'lcd '.fnameescape(project_dir)
         compiler git
+
         make status | redraw
         if input('Sync '.project_dir.'? (y/n) ') !=? 'y'
             return
         endif
         make add . | redraw
         make commit --message=Sync | redraw
+
         if !empty(system('git remote'))
             make pull --rebase=merges | redraw
             make push | redraw
             make status | redraw
         endif
+
         " `!` clears command messages
         redraw!
     finally
