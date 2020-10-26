@@ -46,9 +46,6 @@ nnoremap <Leader>gl :normal! g`"<CR>
 " Search for definition
 nnoremap <Leader>K :call myfun#search_doc()<CR>
 
-" Git status
-nnoremap <Leader>gs :0Git<CR>
-
 " swap moving linewise with logical-linewise
 nnoremap <silent> j gj
 nnoremap <silent> k gk
