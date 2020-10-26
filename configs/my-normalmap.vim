@@ -59,8 +59,8 @@ nnoremap <f3> :call myfun#open_current_path()<CR>
 nnoremap <Leader>oo :call myfun#open_current_path()<CR>
 
 " Open quickfix/location list
-nnoremap <Leader>co :copen<CR>
-nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>co :botright copen<CR>
+nnoremap <Leader>lo :botright lopen<CR>
 
 nnoremap <Leader>ms :call myfun#maximize_screen()<CR>
 nnoremap <f11> :call myfun#maximize_screen()<CR>
