@@ -18,21 +18,13 @@ func! s:GitSync() abort
         make status | redraw
         make add . | redraw
         make commit --message=Sync | redraw
-        if empty(system('git remote'))
-            return
+        if !empty(system('git remote'))
+            make pull --rebase=merges | redraw
+            make push | redraw
+            make status | redraw
         endif
-        make pull --rebase=merges | redraw
-        make push | redraw
-        make status | redraw!
-        " 0Git
-        " Git add .
-        " Git commit --message=Sync
-        " if empty(system('git remote'))
-        "     return
-        " endif
-        " Git pull --rebase=merges
-        " Git push
-        " 0Git
+        " `!` clears command messages
+        redraw!
     finally
         exec 'lcd '.fnameescape(save_dir)
     endtry
