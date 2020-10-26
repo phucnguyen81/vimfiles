@@ -155,7 +155,7 @@ if filereadable(g:my_dict_eng)
 endif
 set noshowmode
 set shortmess+=I shortmess+=c shortmess+=t
-set signcolumn=yes
+set signcolumn=auto  "Show sign column if there is a sign to display"
 if has('mouse')
     set mouse=a
 endif
