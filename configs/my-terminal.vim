@@ -1,6 +1,6 @@
-if !has('terminal')
-    finish
-endif
+" NOTE: Require `terminal` feature
+" TODO: move logic into autoload/; separate vifm, lf; simplify starting
+" terminal (back to the :terminal command)
 
 " Shortcut to escape to normal mode
 tnoremap <C-\><C-\> <C-\><C-n>
@@ -19,6 +19,7 @@ xnoremap <C-s><C-e> :call <SID>TerminalSend(1)<CR>
 xnoremap <Leader>ts :call <SID>TerminalSend(0)<CR>
 
 command! Vifm call <SID>Vifm()
+nnoremap <Leader>vf :call <SID>Vifm()<CR>
 command! Vifmc call <SID>Vifmc()
 command! Lf call <SID>Lf()
 

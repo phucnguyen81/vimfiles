@@ -1,23 +1,38 @@
 " In Python, definitions come after 'def' or 'class'
 let &l:define='^\s*\<\(def\|class\)\>'
 
-" In Python, the included file come between 'from/import' and 'as'
-setlocal include=^\\s*\\(from\\\|import\\)\\s*\\zs\\(\\S\\+\\s\\{-}\\)*\\ze\\($\\\|\ as\\)
+" Match everything that comes after from/import
+let &l:include='^\s*\<\(from\|import\)\>\zs.\+'
 
-" Extract filepath matched in 'include'
-function! PythonIncludeExpr(fname)
-    let parts = split(a:fname, ' import ')
-    let left = parts[0]
-    if len(parts) > 1
-        let right = parts[1]
-        let joined = join([left, right], '.')
-        let fp = substitute(joined, '\.', '/', 'g') . '.py'
-        let found = glob(fp, 1)
-        if len(found)
-            return found
+func! PythonIncludeExpr(fname) abort
+    let fname = a:fname
+    let curdir = substitute(expand('%:h'), '\\', '/', 'g')
+
+    " Collapse spaces
+    let fname = substitute(fname, '\s\+', ' ', 'g')
+    " Trim
+    let fname = substitute(fname, '\ $', '', '')
+    let fname = substitute(fname, '^\ ', '', '')
+    " Replace 'import' with '/'
+    let fname = substitute(fname, '\ import\ ', '/', '')
+    " Remove everything from ','
+    let fname = substitute(fname, ',.*$', '', '')
+    " Remove everything from 'as'
+    let fname = substitute(fname, '\ as\ .*$', '', '')
+    " Replace starting '.' with current directory
+    let fname = substitute(fname, '^\ \?\.', curdir.'/', '')
+    " Replace '.' with '/'
+    let fname = substitute(fname, '\.', '/', 'g')
+    " Collapse '//'
+    let fname = substitute(fname, '/\+', '/', 'g')
+
+    for name in [fname, fnamemodify(fname, ':h')]
+        if !empty(glob(name.'.py', 1))
+            return name.'.py'
+        elseif !empty(glob(name.'/__init__.py', 1))
+            return name.'/__init__.py'
         endif
-    endif
-    return substitute(left, '\.', '/', 'g') . '.py'
-endfunction
+    endfor
+endfunc
 
 setlocal includeexpr=PythonIncludeExpr(v:fname)

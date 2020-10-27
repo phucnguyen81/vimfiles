@@ -41,7 +41,7 @@ if !isdirectory(g:my_vardir)
     call mkdir(g:my_vardir, "p")
 endif
 
-let g:my_doing_file = expand(g:my_vardir.'/doing.md')
+let g:my_doing_file = expand(g:my_vardir.'/doing.txt')
 
 let g:my_netrw_home = g:my_vardir
 if !isdirectory(g:my_netrw_home)
@@ -166,9 +166,11 @@ else
 endif
 set timeout timeoutlen=1000 ttimeoutlen=100
 set updatetime=1000
-set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8
-set list
-set number relativenumber nocursorline
+set encoding=utf-8 
+set fileencoding=utf-8 fileencodings=utf-8
+set list "Show some hidden chars in listchars"
+set nonumber norelativenumber "No line numbers"
+set nocursorline "No line highlighting"
 set incsearch nohlsearch ignorecase smartcase
 set laststatus=2 showtabline=2
 set showcmd
@@ -241,7 +243,6 @@ exec 'source '.expand(g:my_configsdir.'/easymotion.vim')
 exec 'source '.expand(g:my_configsdir.'/undotree.vim')
 exec 'source '.expand(g:my_configsdir.'/autosave.vim')
 exec 'source '.expand(g:my_configsdir.'/rooter.vim')
-exec 'source '.expand(g:my_configsdir.'/scratch.vim')
 exec 'source '.expand(g:my_configsdir.'/vim-windowswap.vim')
 
 exec 'source '.expand(g:my_configsdir.'/nerdtree.vim')
@@ -286,6 +287,7 @@ exec 'source '.expand(g:my_configsdir.'/my-buffer.vim')
 exec 'source '.expand(g:my_configsdir.'/my-command-templates.vim')
 exec 'source '.expand(g:my_configsdir.'/my-commandmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-commands.vim')
+exec 'source '.expand(g:my_configsdir.'/my-doing.vim')
 exec 'source '.expand(g:my_configsdir.'/my-grep.vim')
 exec 'source '.expand(g:my_configsdir.'/my-highlight.vim')
 exec 'source '.expand(g:my_configsdir.'/my-ide.vim')
@@ -301,7 +303,9 @@ exec 'source '.expand(g:my_configsdir.'/my-snippets.vim')
 exec 'source '.expand(g:my_configsdir.'/my-source.vim')
 exec 'source '.expand(g:my_configsdir.'/my-tab.vim')
 exec 'source '.expand(g:my_configsdir.'/my-template.vim')
-exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
+if has('terminal')
+    exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
+endif
 exec 'source '.expand(g:my_configsdir.'/my-visualmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-window.vim')
 " }}
