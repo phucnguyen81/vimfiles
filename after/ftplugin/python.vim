@@ -1,5 +1,7 @@
+" TODO: resolve 'from ..package', see typescript
+
 " Python definitions come after 'def' or 'class' or before '='
-let &l:define='^\s*\(\<\(def\|class\)\>\|\ze\i\+\s*=\)'
+let &l:define='^\(\s*\<\(def\|class\)\>\|\ze\i\+\s*=\)'
 
 " Included files come after from/import
 let &l:include='^\s*\<\(from\|import\)\>\zs.\+'
