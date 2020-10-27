@@ -1,9 +1,10 @@
-" In Python, definitions come after 'def' or 'class'
-let &l:define='^\s*\<\(def\|class\)\>'
+" Python definitions come after 'def' or 'class' or before '='
+let &l:define='^\s*\(\<\(def\|class\)\>\|\ze\i\+\s*=\)'
 
-" Match everything that comes after from/import
+" Included files come after from/import
 let &l:include='^\s*\<\(from\|import\)\>\zs.\+'
 
+" Extract included files from the string found with 'include'
 func! PythonIncludeExpr(fname) abort
     let fname = a:fname
     let curdir = substitute(expand('%:h'), '\\', '/', 'g')
