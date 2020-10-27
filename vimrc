@@ -169,8 +169,8 @@ set updatetime=1000
 set encoding=utf-8 
 set fileencoding=utf-8 fileencodings=utf-8
 set list "Show some hidden chars in listchars"
-set nonumber norelativenumber "No line numbers"
-set nocursorline "No line highlighting"
+set number relativenumber "Line numbers"
+set nocursorline "No highlighting of current line"
 set incsearch nohlsearch ignorecase smartcase
 set laststatus=2 showtabline=2
 set showcmd
@@ -239,7 +239,7 @@ Plug 'https://github.com/freitass/todo.txt-vim.git'
 exec 'source '.expand(g:my_configsdir.'/startify.vim')
 exec 'source '.expand(g:my_configsdir.'/abolish.vim')
 exec 'source '.expand(g:my_configsdir.'/easy-align.vim')
-exec 'source '.expand(g:my_configsdir.'/easymotion.vim')
+exec 'source '.expand(g:my_configsdir.'/sneak.vim')
 exec 'source '.expand(g:my_configsdir.'/undotree.vim')
 exec 'source '.expand(g:my_configsdir.'/autosave.vim')
 exec 'source '.expand(g:my_configsdir.'/rooter.vim')
