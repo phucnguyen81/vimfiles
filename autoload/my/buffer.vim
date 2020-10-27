@@ -6,13 +6,16 @@ let s:my_buffers_name = 'my_buffers'
 func! s:CompareBufInfo(buf1, buf2) abort
     let buf1 = a:buf1
     let buf2 = a:buf2
+
     if has_key(buf1, 'lastused') && has_key(buf2, 'lastused')
         if buf1.lastused > buf2.lastused
             return 1
         elseif buf1.lastused < buf2.lastused
             return -1
         endif
-    elseif buf1.bufnr > buf2.bufnr
+    endif
+
+    if buf1.bufnr > buf2.bufnr
         return 1
     elseif buf1.bufnr < buf2.bufnr
         return -1
@@ -85,6 +88,8 @@ func! s:EnterMyBuffers() abort
             endif
         endfor
         call append(0, buflines)
+        " Delete blank lines
+        g/^\s*$/d 
         call cursor(1, 1)
     endif
 endfunc
@@ -101,5 +106,6 @@ func! my#buffer#buffers() abort
     call setbufvar('%', s:my_buffers_name, 1)
     setlocal bufhidden=wipe buftype=nofile
     noremap <silent> <buffer> <CR> :call <SID>LoadBuffer()<CR>
+    noremap <silent> <buffer> q :close<CR>
     call s:EnterMyBuffers()
 endfunc
