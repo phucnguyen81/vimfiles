@@ -1,9 +1,9 @@
 " Close current window
-nnoremap <silent> <Leader>wc :call myfun#close_window()<cr>
-nnoremap <silent> <Leader>cc :call myfun#close_window()<cr> 
+nnoremap <silent><Leader>wc :call myfun#close_window()<CR>
+nnoremap <silent><Leader>cc :call myfun#close_window()<CR> 
 
 " Close all other windows
-nnoremap <silent> <Leader>wo :only<cr>
+nnoremap <silent><Leader>wo :only<CR>
 
 " Close a window that can be moved to with :wincmd wincmd_arg
 function! s:CloseWindowAtWincmd(wincmd_arg) abort
@@ -23,65 +23,65 @@ function! s:CloseWindowAtWincmd(wincmd_arg) abort
     endif
 endfunction
 " close window below
-nnoremap <silent> <Leader>cj :call <SID>CloseWindowAtWincmd('j')<cr>
+nnoremap <silent><Leader>cj :call <SID>CloseWindowAtWincmd('j')<CR>
 " close window above
-nnoremap <silent> <Leader>ck :call <SID>CloseWindowAtWincmd('k')<cr>
+nnoremap <silent><Leader>ck :call <SID>CloseWindowAtWincmd('k')<CR>
 " close left window
-nnoremap <silent> <Leader>ch :call <SID>CloseWindowAtWincmd('h')<cr>
+nnoremap <silent><Leader>ch :call <SID>CloseWindowAtWincmd('h')<CR>
 " close right window
-nnoremap <silent> <Leader>cl :call <SID>CloseWindowAtWincmd('l')<cr>
+nnoremap <silent><Leader>cl :call <SID>CloseWindowAtWincmd('l')<CR>
 " close first window clockwise
-nnoremap <silent> <Leader>cw :call <SID>CloseWindowAtWincmd('w')<cr>
+nnoremap <silent><Leader>cw :call <SID>CloseWindowAtWincmd('w')<CR>
 " close first window counter-clockwise
-nnoremap <silent> <Leader>cW :call <SID>CloseWindowAtWincmd('W')<cr>
+nnoremap <silent><Leader>cW :call <SID>CloseWindowAtWincmd('W')<CR>
 
 " move to window at clockwise direction
-nnoremap <silent> <C-n> :wincmd w<cr>
+nnoremap <silent><C-n> :wincmd w<CR>
 
 " move to top left window
-nnoremap <silent> <Leader>wt :wincmd t<cr>
+nnoremap <silent><Leader>wt :wincmd t<CR>
 " move to bottom right window
-nnoremap <silent> <Leader>wb :wincmd b<cr>
+nnoremap <silent><Leader>wb :wincmd b<CR>
 " move to window on left
-nnoremap <silent> <Leader>wh :wincmd h<cr>
+nnoremap <silent><Leader>wh :wincmd h<CR>
 " move to window on right
-nnoremap <silent> <Leader>wl :wincmd l<cr>
+nnoremap <silent><Leader>wl :wincmd l<CR>
 " move to window down
-nnoremap <silent> <Leader>wj :wincmd j<cr>
+nnoremap <silent><Leader>wj :wincmd j<CR>
 " move to window above
-nnoremap <silent> <Leader>wk :wincmd k<cr>
+nnoremap <silent><Leader>wk :wincmd k<CR>
 " move to previous window
-nnoremap <silent> <Leader>wp :wincmd p<cr>
+nnoremap <silent><Leader>wp :wincmd p<CR>
 " move to preview window (e.g. quickfix window)
-nnoremap <silent> <Leader>wP :wincmd P<cr>
+nnoremap <silent><Leader>wP :wincmd P<CR>
 " close preview window (e.g from quickfix window)
-nnoremap <silent> <Leader>wz :wincmd z<cr>
+nnoremap <silent><Leader>wz :wincmd z<CR>
 
 " Move to window given its number
-nnoremap <silent> <Leader>w1 1<c-w>w
-nnoremap <silent> <Leader>w2 2<c-w>w
-nnoremap <silent> <Leader>w3 3<c-w>w
-nnoremap <silent> <Leader>w4 4<c-w>w
-nnoremap <silent> <Leader>w5 5<c-w>w
+nnoremap <silent><Leader>w1 1<C-w>w
+nnoremap <silent><Leader>w2 2<C-w>w
+nnoremap <silent><Leader>w3 3<C-w>w
+nnoremap <silent><Leader>w4 4<C-w>w
+nnoremap <silent><Leader>w5 5<C-w>w
 
 " Arrange windows
-nnoremap <silent> <Leader>wr :wincmd r<cr>
-nnoremap <silent> <Leader>wH :wincmd H<cr>
-nnoremap <silent> <Leader>wL :wincmd L<cr>
-nnoremap <silent> <Leader>wJ :wincmd J<cr>
-nnoremap <silent> <Leader>wK :wincmd K<cr>
+nnoremap <silent><Leader>wr :wincmd r<CR>
+nnoremap <silent><Leader>wH :wincmd H<CR>
+nnoremap <silent><Leader>wL :wincmd L<CR>
+nnoremap <silent><Leader>wJ :wincmd J<CR>
+nnoremap <silent><Leader>wK :wincmd K<CR>
 " Move current window to new tab page
-nnoremap <silent> <Leader>wT :wincmd T<cr>
+nnoremap <silent><Leader>wT :wincmd T<CR>
 
 " Split windows
-nnoremap <silent> <Leader>ws :wincmd s<cr>
-nnoremap <silent> <Leader>wv :wincmd v<cr>
-nnoremap <silent> <Leader>wn :vertical new<cr>
+nnoremap <silent><Leader>ws :wincmd s<CR>
+nnoremap <silent><Leader>wv :wincmd v<CR>
+nnoremap <silent><Leader>wn :vertical new<CR>
 
 " Resize windows (or use the mouse)
-nnoremap <silent> <Leader>w= :wincmd =<cr>
-nnoremap <silent> <Leader>we :wincmd =<cr>
-nnoremap <silent> <Leader>w<lt> :20wincmd <<cr>
-nnoremap <silent> <Leader>w> :20wincmd ><cr>
-nnoremap <silent> <Leader>w- :10wincmd -<cr>
-nnoremap <silent> <Leader>w+ :10wincmd +<cr>
+nnoremap <silent><Leader>w= :wincmd =<CR>
+nnoremap <silent><Leader>we :wincmd =<CR>
+nnoremap <silent><Leader>w<lt> :20wincmd <<CR>
+nnoremap <silent><Leader>w> :20wincmd ><CR>
+nnoremap <silent><Leader>w- :10wincmd -<CR>
+nnoremap <silent><Leader>w+ :10wincmd +<CR>
