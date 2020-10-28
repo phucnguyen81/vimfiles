@@ -1,0 +1,5 @@
+sed	helpfile-example.txt	/*sed*
+sfphone	helpfile-example.txt	/*sfphone*
+sfsed	helpfile-example.txt	/*sfsed*
+sfvim	helpfile-example.txt	/*sfvim*
+vim	helpfile-example.txt	/*vim*

@@ -160,9 +160,9 @@ if has('mouse')
     set mouse=a
 endif
 if has('unnamedplus')
-    set clipboard=autoselectplus,unnamedplus
+    set clipboard=unnamedplus
 else
-    set clipboard=autoselect,unnamed
+    set clipboard=unnamed
 endif
 set timeout timeoutlen=1000 ttimeoutlen=100
 set updatetime=1000
