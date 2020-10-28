@@ -1,5 +1,8 @@
-" Jump to older buffer in jumplist
-func! my#jumplist#olderjump() abort
+" TODO: make this more robust by checking with getjumplist():
+" - stop before jumping to non-existing buffer
+
+" Jump to previous buffer in the jumplist
+func! my#jumplist#jumpout() abort
     let save_bufnr = bufnr('%')
     let jumplist = getjumplist()
     let jumps = jumplist[0]
@@ -16,8 +19,8 @@ func! my#jumplist#olderjump() abort
     echom 'Hit start of jumplist.'
 endfunc
 
-" Jump to newer buffer in jumplist
-func! my#jumplist#newerjump() abort
+" Jump to next buffer in the jumplist
+func! my#jumplist#jumpin() abort
     let save_bufnr = bufnr('%')
     let jumplist = getjumplist()
     let jumps = jumplist[0]

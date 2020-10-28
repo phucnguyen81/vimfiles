@@ -10,6 +10,9 @@ nnoremap <Leader>sa :saveas <C-R>=expand('%:h')<CR>
 " Go to home directory
 nnoremap <Leader>gh :edit ~/<CR>
 
+" Source current vim file
+nnoremap <Leader>so :source %<CR>
+
 " Edit vimrc profile
 nnoremap <Leader>ev :call myfun#edit_my_vimrc()<CR>
 

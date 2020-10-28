@@ -3,10 +3,16 @@ command! -nargs=0 Pmake call my#make#make(my#project#dir())
 nnoremap <Leader>pm :call my#make#make(my#project#dir())<CR>
 
 " Search for words/whole-words
-command! -nargs=* -bang Pgrep call
-    \ my#grep#ripgrep(my#project#dir(), <bang>0, <f-args>)
-nnoremap <Leader>pg :call
-    \ my#grep#ripgrep(my#project#dir(), 1, expand('<cword>'))<CR>
+func! s:Grep(wholeword, ...) abort
+    let pattern = empty(a:000)? expand('<cword>'): a:000[0]
+    call my#grep#grep(#{
+        \ dir: my#project#dir(),
+        \ wholeword: a:wholeword,
+        \ pattern: pattern
+        \})
+endfunc
+command! -nargs=? -bang Pgrep call <SID>Grep(<bang>0, <f-args>)
+nnoremap <Leader>pg :call <SID>Grep(1)<CR>
 
 " Fuzzy-find files in project directory
 function! s:FindFile() abort
