@@ -150,7 +150,7 @@ set completeopt=menuone,longest,preview
 set complete-=t
 set complete-=kspell
 set complete-=k
-if filereadable(g:my_dict_eng)
+if !empty(glob(g:my_dict_eng, 1))
     exec 'set dictionary+='.g:my_dict_eng
 endif
 set noshowmode
@@ -175,35 +175,12 @@ set incsearch nohlsearch ignorecase smartcase
 set laststatus=2 showtabline=2
 set showcmd
 set cmdheight=1
-set sessionoptions-=options sessionoptions-=blank sessionoptions+=help
+set sessionoptions-=options "don't save options and mappings"
+set sessionoptions-=blank   "don't save emtpy windows"
+set sessionoptions+=help    "save help windows"
 set viewoptions-=options
-if has('gui_running')
-    " Show window title and icons
-    set title icon
-
-    " Don't need menus, scroll bars, tab line...
-    set guioptions=c
-
-    " Don't blink cursor for n-v-c modes
-    set guicursor+=n-v-c:blinkon0
-
-    " Fonts to try
-    set guifont=Ubuntu\ Mono\ 12
-    set guifont+=IBM_Plex_Mono:h11
-    set guifont+=Source_Code_Pro:h11
-    set guifont+=InputMono_ExLight:h11
-    set guifont+=Consolas:h11
-
-    " Select fonts
-    command SetFont set guifont=*
-
-    " NOTE: Colorscheme is already set on VimEnter, setting colorscheme here can
-    " cause color issue with the tabline
-    " set background=dark
-    " silent! colorscheme gruvbox
-endif
 " Integrate with python3
-if filereadable($VIM_PYTHONTHREE_DLL)
+if !empty(glob($VIM_PYTHONTHREE_DLL, 1))
     let &pythonthreedll = $VIM_PYTHONTHREE_DLL
     let &pythonthreehome = fnamemodify($VIM_PYTHONTHREE_DLL, ':h')
 endif
@@ -329,6 +306,13 @@ function s:OnVimEnter() abort
 endfunction
 
 function s:OnVimLeave() abort
+    " Silenly wipe buffers with no files
+    for buf in getbufinfo({'buflisted': 1})
+        if empty(glob(buf.name, 1))
+            silent! exec 'bdelete! '.buf.bufnr
+        endif
+    endfor
+
     " Save session for current directory
     let curdir = getcwd()
     let parentdir = fnamemodify(curdir, ':h:t')

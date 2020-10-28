@@ -1,7 +1,6 @@
+compiler vim
 setlocal foldmethod=marker foldmarker={{,}}
-
 setlocal keywordprg=:help
-
 setlocal suffixesadd+=.vim
 
 " Use lookup function from 'mhinz/vim-lookup'
