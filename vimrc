@@ -237,9 +237,7 @@ exec 'source '.expand(g:my_configsdir.'/ale.vim')
 exec 'source '.expand(g:my_configsdir.'/vim-slime.vim')
 Plug 'https://github.com/skywind3000/vim-preview.git'
 exec 'source '.expand(g:my_configsdir.'/tagbar.vim')
-if has('popupwin')
-    exec 'source '.expand(g:my_configsdir.'/anyjump.vim')
-endif
+exec 'source '.expand(g:my_configsdir.'/anyjump.vim')
 
 if g:my_completion_plugin ==? 'tabnine'
     exec 'source '.expand(g:my_configsdir.'/tabnine.vim')
@@ -283,9 +281,7 @@ exec 'source '.expand(g:my_configsdir.'/my-snippets.vim')
 exec 'source '.expand(g:my_configsdir.'/my-source.vim')
 exec 'source '.expand(g:my_configsdir.'/my-tab.vim')
 exec 'source '.expand(g:my_configsdir.'/my-template.vim')
-if has('terminal')
-    exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
-endif
+exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
 exec 'source '.expand(g:my_configsdir.'/my-visualmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-window.vim')
 " }}

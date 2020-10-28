@@ -1,3 +1,7 @@
+if !has('popupwin')
+    finish
+endif
+
 Plug 'https://github.com/pechorin/any-jump.vim.git'
 
 " Auto search references

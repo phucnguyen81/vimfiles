@@ -1,3 +1,7 @@
+if !has('terminal')
+    finish
+endif
+
 " NOTE: Require `terminal` feature
 " TODO: move logic into autoload/; separate vifm, lf; simplify starting
 " terminal (back to the :terminal command)

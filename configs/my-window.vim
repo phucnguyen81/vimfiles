@@ -52,8 +52,10 @@ nnoremap <silent> <Leader>wj :wincmd j<cr>
 nnoremap <silent> <Leader>wk :wincmd k<cr>
 " move to previous window
 nnoremap <silent> <Leader>wp :wincmd p<cr>
-" move to preview window (e.g. quickfix)
+" move to preview window (e.g. quickfix window)
 nnoremap <silent> <Leader>wP :wincmd P<cr>
+" close preview window (e.g from quickfix window)
+nnoremap <silent> <Leader>wz :wincmd z<cr>
 
 " Move to window given its number
 nnoremap <silent> <Leader>w1 1<c-w>w
