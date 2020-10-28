@@ -25,11 +25,12 @@ endfunc
 
 func! my#grep#grep(params) abort
     botright copen
-    redraw!
+    redraw
     let params = s:defaultparams()
     call extend(params, a:params, 'force')
     exec 'lcd '.fnameescape(params.dir)
     call s:grep_func(params)
+    redraw!
 endfunc
 
 if executable('rg')
