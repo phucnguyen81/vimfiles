@@ -128,7 +128,9 @@ set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set nofoldenable nojoinspaces formatoptions+=j
 set backspace=2
 set visualbell display=lastline virtualedit=block
-set autoread hidden wrap nowrapscan
+set autoread hidden 
+set nowrap nowrapscan
+set whichwrap=b,s,<,>,[,] "more freedom to move between lines in normal mode"
 set suffixes+=.pyc
 set tags=./tags;/
 set tags+=./tags2;/
