@@ -1,5 +1,6 @@
 " Fuzzy search
-Plug 'https://github.com/junegunn/fzf.git'
+" Plug 'https://github.com/junegunn/fzf.git'
+Plug 'https://github.com/junegunn/fzf.git', { 'do': { -> fzf#install() } }
 Plug 'https://github.com/junegunn/fzf.vim.git'
 
 if exists('g:my_fzf_history_dir')
