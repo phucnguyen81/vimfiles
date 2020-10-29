@@ -6,9 +6,9 @@ if !exists('g:my_command_template')
     finish
 endif
 
-function s:TemplateFile()
+func s:TemplateFile()
     return g:my_command_template
-endfunction
+endfunc
 
 command! TGrepper call s:GrepperTemplate()
 command! Tls call s:LsTemplate()
@@ -16,7 +16,7 @@ command! Tls call s:LsTemplate()
 " Prepare Grepper template file.
 " Help: grepper.txt
 " Source: https://github.com/mhinz/vim-grepper
-function! s:GrepperTemplate() abort
+func! s:GrepperTemplate() abort
     let currdir = my#project#dir()
     let pattern = expand('<cword>')
 
@@ -34,9 +34,9 @@ function! s:GrepperTemplate() abort
     tabnew
     exec 'lcd '.fnameescape(currdir)
     exec 'edit '.fnameescape(s:TemplateFile())
-endfunction
+endfunc
 
-function! s:LsTemplate() abort
+func! s:LsTemplate() abort
     let lines = []
     call add(lines, 'let s:b = []')
     call add(lines, '')
@@ -53,4 +53,4 @@ function! s:LsTemplate() abort
 
     call writefile(lines, s:TemplateFile())
     exec 'edit '.fnameescape(s:TemplateFile())
-endfunction
+endfunc

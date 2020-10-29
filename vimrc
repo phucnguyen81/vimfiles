@@ -21,11 +21,6 @@ if !isdirectory(g:my_configsdir)
     call mkdir(g:my_configsdir, "p")
 endif
 
-let g:my_pluginsdir = expand(g:my_basedir.'/myplugins')
-if !isdirectory(g:my_pluginsdir)
-    call mkdir(g:my_pluginsdir, "p")
-endif
-
 let g:my_snippets = expand(g:my_basedir.'/snippets')
 if !isdirectory(g:my_snippets)
     call mkdir(g:my_snippets, "p")
@@ -271,6 +266,7 @@ exec 'source '.expand(g:my_configsdir.'/my-ide.vim')
 exec 'source '.expand(g:my_configsdir.'/my-insertmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-journal.vim')
 exec 'source '.expand(g:my_configsdir.'/my-jumplist.vim')
+exec 'source '.expand(g:my_configsdir.'/my-lf.vim')
 exec 'source '.expand(g:my_configsdir.'/my-newfile.vim')
 exec 'source '.expand(g:my_configsdir.'/my-nn.vim')
 exec 'source '.expand(g:my_configsdir.'/my-normalmap.vim')
@@ -282,6 +278,7 @@ exec 'source '.expand(g:my_configsdir.'/my-source.vim')
 exec 'source '.expand(g:my_configsdir.'/my-tab.vim')
 exec 'source '.expand(g:my_configsdir.'/my-template.vim')
 exec 'source '.expand(g:my_configsdir.'/my-terminal.vim')
+exec 'source '.expand(g:my_configsdir.'/my-vifm.vim')
 exec 'source '.expand(g:my_configsdir.'/my-visualmap.vim')
 exec 'source '.expand(g:my_configsdir.'/my-window.vim')
 " }}
@@ -292,7 +289,7 @@ augroup my_main_autocmd
     autocmd VimLeave * call <SID>OnVimLeave()
 augroup end
 
-function s:OnVimEnter() abort
+func s:OnVimEnter() abort
     " Set colorscheme, should be called only once during startup
     set background=dark
     if has('gui_running')
@@ -300,9 +297,9 @@ function s:OnVimEnter() abort
     else
         silent! colorscheme gruvbox
     endif
-endfunction
+endfunc
 
-function s:OnVimLeave() abort
+func s:OnVimLeave() abort
     " Silently delete buffers with no files
     for buf in getbufinfo({'buflisted': 1})
         if empty(glob(buf.name, 1))
@@ -320,7 +317,7 @@ function s:OnVimLeave() abort
     " Save latest session
     let latest_session = expand(g:my_session_dir.'/most-recent')
     exec 'mksession! '.fnameescape(latest_session)
-endfunction
+endfunc
 
 " }}
 " vim:fdm=marker:fmr={{,}}:et:ts=4:sts=4:sw=4

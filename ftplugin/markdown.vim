@@ -1,8 +1,8 @@
 setlocal suffixesadd+=.md
 
-function! s:SearchDoc(symbol) abort
+func! s:SearchDoc(symbol) abort
     let symbol = a:symbol
     let query = 'What is '.symbol.' ?'
     call openbrowser#search(query)
-endfunction
+endfunc
 let b:my_search_doc_function = funcref('s:SearchDoc')

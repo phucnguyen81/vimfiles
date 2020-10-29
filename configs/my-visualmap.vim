@@ -14,7 +14,7 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-r>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-r>=@/<CR><CR>
 
 " Convert text between lower-case, upper-case and title-case
-function s:TwiddleCase(str)
+func s:TwiddleCase(str)
     if a:str ==# toupper(a:str)
         return  tolower(a:str)
     elseif a:str ==# tolower(a:str)
@@ -22,10 +22,10 @@ function s:TwiddleCase(str)
     else
         return toupper(a:str)
     endif
-endfunction
+endfunc
 
 " Set search register to the command type (/ or ?)
-function s:VSetSearch(cmdtype)
+func s:VSetSearch(cmdtype)
     let temp = @s
     try
         normal! gv"sy
@@ -33,4 +33,4 @@ function s:VSetSearch(cmdtype)
     finally
         let @s = temp
     endtry
-endfunction
+endfunc

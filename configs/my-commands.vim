@@ -1,13 +1,13 @@
 " Change current working directory and show it
-function! s:ChangeDirectory(...) abort
+func! s:ChangeDirectory(...) abort
     let dir = a:0 ? a:1 : my#project#dir()
     exec 'lcd '.fnameescape(dir)
     silent edit ./
-endfunction
+endfunc
 command! -nargs=? -complete=dir CD call s:ChangeDirectory(<f-args>)
 
 " Redirect output of ex command to file
-function! s:RedirCommand(cmd) abort
+func! s:RedirCommand(cmd) abort
     redir => message
     silent execute a:cmd
     redir END
@@ -18,7 +18,7 @@ function! s:RedirCommand(cmd) abort
     new
     setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
     silent put=message
-endfunction
+endfunc
 command! -nargs=+ -complete=command RedirCmd call s:RedirCommand(<q-args>)
 
 " Search for online documentation
@@ -33,7 +33,7 @@ command! -nargs=1 SetLocalIndent call myfun#set_local_indent(<f-args>)
 " Print runtimepath
 command! Prtp new | call append(0, split(&runtimepath, ',')) | call cursor(1,1)
 
-function! s:ToggleVietnameseKeymap() abort
+func! s:ToggleVietnameseKeymap() abort
     if exists('b:saved_keymap')
         exec 'setlocal keymap='.(b:saved_keymap.keymap)
         exec 'setlocal timeoutlen='.(b:saved_keymap.timeoutlen)
@@ -46,7 +46,7 @@ function! s:ToggleVietnameseKeymap() abort
         setlocal keymap=vietnamese-telex_utf-8
         setlocal timeoutlen=3000
     endif
-endfunction
+endfunc
 command! KeymapVn call s:ToggleVietnameseKeymap()
 
 " Bulk-delete buffers

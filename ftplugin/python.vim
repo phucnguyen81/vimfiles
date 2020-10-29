@@ -30,9 +30,9 @@ if exists(':ALEFix') && executable('autopep8')
     let b:my_fix_command = 'ALEFix autopep8'
 endif
 
-function! s:search_python_doc(symbol) abort
+func! s:search_python_doc(symbol) abort
     call openbrowser#search('python '.a:symbol)
-endfunction
+endfunc
 let b:my_search_doc_function = funcref('s:search_python_doc')
 
 if executable('ptpython')

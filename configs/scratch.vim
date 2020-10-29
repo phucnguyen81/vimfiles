@@ -12,13 +12,13 @@ endif
 let g:scratch_no_mappings = 1
 
 " TODO move this to scratch filetype plugin?
-function! s:toggle_scratch()
+func! s:toggle_scratch()
     if &filetype ==? 'scratch'
         close
     else
         Scratch
     endif
-endfunction
+endfunc
 
 nmap gs :<C-u>call <SID>toggle_scratch()<CR>
 xmap gs <Plug>(scratch-selection-reuse)

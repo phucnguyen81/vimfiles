@@ -7,7 +7,7 @@ endif
 command! -nargs=0 Sessions exec 'edit '.fnameescape(g:my_session_dir)
 nnoremap <Leader>ss :call <SID>sessions()<CR>
 
-function! s:sessions() abort
+func! s:sessions() abort
     let session_files = globpath(g:my_session_dir, '*.vim', 1, 1)
     let session_names = []
     for session in session_files
@@ -29,9 +29,9 @@ function! s:sessions() abort
         \ 'options': options,
         \ }
     call fzf#run(fzf_options)
-endfunction
+endfunc
 
-function! s:read_session(items) abort
+func! s:read_session(items) abort
     if empty(a:items)
         return
     endif
@@ -86,4 +86,4 @@ function! s:read_session(items) abort
             exec ':source '.fnameescape(session_file)
         endfor
     endif
-endfunction
+endfunc
