@@ -55,15 +55,6 @@ func! myfun#clear_screen()
     endif
 endfunc
 
-" Show the active colorscheme, see help with g:colors_name
-func! myfun#show_color_name()
-    if exists('g:colors_name')
-        return g:colors_name
-    else
-        return ''
-    endif
-endfunc
-
 " Split based on window width and height ratio
 func! myfun#split_window()
     let ratio = winwidth('%') / winheight('%')

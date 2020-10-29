@@ -1,10 +1,10 @@
+" TODO: move logic into autoload/; separate vifm, lf; simplify starting
+" terminal (back to the :terminal command)
+
+" Require `terminal` feature
 if !has('terminal')
     finish
 endif
-
-" NOTE: Require `terminal` feature
-" TODO: move logic into autoload/; separate vifm, lf; simplify starting
-" terminal (back to the :terminal command)
 
 " Shortcut to escape to normal mode
 tnoremap <C-\><C-\> <C-\><C-n>
@@ -21,11 +21,6 @@ nnoremap <Leader>ts :call <SID>TerminalSend(0)<CR>
 xnoremap <C-s><C-s> :call <SID>TerminalSend(0)<CR>
 xnoremap <C-s><C-e> :call <SID>TerminalSend(1)<CR>
 xnoremap <Leader>ts :call <SID>TerminalSend(0)<CR>
-
-command! Vifm call <SID>Vifm()
-nnoremap <Leader>vf :call <SID>Vifm()<CR>
-command! Vifmc call <SID>Vifmc()
-command! Lf call <SID>Lf()
 
 command! -bang Ptpython call s:Ptpython(<bang>0)
 
@@ -44,25 +39,14 @@ endfunc
 
 " Run a wincmd before starting a terminal
 func! s:start_terminal(command, wincmd) abort
-    let command = a:command
-    let wincmd = a:wincmd
-
-    if empty(command)
-        let command = input('Start command: ')
-    endif
-    if empty(command)
-        return
-    endif
-
-    let curdir = my#project#dir()
-    if empty(wincmd)
-        call myfun#split_window()
-    else
+    let command = empty(a:command)? input('Start command: '): a:command
+    if !empty(command)
+        let wincmd = empty(a:wincmd)? 'botright split': a:wincmd
+        let curdir = my#project#dir()
         exec wincmd
+        exec 'lcd '.fnameescape(curdir)
+        return s:terminal_start(command)
     endif
-    exec 'lcd '.fnameescape(curdir)
-
-    return s:terminal_start(command)
 endfunc
 
 " Send lines to terminal
@@ -202,43 +186,4 @@ func! s:Ptpython(nointeractive) abort
             call win_gotoid(winid)
         endif
     endtry
-endfunc
-
-func! s:Vifm() abort
-    let curfile = myfun#current_file()
-    if empty(curfile)
-        let left_side = '.'
-    else
-        let left_side = '--select "'.curfile.'"'
-    endif
-    let curdir = my#project#dir()
-
-    -tabnew
-    exec 'lcd '.fnameescape(curdir)
-    let command = join(['vifm', left_side, '.'])
-    call s:terminal_start(command)
-endfunc
-
-" Show files selected with vifm
-func! s:Vifmc() abort
-    let curdir = my#project#dir()
-
-    -tabnew
-    exec 'lcd '.fnameescape(curdir)
-    let tmpfile = tempname()
-    exec 'edit '.fnameescape(tmpfile)
-    write
-    autocmd BufEnter <buffer> edit!
-
-    -tabnew
-    let command = 'vifm --choose-files "'.tmpfile.'" .'
-    call s:terminal_start(command)
-endfunc
-
-func! s:Lf() abort
-    let curdir = my#project#dir()
-
-    -tabnew
-    exec 'lcd '.fnameescape(curdir)
-    call s:terminal_start('lf')
 endfunc

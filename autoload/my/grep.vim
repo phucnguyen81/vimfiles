@@ -16,6 +16,8 @@ func! s:ripgrep(params) abort
 
     setlocal grepprg=rg\ --no-heading\ --vimgrep\ --smart-case\ $*
     setlocal grepformat=%f:%l:%c:%m
+    " TODO: need to escape special characters for vim command
+    " e.g. # in command mode will be extended to alternate path
     if wholeword
         exec 'grep! --word-regexp '.shellescape(pattern)
     else

@@ -6,6 +6,7 @@
 " d : create new directory
 " % : create new file
 " a : switch between hidden and full views
+" i : switch between list view styles: list, tree,...
 
 if exists('g:my_netrw_home')
     let g:netrw_home = g:my_netrw_home
