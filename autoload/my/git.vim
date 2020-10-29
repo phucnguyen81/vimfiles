@@ -11,18 +11,18 @@ func! my#git#sync() abort
     compiler git
 
     " Commit current changes
-    redraw | make status
+    make status | redraw
     if input('Sync '.project_dir.'? (y/n) ') !=? 'y'
         return
     endif
-    redraw | make add .
-    redraw | make commit --message=Sync
+    make add . | redraw
+    make commit --message=Sync | redraw
 
     " Merges with upstream changes
     if !empty(system('git remote'))
-        redraw | make pull --rebase=merges
-        redraw | make push
-        redraw | make status
+        make pull --rebase=merges | redraw
+        make push | redraw
+        make status | redraw
     endif
 
     " `!` clears command messages
