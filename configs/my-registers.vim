@@ -2,7 +2,7 @@
 
 command! -nargs=? EditRegister :call s:edit_register('q', <f-args>)
 
-function! s:edit_register(default, ...) abort
+func! s:edit_register(default, ...) abort
     let reg = a:default
     if !empty(a:000)
         let reg = a:000[0]
@@ -24,4 +24,4 @@ function! s:edit_register(default, ...) abort
       \ ])
 
     echom 'Editing register "'.reg
-endfunction
+endfunc

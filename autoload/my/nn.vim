@@ -27,7 +27,7 @@ let s:bind_options = [
     \ ]
 
 " Start search/create files in current/specified directory
-function! my#nn#start(...) abort
+func! my#nn#start(...) abort
     let arg = a:000
     if empty(arg)
         let dir = my#project#dir()
@@ -37,10 +37,10 @@ function! my#nn#start(...) abort
         let hint = join(arg[1:])
     endif
     call s:nn_start(dir, hint)
-endfunction
+endfunc
 
 " Core funtion to search/create notes in specified directory
-function! s:nn_start(dir, hint) abort
+func! s:nn_start(dir, hint) abort
     let dir = a:dir
     let hint = a:hint
 
@@ -54,20 +54,20 @@ function! s:nn_start(dir, hint) abort
 
     " Call fzf to perform fuzzy-search and handle selected items
     call fzf#run(wrapped_options)
-endfunction
+endfunc
 
 " Generate lines in the format `filename:lineno:line` such as
 " `notes.md:2:this is a note`
-function! s:fzf_source() abort
+func! s:fzf_source() abort
     return join(['rg',
         \ '--follow --smart-case',
         \ '--line-number', '--color never',
         \ '--no-messages --no-heading --with-filename',
         \ shellescape('\S'),
         \ ])
-endfunction
+endfunc
 
-function! s:fzf_options(hint) abort
+func! s:fzf_options(hint) abort
     let hint = a:hint
 
     let fzf_options = [
@@ -90,11 +90,11 @@ function! s:fzf_options(hint) abort
     call extend(fzf_options, ['--query', hint])
 
     return fzf_options
-endfunction
+endfunc
 
 " Callback function to handle selected items.
 " `items` often looks like ['note', 'ctrl-n', 'notes.md:2:this is a note']
-function! s:handle_items(items) abort
+func! s:handle_items(items) abort
     if empty(a:items)
         return
     endif
@@ -118,10 +118,10 @@ function! s:handle_items(items) abort
     call s:handle_read(query, keypress, selections)
     call s:handle_selections(query, keypress, selections)
     call s:handle_query(query, keypress, selections)
-endfunction
+endfunc
 
 " Edit selected files at their selected lines
-function! s:handle_edit(query, keypress, selections) abort
+func! s:handle_edit(query, keypress, selections) abort
     let [query, keypress, selections] = [a:query, a:keypress, a:selections]
     if keypress ==? 'ctrl-e' && !empty(selections)
         for selection in selections
@@ -129,11 +129,11 @@ function! s:handle_edit(query, keypress, selections) abort
             exec 'edit +'.lineno.' '.fnameescape(path)
         endfor
     endif
-endfunction
+endfunc
 
 " Read files into current buffer.
 " Read from selected line up to the first blank line.
-function! s:handle_read(query, keypress, selections) abort
+func! s:handle_read(query, keypress, selections) abort
     let [query, keypress, selections] = [a:query, a:keypress, a:selections]
     if keypress ==? 'ctrl-r' && !empty(selections)
         for selection in selections
@@ -142,44 +142,44 @@ function! s:handle_read(query, keypress, selections) abort
             call append(line('.'), lines)
         endfor
     endif
-endfunction
+endfunc
 
-function! s:handle_new(query, keypress, selections) abort
+func! s:handle_new(query, keypress, selections) abort
     let [query, keypress, selections] = [a:query, a:keypress, a:selections]
     if !empty(query) && keypress ==? 'ctrl-n'
         call s:new_file(a:query)
     endif
-endfunction
+endfunc
 
-function! s:handle_query(query, keypress, selections) abort
+func! s:handle_query(query, keypress, selections) abort
     let [query, keypress, selections] = [a:query, a:keypress, a:selections]
     if !empty(query) && empty(keypress) && empty(selections)
         call s:new_file(a:query)
     endif
-endfunction
+endfunc
 
-function! s:handle_selections(query, keypress, selections) abort
+func! s:handle_selections(query, keypress, selections) abort
     let [query, keypress, selections] = [a:query, a:keypress, a:selections]
     if empty(keypress) && !empty(selections)
         for selection in selections
             call s:edit_file(selection.path, selection.lineno)
         endfor
     endif
-endfunction
+endfunc
 
-function! s:edit_file(path, lineno) abort
+func! s:edit_file(path, lineno) abort
     let [path, lineno] = [a:path, a:lineno]
     exec 'edit +'.str2nr(lineno).' '.fnameescape(path)
     normal! zz
-endfunction
+endfunc
 
-function! s:new_file(path) abort
+func! s:new_file(path) abort
     exec 'edit '.fnameescape(a:path)
-endfunction
+endfunc
 
 " Read from given line up to the first blank line.
 " TODO read files efficiently
-function! s:read_file(path, lineno)
+func! s:read_file(path, lineno)
     let [path, lineno] = [a:path, a:lineno]
     let lines = []
     for line in readfile(path)[lineno:]
@@ -189,4 +189,4 @@ function! s:read_file(path, lineno)
         endif
     endfor
     return lines
-endfunction
+endfunc

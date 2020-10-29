@@ -26,21 +26,21 @@ nnoremap <Leader>es :call <SID>EditSnippet()<CR>
 " Create new snippet
 nnoremap <Leader>ns :call <SID>NewSnippet()<CR>
 
-function s:SnippetDir() abort
+func s:SnippetDir() abort
     return g:my_snippets
-endfunction
+endfunc
 
 " Read a file into current buffer
-function s:ReadFile(filename) abort
+func s:ReadFile(filename) abort
     let fname = fnamemodify(a:filename, ':p')
     let lines = myfun#read_file(fname)
     if !empty(lines)
         exec "normal! jV".len(lines)."jo="
     endif
-endfunction
+endfunc
 
 " Fuzzy-search for a snippet; use current file type/extension as hint
-function s:ReadSnippet() abort
+func s:ReadSnippet() abort
     let snipdir = s:SnippetDir()
 
     let extension = expand('%:e')
@@ -52,10 +52,10 @@ function s:ReadSnippet() abort
                 \ 'down': '50%',
                 \ 'options': ['--query='.sniphint.' ']
                 \ })
-endfunction
+endfunc
 
 " Edit a snippet from snippet dir
-function s:EditSnippet() abort
+func s:EditSnippet() abort
     let snipdir = s:SnippetDir()
     let snipname = ''
     if !empty(&filetype)
@@ -65,9 +65,9 @@ function s:EditSnippet() abort
                 \ 'sink': 'edit',
                 \ 'options': ['--query='.snipname]
                 \ })
-endfunction
+endfunc
 
-function s:NewSnippet() abort
+func s:NewSnippet() abort
     let snipdir = s:SnippetDir()
     if !empty(&filetype)
         let snipdir = join([snipdir, &filetype], '/')
@@ -76,5 +76,5 @@ function s:NewSnippet() abort
         call mkdir(snipdir, 'p')
     endif
     exec 'Sexplore '.fnameescape(snipdir)
-endfunction
+endfunc
 

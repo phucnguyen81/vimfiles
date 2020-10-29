@@ -30,7 +30,7 @@ command! Lf call <SID>Lf()
 command! -bang Ptpython call s:Ptpython(<bang>0)
 
 " Common way to start terminal
-function! s:terminal_start(command)
+func! s:terminal_start(command)
     let command = a:command
     let buf = term_start(command, {
         \ 'curwin': 1,
@@ -40,10 +40,10 @@ function! s:terminal_start(command)
         call term_setkill(buf, 'term')
     endif
     return buf
-endfunction
+endfunc
 
 " Run a wincmd before starting a terminal
-function! s:start_terminal(command, wincmd) abort
+func! s:start_terminal(command, wincmd) abort
     let command = a:command
     let wincmd = a:wincmd
 
@@ -63,10 +63,10 @@ function! s:start_terminal(command, wincmd) abort
     exec 'lcd '.fnameescape(curdir)
 
     return s:terminal_start(command)
-endfunction
+endfunc
 
 " Send lines to terminal
-function! s:send_terminal(lines, waitcr) abort
+func! s:send_terminal(lines, waitcr) abort
     let lines = a:lines
     let waitcr = a:waitcr
 
@@ -95,18 +95,18 @@ function! s:send_terminal(lines, waitcr) abort
         call term_wait(buf, 200)
         call term_sendkeys(buf, "\<CR>")
     endif
-endfunction
+endfunc
 
 " Start a terminal without leaving current window
-function! s:TerminalStart(...) abort
+func! s:TerminalStart(...) abort
     let command = empty(a:000) ? '' : a:000[0]
     let winid = win_getid()
     call s:start_terminal(command, '')
     call win_gotoid(winid)
-endfunction
+endfunc
 
 " Start a terminal from results of fzf selection
-function! s:handle_term(lines) abort
+func! s:handle_term(lines) abort
     let lines = a:lines
     let linecount = len(lines)
     if linecount < 2
@@ -134,10 +134,10 @@ function! s:handle_term(lines) abort
     endif
 
     call s:start_terminal(command, wincmd)
-endfunction
+endfunc
 
 " Get shells that are executable among common shells
-function! s:get_shells()
+func! s:get_shells()
     let all_shells = [
         \ 'bash',
         \ 'cmd', 'powershell', 'pwsh',
@@ -150,10 +150,10 @@ function! s:get_shells()
         endif
     endfor
     return sort(shells)
-endfunction
+endfunc
 
 " Select a shell and a split option to start terminal with.
-function! s:Shell(...) abort
+func! s:Shell(...) abort
     if !empty(a:000)
         call s:start_terminal(a:000[0], '')
         return
@@ -173,20 +173,20 @@ function! s:Shell(...) abort
         \ }
     let options = fzf#wrap(options)
     call fzf#run(options)
-endfunction
+endfunc
 
 " Send selected range to terminal
-function! s:TerminalSend(waitcr) abort range
+func! s:TerminalSend(waitcr) abort range
     let lines = getline(a:firstline, a:lastline)
     call s:send_terminal(lines, a:waitcr)
-endfunction
+endfunc
 
 " Wait then send <CR> to update terminal
-function! s:TerminalWaitCr() abort
+func! s:TerminalWaitCr() abort
     call s:send_terminal([], 1)
-endfunction
+endfunc
 
-function! s:Ptpython(nointeractive) abort
+func! s:Ptpython(nointeractive) abort
     let interactive = !a:nointeractive
     let curfile = myfun#current_file()
     let iarg = ''
@@ -202,9 +202,9 @@ function! s:Ptpython(nointeractive) abort
             call win_gotoid(winid)
         endif
     endtry
-endfunction
+endfunc
 
-function! s:Vifm() abort
+func! s:Vifm() abort
     let curfile = myfun#current_file()
     if empty(curfile)
         let left_side = '.'
@@ -217,10 +217,10 @@ function! s:Vifm() abort
     exec 'lcd '.fnameescape(curdir)
     let command = join(['vifm', left_side, '.'])
     call s:terminal_start(command)
-endfunction
+endfunc
 
 " Show files selected with vifm
-function! s:Vifmc() abort
+func! s:Vifmc() abort
     let curdir = my#project#dir()
 
     -tabnew
@@ -233,12 +233,12 @@ function! s:Vifmc() abort
     -tabnew
     let command = 'vifm --choose-files "'.tmpfile.'" .'
     call s:terminal_start(command)
-endfunction
+endfunc
 
-function! s:Lf() abort
+func! s:Lf() abort
     let curdir = my#project#dir()
 
     -tabnew
     exec 'lcd '.fnameescape(curdir)
     call s:terminal_start('lf')
-endfunction
+endfunc

@@ -292,7 +292,7 @@ augroup my_main_autocmd
     autocmd VimLeave * call <SID>OnVimLeave()
 augroup end
 
-function s:OnVimEnter() abort
+func s:OnVimEnter() abort
     " Set colorscheme, should be called only once during startup
     set background=dark
     if has('gui_running')
@@ -300,9 +300,9 @@ function s:OnVimEnter() abort
     else
         silent! colorscheme gruvbox
     endif
-endfunction
+endfunc
 
-function s:OnVimLeave() abort
+func s:OnVimLeave() abort
     " Silently delete buffers with no files
     for buf in getbufinfo({'buflisted': 1})
         if empty(glob(buf.name, 1))
@@ -320,7 +320,7 @@ function s:OnVimLeave() abort
     " Save latest session
     let latest_session = expand(g:my_session_dir.'/most-recent')
     exec 'mksession! '.fnameescape(latest_session)
-endfunction
+endfunc
 
 " }}
 " vim:fdm=marker:fmr={{,}}:et:ts=4:sts=4:sw=4

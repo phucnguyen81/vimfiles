@@ -1,22 +1,22 @@
 " IDE features: rename symbol, go to definition, find all references, ...
 
-function! s:Format()
+func! s:Format()
     if !exists('b:my_format_command')
         throw 'b:my_format_command not defined'
     endif
     exec b:my_format_command
-endfunction
+endfunc
 command! Format call s:Format()
 
-function! s:Lint()
+func! s:Lint()
     if !exists('b:my_lint_command')
         throw 'b:my_lint_command not defined'
     endif
     exec b:my_lint_command
-endfunction
+endfunc
 command! Lint call s:Lint()
 
-function! s:Fix()
+func! s:Fix()
     if exists('b:my_fix_command')
         exec b:my_fix_command
         return
@@ -26,37 +26,37 @@ function! s:Fix()
         return
     endif
     throw 'No fix commands available'
-endfunction
+endfunc
 command! Fix call s:Fix()
 
-function! s:FindReferences()
+func! s:FindReferences()
     if !exists('b:my_find_references_command')
         throw 'b:my_find_references_command not defined'
     endif
     exec b:my_find_references_command
-endfunction
+endfunc
 command! Refs call s:FindReferences()
 
-function! s:RenameSymbol()
+func! s:RenameSymbol()
     if !exists('b:my_rename_symbol_command')
         throw 'b:my_rename_symbol_command not defined'
     endif
     exec b:my_rename_symbol_command
-endfunction
+endfunc
 command! Rn call s:RenameSymbol()
 
-function! s:GotoDefinition()
+func! s:GotoDefinition()
     if !exists('b:my_goto_definition_command')
         throw 'b:my_goto_definition_command not defined'
     endif
     exec b:my_goto_definition_command
-endfunction
+endfunc
 command! Def call s:GotoDefinition()
 
-function! s:PeekDocumentation()
+func! s:PeekDocumentation()
     if !exists('b:my_peek_documentation_command')
         throw 'b:my_peek_documentation_command not defined'
     endif
     exec b:my_peek_documentation_command
-endfunction
+endfunc
 command! Peek call s:PeekDocumentation()

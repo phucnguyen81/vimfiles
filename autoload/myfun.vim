@@ -1,5 +1,5 @@
 " Run a list of shell commands in the terminal
-function! myfun#run_terminal_commands(commands) abort
+func! myfun#run_terminal_commands(commands) abort
     " Open a terminal over current buffer
     let buf = term_start(&shell, {
         \ 'curwin': 1,
@@ -16,11 +16,11 @@ function! myfun#run_terminal_commands(commands) abort
         call term_sendkeys(buf, cmd)
         call term_sendkeys(buf, "\<CR>")
     endfor
-endfunction
+endfunc
 
 " Set common local options for identation of width.
 " Here width is the number of spaces for a tab.
-function! myfun#set_local_indent(width) abort
+func! myfun#set_local_indent(width) abort
     exec "setlocal tabstop=".a:width
     exec "setlocal softtabstop=".a:width
     exec "setlocal shiftwidth=".a:width
@@ -28,10 +28,10 @@ function! myfun#set_local_indent(width) abort
     setlocal smarttab
     setlocal shiftround
     setlocal autoindent
-endfunction
+endfunc
 
 " Count occurences of given pattern starting at current line
-function! myfun#count(isWORD, ...) abort
+func! myfun#count(isWORD, ...) abort
     let pattern = expand('<cword>')
     if a:isWORD
         let pattern = expand('<cWORD>')
@@ -43,39 +43,39 @@ function! myfun#count(isWORD, ...) abort
     " Escape special characters in pattern
     let pattern = escape(pattern, '/\')
     exec '.,$s/\V\c'.pattern.'//gn'
-endfunction
+endfunc
 
 " Clear screen
-function! myfun#clear_screen()
+func! myfun#clear_screen()
     nohlsearch
     normal! \<C-l>
     " From ale plugin
     if exists(':ALEReset')
         ALEReset
     endif
-endfunction
+endfunc
 
 " Show the active colorscheme, see help with g:colors_name
-function! myfun#show_color_name()
+func! myfun#show_color_name()
     if exists('g:colors_name')
         return g:colors_name
     else
         return ''
     endif
-endfunction
+endfunc
 
 " Split based on window width and height ratio
-function! myfun#split_window()
+func! myfun#split_window()
     let ratio = winwidth('%') / winheight('%')
     if ratio > 2
         vsplit
     else
         split
     endif
-endfunction
+endfunc
 
 " Try to maximize the vim GUI screen
-function! myfun#maximize_screen()
+func! myfun#maximize_screen()
     if has('win32')
         simalt ~x
     elseif executable('wmctrl')
@@ -86,10 +86,10 @@ function! myfun#maximize_screen()
     else
         echomsg 'Failed to maximize window'
     endif
-endfunction
+endfunc
 
 " Close window after moving to the alternate window
-function! myfun#close_window()
+func! myfun#close_window()
     let last_win = winnr('#')
     if last_win
         let last_win_id = win_getid(last_win)
@@ -98,12 +98,12 @@ function! myfun#close_window()
     else
         close!
     endif
-endfunction
+endfunc
 
 " Delete current buffer, try not to close its window.
 " If a window number is given, go to that window before
 " deleting the buffer.
-function! myfun#delete_buffer(...) abort
+func! myfun#delete_buffer(...) abort
     let bufnr = bufnr('%')
 
     if empty(a:000)
@@ -115,11 +115,11 @@ function! myfun#delete_buffer(...) abort
     endif
 
     exec 'bdelete! '.bufnr
-endfunction
+endfunc
 
 " Custom complete function for getting filenames in directory of current file.
 " Usage: -complete=customlist,myfun#list_file_names
-function! myfun#list_file_names(ArgList, L, P)
+func! myfun#list_file_names(ArgList, L, P)
     let dir = expand('%:h')
     if isdirectory(dir)
         let prefix = a:ArgList
@@ -128,38 +128,38 @@ function! myfun#list_file_names(ArgList, L, P)
     else
         return []
     endif
-endfunction
+endfunc
 
 " Edit vimrc profile
-function! myfun#edit_my_vimrc()
+func! myfun#edit_my_vimrc()
     if exists('g:my_vimrc') && filereadable(g:my_vimrc)
         exec 'edit '.fnameescape(g:my_vimrc)
     else
         edit $MYVIMRC
     endif
-endfunction
+endfunc
 
 " Edit gvimrc profile
-function! myfun#edit_my_gvimrc()
+func! myfun#edit_my_gvimrc()
     if exists('g:my_gvimrc') && filereadable(g:my_gvimrc)
         exec 'edit '.fnameescape(g:my_gvimrc)
     else
         edit $MYGVIMRC
     endif
-endfunction
+endfunc
 
 " Edit a file under the directory of current file
-function! myfun#edit(filename) abort
+func! myfun#edit(filename) abort
     let filename = a:filename
     let dir = expand('%:h')
     if isdirectory(dir)
         let filepath = expand(dir.'/'.filename)
         exec 'edit '.fnameescape(filepath)
     endif
-endfunction
+endfunc
 
 " Save current file using a new name under the same directory.
-function! myfun#save_as(new_name) abort
+func! myfun#save_as(new_name) abort
     let new_name = a:new_name
     let dir = expand('%:h')
     if isdirectory(dir)
@@ -172,10 +172,10 @@ function! myfun#save_as(new_name) abort
             exec 'saveas '.fnameescape(new_path)
         endif
     endif
-endfunction
+endfunc
 
 " Make parent directory of current file.
-function! myfun#make_dir() abort
+func! myfun#make_dir() abort
     let curfile = myfun#current_file()
     if empty(curfile)
         return
@@ -187,11 +187,11 @@ function! myfun#make_dir() abort
     if !isdirectory(filedir)
         call mkdir(filedir, "p")
     endif
-endfunction
+endfunc
 
 " Read a file into current buffer.
 " Return the lines read.
-function! myfun#read_file(fname) abort
+func! myfun#read_file(fname) abort
     if filereadable(a:fname)
         let save_cursor = getcurpos()
         let lines = readfile(a:fname)
@@ -200,10 +200,10 @@ function! myfun#read_file(fname) abort
         return lines
     endif
     return []
-endfunction
+endfunc
 
 " Delete both buffer and its associated file
-function! myfun#delete_file_buffer() abort
+func! myfun#delete_file_buffer() abort
     let l:file = expand('%')
     if filereadable(l:file)
         if 'y' ==? input('Delete file '.l:file.'? [y/n] ')
@@ -211,10 +211,10 @@ function! myfun#delete_file_buffer() abort
         endif
     endif
     call myfun#delete_buffer()
-endfunction
+endfunc
 
 " Delete a buffer that can be moved to with :wincmd wincmd_arg
-function! myfun#delete_buffer_at(wincmd_arg) abort
+func! myfun#delete_buffer_at(wincmd_arg) abort
     let l:win = winnr()
     let l:buf = bufnr('%')
     exec "wincmd ".a:wincmd_arg
@@ -230,37 +230,37 @@ function! myfun#delete_buffer_at(wincmd_arg) abort
     else
         echoerr "Same buffer"
     endif
-endfunction
+endfunc
 
 " Quick new tab used with mappings
-function! myfun#new_tab() abort
+func! myfun#new_tab() abort
     -tabnew
-endfunction
+endfunc
 
 " Delete buffers not associated with files
-function! myfun#delete_nofile_buffers()
+func! myfun#delete_nofile_buffers()
     for buf in getbufinfo()
         if buf.listed && !filereadable(buf.name)
             exec 'bdelete! '.buf.bufnr
         endif
     endfor
-endfunction
+endfunc
 
 " Delete all buffers not shown in windows
-function! myfun#delete_nowindow_buffers()
+func! myfun#delete_nowindow_buffers()
     for buf in getbufinfo()
         if buf.listed && empty(buf.windows)
             exec 'bdelete! '.buf.bufnr
         endif
     endfor
-endfunction
+endfunc
 
 " Exchange buffer with another window's.
 " 'arg' can be either:
 " - a window number
 " - argument to a wincmd, e.g. j,k,l,h,w,ect.
 " - a buffer name
-function! myfun#switch_buffer(arg) abort
+func! myfun#switch_buffer(arg) abort
     let l:winid = win_getid()
     let l:bufnr = winbufnr(l:winid)
 
@@ -289,10 +289,10 @@ function! myfun#switch_buffer(arg) abort
     exec win_gotoid(l:winid)
     " switch buffer with the other's
     exec "buffer! ".l:next_buf
-endfunction
+endfunc
 
 " In current tabpage, rotate buffers among windows.
-function! myfun#rotate_buffers() abort
+func! myfun#rotate_buffers() abort
     " track current window to go back to
     let l:curr_win = winnr()
 
@@ -318,24 +318,24 @@ function! myfun#rotate_buffers() abort
 
     " Go back to orignal window
     exec l:curr_win."wincmd w"
-endfunction
+endfunc
 
 " Remove trailing spaces
-function! myfun#remove_trailing_spaces() abort
+func! myfun#remove_trailing_spaces() abort
     let save_pos=getpos('.')
     let save_reg=@/
     exec '%s/\s\+$//e'
     let @/=save_reg
     call setpos('.', save_pos)
-endfunction
+endfunc
 
 " Trim spaces
-function! myfun#trim(text)
+func! myfun#trim(text)
     return substitute(substitute(a:text, '\s\+$', '', ''), '^\s\+', '', '')
-endfunction
+endfunc
 
 " TODO: move to my#project#info
-function! myfun#show_context_info() abort
+func! myfun#show_context_info() abort
     let virtual_env = exists("$VIRTUAL_ENV") ? expand("$VIRTUAL_ENV") : ""
     let vimrc = exists("$MYVIMRC") ? expand("$MYVIMRC") : ""
     let gvimrc = exists("$MYGVIMRC") ? expand("$MYGVIMRC") : ""
@@ -364,19 +364,19 @@ function! myfun#show_context_info() abort
     setlocal hidden buftype=nofile bufhidden=wipe noswapfile
     call append(0, info)
     call cursor(1, 1)
-endfunction
+endfunc
 
-function! s:is_netrw_buffer()
+func! s:is_netrw_buffer()
     return (&filetype ==? 'netrw') && exists('b:netrw_curdir')
-endfunction
+endfunc
 
-function! s:slash() abort
+func! s:slash() abort
     return !exists("+shellslash") || &shellslash ? '/' : '\'
-endfunction
+endfunc
 
 " Return absolute paths for files in range first..second.
 " Source: tpope vinegar plugin
-function! s:netrw_absolute_paths(first, ...) abort
+func! s:netrw_absolute_paths(first, ...) abort
     if !s:is_netrw_buffer()
         return []
     endif
@@ -385,18 +385,18 @@ function! s:netrw_absolute_paths(first, ...) abort
     call map(files, "substitute(v:val, '^\\(| \\)*', '', '')")
     call map(files, 'b:netrw_curdir . s:slash() . substitute(v:val, "[/*|@=]\\=\\%(\\t.*\\)\\=$", "", "")')
     return files
-endfunction
+endfunc
 
-function! myfun#current_file() abort
+func! myfun#current_file() abort
     let files = []
     call extend(files, s:netrw_absolute_paths(line('.')))
     call add(files, expand('%:p'))
     return fnamemodify(files[0], ':p')
-endfunction
+endfunc
 
 " Return current path (file or directory) most relevant under current context
 " TODO get path of current file under netrw
-function! myfun#current_path()
+func! myfun#current_path()
     let path = ''
     if (&filetype ==? 'netrw') && exists('b:netrw_curdir')
         let path = b:netrw_curdir
@@ -408,12 +408,12 @@ function! myfun#current_path()
         let path = my#project#dir()
     endif
     return path
-endfunction
+endfunc
 
-function! myfun#open_current_path()
+func! myfun#open_current_path()
     call myfun#open(myfun#current_path())
     redraw!
-endfunction
+endfunc
 
 " Yank context path
 func! myfun#yank_path() abort
@@ -422,7 +422,7 @@ func! myfun#yank_path() abort
     call setreg('+', path)
 endfunc
 
-function! myfun#open(path)
+func! myfun#open(path)
     let path = shellescape(a:path)
 
     if executable('xdg-open')
@@ -456,25 +456,25 @@ function! myfun#open(path)
     endif
 
     throw 'Found no executables to open '.path
-endfunction
+endfunc
 
 " Let user select a file from system browser.
 " Return the selected file.
-function! myfun#select_file() abort
+func! myfun#select_file() abort
     " Browse only, not save file, title is the file path
     return browse(0,
         \ 'Select file',
         \ my#project#dir(),
         \ expand('%:p:t'))
-endfunction
+endfunc
 
 " Let user select a directory from system browser.
 " Return the selected directory.
-function! myfun#select_dir()
+func! myfun#select_dir()
     return browsedir('Select dir', my#project#dir())
-endfunction
+endfunc
 
-function! myfun#get_visual_selection() abort
+func! myfun#get_visual_selection() abort
     " NOTE: to check visual mode is active, do mode() == 'v'
     let [line_start, column_start] = getpos("'<")[1:2]
     let [line_end, column_end] = getpos("'>")[1:2]
@@ -488,16 +488,16 @@ function! myfun#get_visual_selection() abort
 endfun
 
 " Paste from clipboard
-function! myfun#paste()
+func! myfun#paste()
     if has('clipboard')
         call myfun#paste_clipboard()
     else
         call myfun#paste_command()
     endif
-endfunction
+endfunc
 
 " Paste using external command
-function! myfun#paste_command()
+func! myfun#paste_command()
     if executable('sfk.exe')
         " Call Windows sfk.exe from WSL
         silent read !sfk.exe fromclip
@@ -510,10 +510,10 @@ function! myfun#paste_command()
     else
         throw "pbpaste, xclip or xsel in path required"
     endif
-endfunction
+endfunc
 
 " Paste from clipboard
-function! myfun#paste_clipboard()
+func! myfun#paste_clipboard()
     if &paste
         normal! "+p
     else
@@ -521,9 +521,9 @@ function! myfun#paste_clipboard()
         normal! "+p
         set nopaste
     endif
-endfunction
+endfunc
 
-function! myfun#yank() range abort
+func! myfun#yank() range abort
     let l:prefix="silent ".a:firstline.",".a:lastline."write !"
     if executable("clip.exe")
         " Call Windows clip.exe from WSL
@@ -539,11 +539,11 @@ function! myfun#yank() range abort
     else
         throw "One of pbcopy, xclip, xsel, or clip is required in path"
     endif
-endfunction
+endfunc
 
 " Ask for input, also handle save/restore vim typeahead.
 " See inputsave, inputrestore on typeahead issue.
-function! myfun#input(prompt, ...)
+func! myfun#input(prompt, ...)
     call inputsave()
     try
         let l:result = call('input', a:000)
@@ -551,7 +551,7 @@ function! myfun#input(prompt, ...)
         call inputrestore()
     endtry
     return l:result
-endfunction
+endfunc
 
 " Create tags file for files under current dir, recursively
 " (requires exuberant-ctags/universal-ctags)
@@ -559,7 +559,7 @@ endfunction
 " Ctrl-] (or :tag) jumps to tag under cursor
 " g<ctrl-]> jumps to ambiguous tags
 " Ctrl-t (or :pop) jumps back up the tag stack
-function! myfun#create_tags(absolute_path) abort
+func! myfun#create_tags(absolute_path) abort
     let dir = my#project#dir()
     let dir = input('Create tags for directory: ', dir, 'dir')
     if empty(dir)
@@ -597,9 +597,9 @@ function! myfun#create_tags(absolute_path) abort
     finally
         exec 'lcd '.fnameescape(save_dir)
     endtry
-endfunction
+endfunc
 
-function! myfun#search_doc(...) abort
+func! myfun#search_doc(...) abort
     if empty(a:000)
         let search_terms = expand('<cword>')
     else
@@ -611,12 +611,12 @@ function! myfun#search_doc(...) abort
     else
         call openbrowser#search(&filetype.' '.search_terms)
     endif
-endfunction
+endfunc
 
 " Source:
 " https://damien.pobel.fr/post/configure-neovim-vim-gf-javascript-import/
 " ...)
-function! myfun#node_modules_include(fname) abort
+func! myfun#node_modules_include(fname) abort
     let nodeModules = "./node_modules/"
     let packageJsonPath = nodeModules . a:fname . "/package.json"
 
@@ -625,4 +625,4 @@ function! myfun#node_modules_include(fname) abort
     else
         return nodeModules . a:fname
     endif
-endfunction
+endfunc

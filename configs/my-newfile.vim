@@ -1,15 +1,16 @@
 " Things to do when creating new files.
+" TODO: check if this is still relevant (should be handled by plugin)
 
 " If current buffer is associated with a file,
 " create parent directories of the file.
-function s:MakeParentDirs() abort
+func s:MakeParentDirs() abort
     let dir = expand('%:p:h')
     if empty(dir) || isdirectory(dir) || (dir =~ '://')
         return
     endif
     call mkdir(dir, 'p')
     echo 'Created directory: '.dir
-endfunction
+endfunc
 
 " Make parent directories when editing a new file.
 augroup newfile_mkdir
