@@ -8,23 +8,23 @@ func! s:ProjectTree() abort
 endfunc
 nnoremap <Leader>pt :call <SID>ProjectTree()<CR>
 
-" Compile/run current file (see compiler section in quickfix)
-func! s:Make() abort
+" Run current file
+func! s:Run() abort
     let filetype = &filetype
     if empty(filetype)
         throw 'Filetype not set.'
     endif
-    let runner = filetype
+    let runner = filetype.'-run'
     if empty(findfile('compiler/'.runner.'.vim', &rtp))
         throw 'Compiler '.runner.' not found.'
     endif
     call my#make#make(runner, my#project#dir())
 endfunc
-command! -nargs=0 Pmake call s:Make()
-nnoremap <Leader>pm :call <SID>Make()<CR>
+command! -nargs=0 Prun call s:Run()
+nnoremap <Leader>pr :call <SID>Run()<CR>
 
 " Lint/check current file
-func! s:Lmake() abort
+func! s:Lint() abort
     let filetype = &filetype
     if empty(filetype)
         throw 'Filetype not set.'
@@ -35,8 +35,8 @@ func! s:Lmake() abort
     endif
     call my#make#lmake(linter, my#project#dir())
 endfunc
-command! -nargs=0 Plmake call s:Lmake()
-nnoremap <Leader>pl :call <SID>Lmake()<CR>
+command! -nargs=0 Plmake call s:Lint()
+nnoremap <Leader>pl :call <SID>Lint()<CR>
 
 " Search for words/whole-words
 func! s:Grep(wholeword, ...) abort
