@@ -14,6 +14,9 @@ endif
 " Don't show banner
 let g:netrw_banner = 0
 
+" Use 30 characters width for :Lexplore
+let g:netrw_winsize = -30
+
 " Start with list style, switch with 'i'.
 " 3 is for tree-view, useful but too buggy.
 let g:netrw_liststyle = 0
@@ -23,5 +26,3 @@ let g:netrw_preview = 0
 let g:netrw_alto = 0
 let g:netrw_altv = 0
 
-" Open the file explorer to the left with initial width set to 30
-nnoremap <Leader>le :30Lexplore<Space><C-r>=fnameescape(myfun#current_dir())<CR><CR>

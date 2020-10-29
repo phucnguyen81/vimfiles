@@ -293,33 +293,31 @@ augroup my_main_autocmd
 augroup end
 
 function s:OnVimEnter() abort
-    " Set netrw_list_hide here since it is set somewhere else before vimenter
-    let g:netrw_list_hide = join([
-      \ '__pycache__', '\.pyc',
-      \ '\.DAT$', '\.dat$', '^ntuser',
-      \ ], ',')
-
     " Set colorscheme, should be called only once during startup
     set background=dark
-    silent! colorscheme gruvbox
+    if has('gui_running')
+        silent! colorscheme onedark
+    else
+        silent! colorscheme gruvbox
+    endif
 endfunction
 
 function s:OnVimLeave() abort
-    " Silenly wipe buffers with no files
+    " Silently delete buffers with no files
     for buf in getbufinfo({'buflisted': 1})
         if empty(glob(buf.name, 1))
             silent! exec 'bdelete! '.buf.bufnr
         endif
     endfor
 
-    " Save session for current directory
-    let curdir = getcwd()
-    let parentdir = fnamemodify(curdir, ':h:t')
-    let session = parentdir.'_'.fnamemodify(curdir, ':t')
-    let session_file = expand(g:my_session_dir.'/'.session)
-    exec 'mksession! '.fnameescape(session_file)
+    " Save session for current context
+    let session_name = my#session#makename()
+    if !empty(session_name)
+        let session_file = expand(g:my_session_dir.'/'.session_name)
+        exec 'mksession! '.fnameescape(session_file)
+    endif
 
-    " Save as latest session
+    " Save latest session
     let latest_session = expand(g:my_session_dir.'/most-recent')
     exec 'mksession! '.fnameescape(latest_session)
 endfunction

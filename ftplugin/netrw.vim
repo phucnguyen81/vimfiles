@@ -1,6 +1,12 @@
-" TODO This shows the name on the tab but writes to file sometimes.
-" Need to find a way to show the name on tab without setting file name.
-" See how the tabs are shown now.
-" exec 'file netrw_'.bufnr('%')
-
 " TODO do <Leader>D to delete recursively with vim function delete()
+
+" Show buffer name but not as a file
+exec 'file netrw_'.bufnr('%')
+setlocal buftype=nofile "avoid being saved as file"
+
+setlocal winfixwidth "avoid adjusting netrw window width"
+
+let b:auto_save = 0 "avoid being saved by vim-auto-save"
+
+" safe, quick quit
+nnoremap <buffer><silent> qq :close<CR>
