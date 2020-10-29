@@ -43,7 +43,7 @@ noremap <silent> 8<Leader> 8gt
 noremap <silent> 9<Leader> 9gt
 
 " Move tab to the right, wrap around if needed
-function s:MoveTabRight(count) abort
+func s:MoveTabRight(count) abort
     if !empty(a:count)
         exec "tabmove ".(a:count - 1)
     elseif tabpagenr() == tabpagenr('$')
@@ -53,12 +53,12 @@ function s:MoveTabRight(count) abort
         " else, just move to the right
         tabmove +1
     endif
-endfunction
+endfunc
 nnoremap <silent> <Leader>tm :<c-u>call <SID>MoveTabRight(v:count)<cr>
 nnoremap <silent> <C-Down> :call <SID>MoveTabRight(0)<cr>
 
 " Move tab to the left, wrap around if needed
-function s:MoveTabLeft(count) abort
+func s:MoveTabLeft(count) abort
     if !empty(a:count)
         exec "tabmove ".(a:count - 1)
     elseif tabpagenr() == 1
@@ -68,7 +68,7 @@ function s:MoveTabLeft(count) abort
         " not at the head, just move to the left
         tabmove -1
     endif
-endfunction
+endfunc
 " Move tab to the left
 nnoremap <silent> <Leader>tM :<c-u>call <SID>MoveTabLeft(v:count)<cr>
 nnoremap <silent> <C-Up> :call <SID>MoveTabLeft(0)<cr>
