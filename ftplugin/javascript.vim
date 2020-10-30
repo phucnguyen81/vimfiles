@@ -1,4 +1,3 @@
-compiler javascript
 setlocal suffixesadd+=.js
 setlocal suffixesadd+=.jsx
 setlocal includeexpr=myfun#node_modules_include(v:fname)

@@ -1,4 +1,3 @@
-" compiler vim
 setlocal foldmethod=marker foldmarker={{,}}
 setlocal keywordprg=:help
 setlocal suffixesadd+=.vim

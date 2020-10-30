@@ -2,7 +2,6 @@ setlocal expandtab autoindent smarttab
 setlocal formatoptions=croql foldmethod=indent foldlevel=10
 setlocal keywordprg=pydoc
 setlocal suffixesadd+=.py
-compiler python
 
 " For lsp plugin
 if exists('g:my_completion_plugin') && (g:my_completion_plugin == 'lsp')
