@@ -105,6 +105,9 @@ let g:my_auto_completion_on = 1
 " Delay in miliseconds during typing before completion kicks in
 let g:my_auto_completion_delay = 2000
 
+" Config files for pylama python linter
+let g:my_pylama_options = $PYLAMA_OPTIONS
+
 " }}
 " Options {{
 let mapleader = "\<space>"

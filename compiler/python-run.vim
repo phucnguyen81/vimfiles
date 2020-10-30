@@ -1,5 +1,3 @@
-" Reference: write-compiler-plugin
-
 " Run as python module if there is __init__ file,
 " else run as python script
 if filereadable(expand(expand('%:h').'/__init__.py'))

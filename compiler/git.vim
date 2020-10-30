@@ -1,3 +1,2 @@
-" Reference: write-compiler-plugin
 CompilerSet makeprg=git
-CompilerSet errorformat=
+" TODO errorformat for git
