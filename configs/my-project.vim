@@ -27,15 +27,17 @@ nnoremap <Leader>pr :call <SID>Run()<CR>
 
 " Lint/check current file
 func! s:Lint() abort
-    let filetype = &filetype
-    if empty(filetype)
-        throw 'Filetype not set.'
+    let linters = []
+    if exists('b:linters') && !empty(b:linters)
+        for linter in b:linters
+            let compiler = findfile('compiler/'.linter.'.vim', &rtp)
+            if executable(linter) && !empty(compiler)
+                call add(linters, linter)
+            endif
+        endfor
     endif
-    let linter = filetype.'-lint'
-    if empty(findfile('compiler/'.linter.'.vim', &rtp))
-        throw 'Compiler '.linter.' not found.'
-    endif
-    call my#make#lmake(linter, my#project#dir())
+
+    call my#linter#lmake(linters, my#project#dir())
     botright lopen
     redraw! "skip console messages
 endfunc

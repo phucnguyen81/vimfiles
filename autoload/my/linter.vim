@@ -1,18 +1,10 @@
-func! s:default_parms() abort
-    return {
-        \'dir': getcwd(),
-        \'linters': [],
-        \}
-endfunc
-
-" Use lmake to run linters with a dict parameters, the results
-" are collected into location list. The parms are:
-" 'dir': a directory to run as current dir
-" 'linters': a list of compiler names to run with
-func! my#lint#lmake(parms) abort
-    let parms = extend(s:default_parms(), a:parms, 'force')
-    let dir = parms['dir']
-    let linters = parms['linters']
+" Run linters with lmake, results are collected into location-list.
+" Args:
+" linters: a list of compiler names to run as linters
+" dir: a directory to run as current dir
+func! my#linter#lmake(linters, dir) abort
+    let dir = a:dir
+    let linters = a:linters
 
     let save_dir = getcwd()
     let save_makeprg = &makeprg
@@ -33,6 +25,8 @@ func! my#lint#lmake(parms) abort
     finally
         let &l:makeprg = save_makeprg
         let &l:errorformat = save_errorformat
-        exec 'lcd '.fnameescape(save_dir)
+        if !empty(dir)
+            exec 'lcd '.fnameescape(save_dir)
+        endif
     endtry
 endfunc
