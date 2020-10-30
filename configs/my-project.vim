@@ -35,7 +35,7 @@ func! s:Lint() abort
     endif
     call my#make#lmake(linter, my#project#dir())
 endfunc
-command! -nargs=0 Plmake call s:Lint()
+command! -nargs=0 Plint call s:Lint()
 nnoremap <Leader>pl :call <SID>Lint()<CR>
 
 " Search for words/whole-words
