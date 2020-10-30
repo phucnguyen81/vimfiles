@@ -6,12 +6,10 @@ endif
 func! s:Notes(...) abort
     if !isdirectory(s:my_notes)
         throw 'Notes directory not found.'
-    endif
-    let note = empty(a:000)? '': a:000[0]
-    if empty(note)
+    elseif empty(a:000)
         exec 'edit '.fnameescape(s:my_notes)
     else
-        let note_file = expand(s:my_notes.'/'.note)
+        let note_file = expand(s:my_notes.'/'.a:000[0])
         exec 'edit '.fnameescape(note_file)
     endif
 endfunc
