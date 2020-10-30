@@ -8,61 +8,61 @@ endif
 
 let g:my_docdir = expand(g:my_basedir.'/doc')
 if !isdirectory(g:my_docdir)
-    call mkdir(g:my_docdir, "p")
+    call mkdir(g:my_docdir, 'p')
 endif
 
 let g:my_pluggeddir = expand(g:my_basedir.'/plugged')
 if !isdirectory(g:my_pluggeddir)
-    call mkdir(g:my_pluggeddir, "p")
+    call mkdir(g:my_pluggeddir, 'p')
 endif
 
 let g:my_configsdir = expand(g:my_basedir.'/configs')
 if !isdirectory(g:my_configsdir)
-    call mkdir(g:my_configsdir, "p")
+    call mkdir(g:my_configsdir, 'p')
 endif
 
 let g:my_snippets = expand(g:my_basedir.'/snippets')
 if !isdirectory(g:my_snippets)
-    call mkdir(g:my_snippets, "p")
+    call mkdir(g:my_snippets, 'p')
 endif
 
 let g:my_templates = expand(g:my_basedir.'/templates')
 if !isdirectory(g:my_templates)
-    call mkdir(g:my_templates, "p")
+    call mkdir(g:my_templates, 'p')
 endif
 
 let g:my_vardir = expand(g:my_basedir.'/var')
 if !isdirectory(g:my_vardir)
-    call mkdir(g:my_vardir, "p")
+    call mkdir(g:my_vardir, 'p')
 endif
 
 let g:my_doing_file = expand(g:my_vardir.'/doing.txt')
 
 let g:my_netrw_home = g:my_vardir
 if !isdirectory(g:my_netrw_home)
-    call mkdir(g:my_netrw_home, "p")
+    call mkdir(g:my_netrw_home, 'p')
 endif
 
 let g:my_viminfofile = expand(g:my_vardir.'/viminfo')
 
 let g:my_undodir = expand(g:my_vardir.'/undodir')
 if !isdirectory(g:my_undodir)
-    call mkdir(g:my_undodir, "p")
+    call mkdir(g:my_undodir, 'p')
 endif
 
 let g:my_backupdir = expand(g:my_vardir.'/backupdir')
 if !isdirectory(g:my_backupdir)
-    call mkdir(g:my_backupdir, "p")
+    call mkdir(g:my_backupdir, 'p')
 endif
 
 let g:my_swapfiles = expand(g:my_vardir.'/swapfiles')
 if !isdirectory(g:my_swapfiles)
-    call mkdir(g:my_swapfiles, "p")
+    call mkdir(g:my_swapfiles, 'p')
 endif
 
 let g:my_session_dir = expand(g:my_vardir.'/sessions')
 if !isdirectory(g:my_session_dir)
-    call mkdir(g:my_session_dir, "p")
+    call mkdir(g:my_session_dir, 'p')
 endif
 
 let g:my_nerdtree_bookmarksfile = expand(g:my_vardir.'/NERDTreeBookMarks')
@@ -74,7 +74,21 @@ if executable('fd')
 endif
 let g:my_fzf_history_dir = expand(g:my_vardir.'/fzf-history')
 if !isdirectory(g:my_fzf_history_dir)
-    call mkdir(g:my_fzf_history_dir, "p")
+    call mkdir(g:my_fzf_history_dir, 'p')
+endif
+
+let g:my_notes_dir = $MY_NOTES
+if !isdirectory(g:my_notes_dir)
+    let  g:my_notes_dir = $MY_NOTES
+endif
+if !isdirectory(g:my_notes_dir)
+    let g:my_notes_dir = finddir('notes', expand('~'))
+endif
+if !isdirectory(g:my_notes_dir)
+    let g:my_notes_dir = expand(g:my_basedir.'/notes')
+endif
+if !isdirectory(g:my_notes_dir)
+    call mkdir(g:my_notes_dir, 'p')
 endif
 
 let g:my_scratch_file = expand(g:my_vardir.'/scratch.txt')
@@ -84,12 +98,12 @@ let g:my_command_template = expand(g:my_vardir.'/command_template.vim')
 
 let g:my_calendar_dir = expand(g:my_vardir.'/calendar')
 if !isdirectory(g:my_calendar_dir)
-    call mkdir(g:my_calendar_dir, "p")
+    call mkdir(g:my_calendar_dir, 'p')
 endif
 
 let g:my_dict_dir = expand(g:my_basedir.'/dict')
 if !isdirectory(g:my_dict_dir)
-    call mkdir(g:my_dict_dir, "p")
+    call mkdir(g:my_dict_dir, 'p')
 endif
 
 let g:my_dict_eng = expand(g:my_dict_dir.'/words_eng.txt')
@@ -108,6 +122,12 @@ let g:my_auto_completion_delay = 2000
 " Config files for pylama python linter
 let g:my_pylama_options = $PYLAMA_OPTIONS
 
+" Preferred colorschemes to find for
+if has('gui_running')
+    let g:my_colors = ['onedark', 'gruvbox', 'default']
+else
+    let g:my_colors = ['gruvbox', 'default']
+endif
 " }}
 " Options {{
 let mapleader = "\<space>"
@@ -274,6 +294,7 @@ exec 'source '.expand(g:my_configsdir.'/my-lf.vim')
 exec 'source '.expand(g:my_configsdir.'/my-newfile.vim')
 exec 'source '.expand(g:my_configsdir.'/my-nn.vim')
 exec 'source '.expand(g:my_configsdir.'/my-normalmap.vim')
+exec 'source '.expand(g:my_configsdir.'/my-notes.vim')
 exec 'source '.expand(g:my_configsdir.'/my-project.vim')
 exec 'source '.expand(g:my_configsdir.'/my-registers.vim')
 exec 'source '.expand(g:my_configsdir.'/my-sessions.vim')
@@ -296,11 +317,12 @@ augroup end
 func s:OnVimEnter() abort
     " Set colorscheme, should be called only once during startup
     set background=dark
-    if has('gui_running')
-        silent! colorscheme onedark
-    else
-        silent! colorscheme gruvbox
-    endif
+    for color in g:my_colors
+        if !empty(findfile('colors/'.color.'.vim', &rtp))
+            exec 'colorscheme '.color
+            break
+        endif
+    endfor
 endfunc
 
 func s:OnVimLeave() abort

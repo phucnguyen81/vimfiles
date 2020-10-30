@@ -1,3 +1,4 @@
+setlocal suffixesadd+=.txt
 setlocal suffixesadd+=.md
 
 func! s:SearchDoc(symbol) abort

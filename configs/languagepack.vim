@@ -1,4 +1,4 @@
-Plug 'https://github.com/gisphm/vim-polyglot.git'
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/kevinoid/vim-jsonc.git'
 Plug 'https://github.com/PProvost/vim-ps1.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
@@ -18,3 +18,8 @@ let g:html_indent_autotags = "p"
 
 " Folding with vim-markdown does not work properly
 let g:vim_markdown_folding_disabled = 1
+
+" Don't conceal double quotes
+let g:vim_json_syntax_conceal = 0
+
+
