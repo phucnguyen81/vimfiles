@@ -19,6 +19,8 @@ func! s:Run() abort
         throw 'Compiler '.runner.' not found.'
     endif
     call my#make#make(runner, my#project#dir())
+    botright copen
+    redraw! "skip console messages
 endfunc
 command! -nargs=0 Prun call s:Run()
 nnoremap <Leader>pr :call <SID>Run()<CR>
@@ -34,6 +36,8 @@ func! s:Lint() abort
         throw 'Compiler '.linter.' not found.'
     endif
     call my#make#lmake(linter, my#project#dir())
+    botright lopen
+    redraw! "skip console messages
 endfunc
 command! -nargs=0 Plint call s:Lint()
 nnoremap <Leader>pl :call <SID>Lint()<CR>
@@ -41,10 +45,10 @@ nnoremap <Leader>pl :call <SID>Lint()<CR>
 " Search for words/whole-words
 func! s:Grep(wholeword, ...) abort
     let pattern = empty(a:000)? expand('<cword>'): a:000[0]
-    call my#grep#grep(#{
-        \ dir: my#project#dir(),
-        \ wholeword: a:wholeword,
-        \ pattern: pattern
+    call my#grep#grep({
+        \ 'dir': my#project#dir(),
+        \ 'wholeword': a:wholeword,
+        \ 'pattern': pattern
         \})
 endfunc
 command! -nargs=? -bang Pgrep call <SID>Grep(<bang>0, <f-args>)

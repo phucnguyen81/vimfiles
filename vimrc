@@ -122,12 +122,13 @@ let &viminfofile=g:my_viminfofile
 exec "set undodir=".g:my_undodir.'//,.'
 exec "set backupdir=".g:my_backupdir.'//,.'
 exec "set directory=".g:my_swapfiles.'//,.'
-set expandtab tabstop=4 softtabstop=4 shiftwidth=4
+set expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set nofoldenable nojoinspaces formatoptions+=j
-set backspace=2
+set backspace=indent,eol,start "more freedom over backspacing in insert mode"
 set visualbell display=lastline virtualedit=block
-set autoread hidden 
-set nowrap nowrapscan
+set autoread "auto-read file changes outside of vim"
+set hidden "hide buffers on leave, allow leaving changed buffers"
+set wrap nowrapscan
 set whichwrap=b,s,<,>,[,] "more freedom to move between lines in normal mode"
 set suffixes+=.pyc
 set tags=./tags;/

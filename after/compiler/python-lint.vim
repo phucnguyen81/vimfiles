@@ -1,4 +1,4 @@
-" Check pylama first since it delegates to other linters
+" Check pylama first since it can delegate to other linters
 if executable('pylama')
     CompilerSet errorformat=%f:%l:%c:%m
     if empty($PYLAMA_OPTIONS)
@@ -11,10 +11,5 @@ endif
 
 " For pylintrc configs, check out:
 " http://pylint.pycqa.org/en/latest/user_guide/run.html#command-line-options
-if executable('pylint')
-    CompilerSet errorformat=%f:%l:%c:%m,%f:%l:%m
-    CompilerSet makeprg=pylint\ --output-format=parseable\ %:S
-    finish
-endif
-
-throw 'No python linter executables found.'
+CompilerSet errorformat=%f:%l:%c:%m,%f:%l:%m
+CompilerSet makeprg=pylint\ --output-format=parseable\ %:S
