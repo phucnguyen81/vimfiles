@@ -12,8 +12,8 @@ endif
 " For pylintrc configs, check out:
 " http://pylint.pycqa.org/en/latest/user_guide/run.html#command-line-options
 if executable('pylint')
-    CompilerSet errorformat=%f:%l:%c:%m
-    CompilerSet makeprg=pylint\ %:S
+    CompilerSet errorformat=%f:%l:%c:%m,%f:%l:%m
+    CompilerSet makeprg=pylint\ --output-format=parseable\ %:S
     finish
 endif
 

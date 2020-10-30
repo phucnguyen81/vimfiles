@@ -30,9 +30,19 @@ func! my#grep#grep(params) abort
     redraw
     let params = s:defaultparams()
     call extend(params, a:params, 'force')
-    exec 'lcd '.fnameescape(params.dir)
-    call s:grep_func(params)
-    redraw!
+
+    let save_dir = getcwd()
+    let save_grepprg = &grepprg 
+    let save_grepformat = &grepformat
+    try
+        exec 'lcd '.fnameescape(params.dir)
+        call s:grep_func(params)
+        redraw!
+    finally
+        let &l:grepprg = save_grepprg
+        let &l:grepformat = save_grepformat
+        exec 'lcd '.fnameescape(save_dir)
+    endtry
 endfunc
 
 if executable('rg')
