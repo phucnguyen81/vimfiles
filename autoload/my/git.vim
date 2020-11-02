@@ -15,8 +15,12 @@ func! my#git#sync() abort
     if input('Sync '.project_dir.'? (y/n) ') !=? 'y'
         return
     endif
+    let message = input('Message: ')
+    if empty(message)
+        return
+    endif
     make add . | redraw
-    make commit --message=Sync | redraw
+    exec 'make commit --message '.shellescape(message) | redraw
 
     " Merges with upstream changes
     if !empty(system('git remote'))

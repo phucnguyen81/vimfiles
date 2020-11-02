@@ -79,10 +79,10 @@ endif
 
 let g:my_notes_dir = $MY_NOTES
 if !isdirectory(g:my_notes_dir)
-    let  g:my_notes_dir = $MY_NOTES
+    let g:my_notes_dir = $MY_NOTES
 endif
 if !isdirectory(g:my_notes_dir)
-    let g:my_notes_dir = finddir('notes', expand('~'))
+    let g:my_notes_dir = expand('~/notes')
 endif
 if !isdirectory(g:my_notes_dir)
     let g:my_notes_dir = expand(g:my_basedir.'/notes')

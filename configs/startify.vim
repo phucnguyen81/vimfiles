@@ -14,6 +14,7 @@ let g:startify_lists = [
 
 let g:startify_commands = [
   \ {'<C-d>': [' Doing', 'Doing']},
+  \ {'<C-n>': [' Notes', 'Notes']},
   \ {'<C-a>': [' Arglist', 'Args']},
   \ {'<C-s>': [' Sessions', 'Sessions']},
   \ ]

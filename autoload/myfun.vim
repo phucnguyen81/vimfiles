@@ -579,7 +579,7 @@ func! myfun#create_tags(absolute_path) abort
         \ ]
         let cmd = cmd.' --exclude='.name
     endfor
-    let cmd = cmd.' .'
+    " let cmd = cmd.' .'
 
     let save_dir = getcwd()
     try
