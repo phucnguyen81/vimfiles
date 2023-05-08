@@ -2,6 +2,7 @@
 let g:my_vimrc_file = expand('<sfile>:p')
 let g:my_vim_dir = fnamemodify(g:my_vimrc_file, ':h')
 let g:my_plug_dir = expand(g:my_vim_dir.'/plugged')
+let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
 if !isdirectory(g:my_undodir)
     call mkdir(g:my_undodir, 'p')
@@ -163,5 +164,10 @@ Plug 'ghifarit53/tokyonight-vim'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 call plug#end()
+
+" Install plugins if they are not available
+if exists('g:my_plug_init') && g:my_plug_init
+    :PlugInstall
+endif
 " }}
 " vim:fdm=marker:fmr={{,}}:et:ts=4:sts=4:sw=4

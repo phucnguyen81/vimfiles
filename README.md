@@ -1,4 +1,10 @@
+# Description
+
+My vim configs on both Windows and Linux.
+
 # Installation
 
-- Launch vim and run `:PlugInstall` to install plugins
-- Restart vim to apply plugins
+- Install fzf for fuzzy finder
+- Install node.js for language server
+- Install optional commands: rg (ripgrep), fd (fd-find)
+- Launch vim, plugins should be installed automatically, if not run `:PlugInstall`
