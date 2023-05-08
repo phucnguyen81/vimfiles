@@ -1,0 +1,14 @@
+_netrc
+_netrwhist
+_viminfo
+.gitconfig
+.netrwhist
+.viminfo
+*.code-workspace
+/fzf-history/
+/lazygit/
+/plugged/
+/session/
+/sessions/
+/undodir/
+vifminfo.json
