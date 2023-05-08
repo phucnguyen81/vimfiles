@@ -27,7 +27,7 @@ func! myfun#set_local_indent(width) abort
     setlocal expandtab
     setlocal smarttab
     setlocal shiftround
-    setlocal autoindent
+    setlocal smartindent
 endfunc
 
 " Count occurences of given pattern starting at current line
@@ -117,11 +117,13 @@ func! myfun#list_file_names(ArgList, L, P)
 endfunc
 
 " Edit vimrc profile
-func! myfun#edit_my_vimrc()
+func! myfun#edit_my_vimrc() abort
     if exists('g:my_vimrc_file')
         exec 'edit '.fnameescape(g:my_vimrc_file)
-    else
+    elseif exists('$MYVIMRC')
         edit $MYVIMRC
+    else
+        throw 'Found no vimrc file.'
     endif
 endfunc
 
@@ -129,8 +131,10 @@ endfunc
 func! myfun#edit_my_gvimrc()
     if exists('g:my_gvimrc')
         exec 'edit '.fnameescape(g:my_gvimrc)
-    else
+    elseif exists('$MYGVIMRC')
         edit $MYGVIMRC
+    else
+        throw 'Found no gvimrc file.'
     endif
 endfunc
 
@@ -542,7 +546,7 @@ endfunc
 
 " Create tags file for files under current dir, recursively
 " (requires exuberant-ctags/universal-ctags)
-" Args: 
+" Args:
 "   absolute_path: whether to use absolute paths in the tag file
 func! myfun#create_tags(absolute_path) abort
     let dir = my#project#dir()
