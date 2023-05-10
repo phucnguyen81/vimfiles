@@ -10,10 +10,10 @@ endif
 let g:my_coc_enabled = executable('node')
 if has('termguicolors')
     set termguicolors
-    let g:my_colorscheme = 'tokyonight'
+    let g:my_colorscheme = 'everforest'
     let g:my_statuscolor = 'Tomorrow_Night_Blue'
 else
-    let g:my_colorscheme = 'gruvbox'
+    let g:my_colorscheme = 'gruvbox8'
     let g:my_statuscolor = 'Tomorrow_Night_Blue'
 endif
 " }}
@@ -81,9 +81,9 @@ set fileencoding=utf-8 fileencodings=utf-8
 " Have to turn this off for vim-plug to work correctly with cmd.exe terminal.
 set noshellslash
 
-set list  "Show some hidden chars in listchars
+set list  " show some hidden chars in listchars
 set number relativenumber  "Line numbers
-set cursorline  "highlight current line
+set cursorline  " highlight current line
 set incsearch nohlsearch ignorecase smartcase
 set scrolloff=8
 set laststatus=2 showtabline=2
@@ -102,38 +102,46 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-projectionist'  " project configurations
-Plug 'tpope/vim-dispatch'  " run compiler plugin asynchronously
-Plug 'godlygeek/tabular'  " align texts with Tabularize command
-Plug 'junegunn/vim-easy-align'  " align texts with command :EasyAlign
 Plug 'jszakmeister/vim-togglecursor'
-Plug 'chrisbra/NrrwRgn'  " call :NR to focus on a selected region
 Plug 'christoomey/vim-system-copy'  " use `cp` operator for copy, `cv` operator for paste
 Plug 'wesQ3/vim-windowswap'  " swap window buffers
 Plug 'tmhedberg/matchit'
-Plug 'junegunn/goyo.vim'  " focus zen mode
-Plug 'junegunn/limelight.vim'  " focus paragraph
-Plug 'easymotion/vim-easymotion'  " enhance movements
 Plug 'mbbill/undotree'  " shows undo history as tree structure
 Plug 'skywind3000/vim-preview'  " improve preview file
 Plug 'tyru/open-browser.vim'  " launch browsers
-Plug 'wellle/targets.vim'  " text objects: file, line, function, arguments,...
 Plug 'stefandtw/quickfix-reflector.vim'  " reflect quickfix changes in files
+
+" Plain texts
+Plug 'easymotion/vim-easymotion'  " enhance movements
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rsi'
+Plug 'chrisbra/NrrwRgn'  " call :NR to focus on a selected region
+Plug 'tommcdo/vim-exchange'
+Plug 'wellle/targets.vim'  " text objects: file, line, function, arguments,...
+Plug 'bounceme/poppy.vim'  " highlight matching parentheses
+Plug 'godlygeek/tabular'  " align texts with Tabularize command
+Plug 'junegunn/vim-easy-align'  " align texts with command :EasyAlign
+Plug 'junegunn/goyo.vim'  " focus zen mode
+Plug 'junegunn/limelight.vim'  " focus paragraph
 
 " Search tools
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'  " fzf-vim integration
 Plug 'mhinz/vim-grepper'  " use multiple grep tools
+Plug 'tpope/vim-dispatch'  " run compiler plugin asynchronously
 
 " Programming
 Plug 'scrooloose/nerdtree'  " file explorer
+Plug 'mcchrish/nnn.vim'  " integrate with nnn file manager
+Plug 'qpkorr/vim-renamer'  " batch file renamer
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'  " git integration
+Plug 'whiteinge/diffconflicts'  " merge git conflicts
 Plug 'airblade/vim-gitgutter'  " git status on gutter
 Plug 'junegunn/gv.vim'  " git graph view
 Plug 'editorconfig/editorconfig-vim'
@@ -146,6 +154,7 @@ Plug 'itchyny/lightline.vim'  " configurable status line
 Plug 'mtth/scratch.vim'  " open scratch buffers with `gs`
 Plug 'preservim/tagbar'  " show outline using universal ctags
 Plug 'dense-analysis/ale'  " linters
+Plug 'ap/vim-css-color'  " live preview css colors
 " Language server LSP
 if exists('g:my_coc_enabled') && g:my_coc_enabled
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -159,10 +168,10 @@ Plug 'PProvost/vim-ps1'
 Plug 'leafgarland/typescript-vim'
 
 " Colorschemes
-Plug 'joshdick/onedark.vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'morhetz/gruvbox'
+Plug 'sainnhe/everforest'  " green-based color scheme
 Plug 'junegunn/seoul256.vim'
+Plug 'lifepillar/vim-gruvbox8'  " a better gruvbox
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " Install plugins if they are not available
