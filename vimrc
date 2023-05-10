@@ -29,14 +29,13 @@ if exists('g:my_undodir') && isdirectory(g:my_undodir)
 endif
 set expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set nofoldenable nojoinspaces formatoptions+=j
-set backspace=indent,eol,start  "more freedom over backspacing in insert mode
+set backspace=indent,eol,start  " More freedom over backspacing in insert mode
 set visualbell display=lastline virtualedit=block
-set autoread  "auto-read file changes outside of vim
-set hidden  "hide buffers on leave, allow leaving changed buffers
+set autoread  " Auto-read file changes outside of vim
+set hidden  " Hide buffers on leave, allow leaving changed buffers
 set nowrap nowrapscan
 set nolinebreak   "do not wrap long lines at a character in 'breakat'
 set whichwrap=b,s,<,>,[,]  "more freedom to move between lines in normal mode
-set suffixes+=.pyc
 set tags=./tags;/
 set tags+=./tags2;/
 set tags+=./tags3;/
@@ -45,22 +44,23 @@ set tags+=./tags5;/
 if exists('&previewpopup')
     set previewpopup=height:15,width:80
 endif
+set suffixes+=.pyc  " De-prioritize some file extensions
+set path-=/usr/include  " Don't search for C header files
+set path+=.;  " Search upwards from current directory
+set completeopt=menu,preview  " How to complete in insert mode
+set complete-=kspell  " Don't complete from spell files
+set complete-=k  " Don't complete from dictionaries
 set wildmenu wildchar=<Tab>
-set path+=.;  "Look upwards from current directory to find files
-set wildignore+=*.class,**/classes/**  "Java, maven
-set wildignore+=.hg,.git,.svn  "Version Controls
-set wildignore+=*.aux,*.out,*.toc  "Latex Indermediate files
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest  "Compiled Object files
-set wildignore+=*.spl  "Compiled splelling world list
-set wildignore+=*.sw?  "Vim swap files
-set wildignore+=*.DS_Store  "OSX stuff
-set wildignore+=*.luac  "Lua byte code
-set wildignore+=*.pyc,*/__pycache__/*  "Python Object codes
-set wildignore+=*.orig,*.rej  "Merge resolution files
-" set completeopt=menuone,longest,preview
-set completeopt=menu,preview  "Use vim default completeopt
-set complete-=kspell
-set complete-=k
+set wildignore+=*.class,**/classes/**  " Java, maven
+set wildignore+=.hg,.git,.svn  " Version Controls
+set wildignore+=*.aux,*.out,*.toc  " Latex Indermediate files
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest  " Compiled Object files
+set wildignore+=*.spl  " Compiled splelling world list
+set wildignore+=*.sw?  " Vim swap files
+set wildignore+=*.DS_Store  " OSX stuff
+set wildignore+=*.luac  " Lua byte code
+set wildignore+=*.pyc,*/__pycache__/*  " Python Object codes
+set wildignore+=*.orig,*.rej  " Merge resolution files
 set noshowmode
 set shortmess+=I shortmess+=c shortmess+=t
 set signcolumn=auto  "Show sign column if there is a sign to display
