@@ -12,6 +12,9 @@ endif
 nnoremap <silent> <C-p> :<C-u>GFiles<CR>
 nnoremap <silent> <Leader>ff :<C-u>FZF<CR>
 
+" Fuzzy search both paths and contents
+nnoremap <silent> <Leader>fg :<C-u>Rg<CR>
+
 " Find recent files and buffers
 nnoremap <Leader>fh :<C-u>History<CR>
 
