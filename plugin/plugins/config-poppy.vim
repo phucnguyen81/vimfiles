@@ -1,1 +1,0 @@
-autocmd! cursormoved * call PoppyInit()
