@@ -2,6 +2,9 @@
 " fzf: https://github.com/junegunn/fzf.git
 " fzf-vim: https://github.com/junegunn/fzf.vim.git
 
+" Prefix to the commands, e.g. prefix='Fzf' -> command='FzfBuffers'
+let g:fzf_command_prefix = ''
+
 if executable("fd")
     let $FZF_DEFAULT_COMMAND="fd --type f"
 elseif executable("rg")
