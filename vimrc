@@ -83,7 +83,7 @@ set noshellslash
 
 set list  " show some hidden chars in listchars
 set number relativenumber  "Line numbers
-set cursorline  " highlight current line
+set nocursorline  " don't highlight current line
 set incsearch nohlsearch ignorecase smartcase
 set scrolloff=8
 set laststatus=2 showtabline=2
