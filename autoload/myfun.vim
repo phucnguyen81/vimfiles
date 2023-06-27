@@ -32,17 +32,17 @@ func! myfun#project_dir() abort
         return fnamemodify(b:git_dir, ':h')
     endif
 
-    " search for the closest directory that contains marker files
-    let root = s:find_project_dir()
-    if !empty(root)
-        return root
-    endif
-
     " netrw visible directory
     if (&filetype ==? 'netrw')
         \ && exists('b:netrw_curdir')
         \ && isdirectory(b:netrw_curdir)
         return expand(b:netrw_curdir)
+    endif
+
+    " search for a project directory
+    let project_dir = s:find_project_dir()
+    if !empty(project_dir)
+        return project_dir
     endif
 
     " fall back to current working directory
