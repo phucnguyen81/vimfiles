@@ -8,9 +8,15 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
-    \ {'<C-o>': [' Open', 'browse edit']},
-    \ {'<C-n>': [' New', 'enew']},
-    \ {'<C-e>': [' Explorer', 'Explore']}
+    \ {'e': [' Explorer', 'NERDTree']},
+    \ {'n': [' New', 'enew']},
+    \ {'o': [' Open', 'browse edit']},
+    \ {'s': [' Sessions', 'Sessions']},
+    \ {'h': [' Recent files', 'History']},
+    \ {'t': [' Todos', 'Todo']},
+    \ {'N': [' Notes', 'Note']},
+    \ {'b': [' Bookmarks', 'Bookmarks']},
+    \ {'q': [' Quit', 'qa']},
   \ ]
 
 let g:startify_disable_at_vimenter = 0
