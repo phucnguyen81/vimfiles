@@ -24,21 +24,25 @@ let g:startify_files_number = 7
 let g:startify_session_number = 3
 let g:startify_session_sort = 1
 let g:startify_session_autoload = 0
-let g:startify_session_persistence = 1
+let g:startify_session_persistence = 0
+if exists('g:my_session_dir')
+    let g:startify_session_dir = g:my_session_dir
+    command! -nargs=0 Sessions exec 'edit '.fnameescape(g:startify_session_dir)
+endif
 
 nnoremap <Leader><Leader> :Startify<CR>
 nnoremap <Leader>st :Startify<CR>
+nnoremap <Leader>ss :SSave!<CR>
 
 " Save session before exit
 augroup my_save_session
     autocmd!
     autocmd VimLeave * call <SID>SaveSession()
 augroup end
-
-" Save a session using basename of current working directory
+" Save latest session
 function! s:SaveSession() abort
     if exists(':SSave') ==# 2
-        let dirname = fnamemodify(getcwd(), ':t')
-        exec 'SSave! '.dirname
+        SSave! default
     endif
 endfunction
+

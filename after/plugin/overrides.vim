@@ -1,4 +1,4 @@
-" Override settings that were set in some plugins
+"""Override settings that were set in some plugins """
 
 " Override vim-sensible
 set scrolloff=8

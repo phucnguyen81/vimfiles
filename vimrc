@@ -1,6 +1,7 @@
 " My options {{
 let g:my_vimrc_file = expand('<sfile>:p')
 let g:my_vim_dir = fnamemodify(g:my_vimrc_file, ':h')
+let g:my_session_dir = expand(g:my_vim_dir.'/session')
 let g:my_plug_dir = expand(g:my_vim_dir.'/plugged')
 let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
@@ -36,11 +37,6 @@ set hidden  " Hide buffers on leave, allow leaving changed buffers
 set nowrap nowrapscan
 set nolinebreak   "do not wrap long lines at a character in 'breakat'
 set whichwrap=b,s,<,>,[,]  "more freedom to move between lines in normal mode
-set tags=./tags;/
-set tags+=./tags2;/
-set tags+=./tags3;/
-set tags+=./tags4;/
-set tags+=./tags5;/
 if exists('&previewpopup')
     set previewpopup=height:15,width:80
 endif
@@ -153,7 +149,6 @@ Plug 'skywind3000/asyncrun.vim'  " run commands asynchronously
 Plug 'jpalardy/vim-slime'  " send texts from vim to a REPL
 Plug 'itchyny/lightline.vim'  " configurable status line
 Plug 'mtth/scratch.vim'  " open scratch buffers with `gs`
-Plug 'preservim/tagbar'  " show outline using universal ctags
 Plug 'dense-analysis/ale'  " linters
 Plug 'ap/vim-css-color'  " live preview css colors
 " Language server LSP

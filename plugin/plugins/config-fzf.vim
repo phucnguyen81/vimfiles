@@ -8,12 +8,18 @@ elseif executable("rg")
     let $FZF_DEFAULT_COMMAND="rg --files"
 endif
 
-" Fuzzy-find files in working directory
-nnoremap <silent> <C-p> :<C-u>GFiles<CR>
+func! s:find_project_files() abort
+    let project_dir = my#project#dir()
+    exec 'Files '.fnameescape(project_dir)
+endfunc
+" Fuzzy-find files in project directory
+nnoremap <silent> <C-p> :<C-u>call <SID>find_project_files()<CR>
+
+" Fuzzy-find files in current directory
 nnoremap <silent> <Leader>ff :<C-u>FZF<CR>
 
-" Fuzzy search both paths and contents
-nnoremap <silent> <Leader>fg :<C-u>Rg<CR>
+" Fuzzy search git files
+nnoremap <silent> <Leader>fg :<C-u>GFiles<CR>
 
 " Find recent files and buffers
 nnoremap <Leader>fh :<C-u>History<CR>

@@ -6,5 +6,4 @@ My vim configs on Windows and Linux.
 
 - Install node.js for language servers
 - Install helper commands: fzf, rg (ripgrep), fd (fd-find)
-- Install plugins: `vim -c PlugInstall -c qa`
-- Launch vim, plugins should already be installed
+- Install plugins: `vim -c PlugInstall -c qa`, relaunch vim

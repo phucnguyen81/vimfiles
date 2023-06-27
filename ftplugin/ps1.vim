@@ -1,3 +1,4 @@
+setlocal colorcolumn=80
 setlocal suffixesadd+=.ps1
 
 setlocal keywordprg=:Dispatch\ powershell\ -Command\ Get-Help\ -Full
