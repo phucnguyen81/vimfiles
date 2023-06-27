@@ -19,6 +19,11 @@ if exists('g:my_todosdir')
     command! -nargs=0 Todo exec 'edit '.fnameescape(g:my_todosdir)
 endif
 
+" Bookmarks
+if exists('g:my_bookmarks')
+    command! -nargs=0 Bookmarks exec 'edit '.fnameescape(g:my_bookmarks)
+endif
+
 command! -nargs=0 Paste call myfun#paste()
 
 " Search documentation for current filetype

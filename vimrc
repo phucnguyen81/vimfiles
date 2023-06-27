@@ -18,6 +18,9 @@ else
     let g:my_notesdir = expand(g:my_vim_dir.'/notes')
     call mkdir(g:my_notesdir, 'p')
 endif
+if !empty($MY_BOOKMARKS) && filereadable($MY_BOOKMARKS)
+    let g:my_bookmarks = expand($MY_BOOKMARKS)
+endif
 if !empty(&pythonthreedll) && filereadable(expand(g:my_vim_dir.'/pythonthreehome/'.&pythonthreedll))
     let &pythonthreehome = expand(g:my_vim_dir.'/pythonthreehome')
     let &pythonthreedll = expand(&pythonthreehome.'/'.&pythonthreedll)
