@@ -123,6 +123,8 @@ Plug 'tpope/vim-rsi'
 Plug 'chrisbra/NrrwRgn'  " call :NR to focus on a selected region
 Plug 'tommcdo/vim-exchange'
 Plug 'wellle/targets.vim'  " text objects: file, line, function, arguments,...
+Plug 'kana/vim-textobj-user'  " text object common for kana plugins
+Plug 'kana/vim-textobj-entire'  " text object entire buffer
 Plug 'godlygeek/tabular'  " align texts with Tabularize command
 Plug 'junegunn/vim-easy-align'  " align texts with command :EasyAlign
 Plug 'junegunn/goyo.vim'  " focus zen mode
