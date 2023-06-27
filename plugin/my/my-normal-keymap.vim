@@ -45,6 +45,9 @@ nnoremap <silent><Leader>cw :call <SID>CloseWindowAtWincmd('w')<CR>
 nnoremap <silent><Leader>cW :call <SID>CloseWindowAtWincmd('W')<CR>
 " move to window at clockwise direction
 nnoremap <silent><C-n> :wincmd w<CR>
+nnoremap <silent><Leader>ww :wincmd w<CR>
+" move to window at counter-clockwise direction
+nnoremap <silent><C-p> :wincmd W<CR>
 " move to top left window
 nnoremap <silent><Leader>wt :wincmd t<CR>
 " move to bottom right window
@@ -141,12 +144,11 @@ nnoremap Y y$
 " Default Q is for Ex mode, not useful, changed to calling macro q
 nnoremap Q @qzz
 
-"""""""""""""" Mappings for capical letters """"""""""""""""""""
-"G is for Git status
+" Git status
 nnoremap <Leader>G :Git<CR>
 
-" O is for openning a file
+" Open a file
 nnoremap <Leader>O :browse edit<CR>
 
-" W is for write
+" Write buffer
 nnoremap <Leader>W :write<CR>
