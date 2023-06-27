@@ -16,8 +16,11 @@ let g:NERDTreeAutoDeleteBuffer = 1
 " Don't show the help stuff
 let g:NERDTreeMinimalUI = 1
 
+" Default size is 31
+let g:NERDTreeWinSize = 40
+
 " Ignore file patterns
-let g:NERDTreeIgnore = ['\.pyc$', '\~$', '__pycache']
+let g:NERDTreeIgnore = ['\.pyc$', '\~$', '__pycache', 'NTUSER.DAT']
 
 " Toggle nerd tree panel
 nnoremap <Leader>nt :NERDTree<CR>

@@ -18,3 +18,5 @@ let g:netrw_liststyle = 0
 let g:netrw_preview = 0
 let g:netrw_alto = 0
 let g:netrw_altv = 0
+" netrw_gx defines url pattern, doing `gx` opens the url
+let g:netrw_gx = "<cWORD>"
