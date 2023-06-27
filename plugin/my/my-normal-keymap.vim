@@ -166,9 +166,7 @@ nnoremap Q @qzz
 
 " Git status
 nnoremap <Leader>G :Git<CR>
-
 " Open a file
 nnoremap <Leader>O :browse edit<CR>
-
 " Write buffer
 nnoremap <Leader>W :write<CR>

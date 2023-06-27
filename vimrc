@@ -5,9 +5,7 @@ let g:my_session_dir = expand(g:my_vim_dir.'/session')
 let g:my_plug_dir = expand(g:my_vim_dir.'/plugged')
 let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
-if !empty($MY_SHELL)
-    let g:my_shell = $MY_SHELL
-endif
+let g:my_shell = empty($MY_SHELL) ? &shell : $MY_SHELL
 if !empty($MY_TODOS) && isdirectory($MY_TODOS)
     let g:my_todosdir = expand($MY_TODOS)
 else
@@ -49,7 +47,7 @@ if exists('g:my_undodir') && isdirectory(g:my_undodir)
 endif
 set expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set nofoldenable nojoinspaces formatoptions+=j
-set backspace=indent,eol,start  " More freedom over backspacing in insert mode
+set backspace=indent,eol,start  " Don't ever stop my backspace
 set visualbell display=lastline virtualedit=block
 set autoread  " Auto-read file changes outside of vim
 set hidden  " Hide buffers on leave, allow leaving changed buffers
@@ -121,7 +119,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-projectionist'  " project configurations
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'christoomey/vim-system-copy'  " use `cp` operator for copy, `cv` operator for paste
 Plug 'wesQ3/vim-windowswap'  " swap window buffers

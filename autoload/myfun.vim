@@ -1,30 +1,26 @@
-let s:root_markers = ['.git', '.hg', '.svn', '.root', '.project']
+" File/directory names that indicate root of a project.
+let s:project_markers = ['.git', '.hg', '.svn', '.root', '.project']
 
-" Check for project root marker closest to current file
-func! s:find_root_dir() abort
-    " candidates are directories containing at least one marker file
-    let candidates = []
-    for name in s:root_markers
-        let rootdir = finddir(name, '.;')
-        if !empty(rootdir)
-            call add(candidates, fnamemodify(rootdir, ':p:h:h'))
-        endif
+" Find a project directory closest to current file.
+" A project directory contains one of the files/directories in project markers.
+func! s:find_project_dir() abort
+    let start_path = expand('%:p')
+    if empty(start_path)
+        return ''
+    endif
 
-        let rootfile = findfile(name, '.;')
-        if !empty(rootfile)
-            call add(candidates, fnamemodify(rootfile, ':p:h'))
-        endif
-    endfor
+    let parent_dir = start_path
+    while parent_dir !=# fnamemodify(parent_dir, ':h')
+        let parent_dir = fnamemodify(parent_dir, ':h')
+        for name in s:project_markers
+            let project_marker = fnamemodify(parent_dir.'/'.name, ':p')
+            if isdirectory(project_marker) || filereadable(project_marker)
+                return parent_dir
+            endif
+        endfor
+    endwhile
 
-    " root is the longest path among candidate
-    let root = ''
-    for candidate in candidates
-        if len(candidate) > len(root)
-            let root = candidate
-        endif
-    endfor
-
-    return root
+    return ''
 endfunc
 
 " Return the project directory under current context
@@ -37,7 +33,7 @@ func! myfun#project_dir() abort
     endif
 
     " search for the closest directory that contains marker files
-    let root = s:find_root_dir()
+    let root = s:find_project_dir()
     if !empty(root)
         return root
     endif
