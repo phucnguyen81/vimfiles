@@ -1,5 +1,5 @@
 " Jump to older buffer in jumplist
-nnoremap <BS> :call my#jumplist#jumpout()<CR>
+nnoremap <BS> :call myfun#jump_out()<CR>
 
 " Jump to newer buffer in jumplist
-nnoremap <C-BS> :call my#jumplist#jumpin()<CR>
+nnoremap <C-BS> :call myfun#jump_in()<CR>
