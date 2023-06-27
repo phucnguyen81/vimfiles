@@ -94,7 +94,7 @@ nnoremap <silent><Leader>w> :20wincmd ><CR>
 nnoremap <silent><Leader>w- :10wincmd -<CR>
 nnoremap <silent><Leader>w+ :10wincmd +<CR>
 " Open left-explore as sidebar
-nnoremap <silent> <Leader>le :<C-u>exec 'Lexplore '.fnameescape(g:my#project#dir())<CR>
+nnoremap <silent> <Leader>le :<C-u>exec 'Lexplore '.fnameescape(g:myfun#project_dir())<CR>
 " Edit another file
 nnoremap <Leader>ed :edit <C-R>=expand('%:h')<CR>
 " Save as another file
@@ -108,9 +108,9 @@ nnoremap <Leader>eg :call myfun#edit_my_gvimrc()<CR>
 " Show current context info
 nnoremap <Leader>if :call myfun#show_context_info()<CR>
 " Change working directory for global/tab-local/buffer scope
-nnoremap <Leader>cd :cd <C-r>=fnameescape(my#project#dir())<CR>
-nnoremap <Leader>td :tcd <C-r>=fnameescape(my#project#dir())<CR>
-nnoremap <Leader>ld :lcd <C-r>=fnameescape(my#project#dir())<CR>
+nnoremap <Leader>cd :cd <C-r>=fnameescape(myfun#project_dir())<CR>
+nnoremap <Leader>td :tcd <C-r>=fnameescape(myfun#project_dir())<CR>
+nnoremap <Leader>ld :lcd <C-r>=fnameescape(myfun#project_dir())<CR>
 " Replace/substitute current whole word, case-sensitive
 nnoremap <Leader>sw :.,$s/\V\C\<<C-r>=escape(expand("<cword>"),'/\')<CR>\>//gc<left><left><left>
 nnoremap <Leader>sW :.,$s/\V\C\<<C-r>=escape(expand("<cWORD>"),'/\')<CR>\>//gc<left><left><left>

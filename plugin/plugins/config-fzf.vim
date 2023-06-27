@@ -9,7 +9,7 @@ elseif executable("rg")
 endif
 
 func! s:find_project_files() abort
-    let project_dir = my#project#dir()
+    let project_dir = myfun#project_dir()
     exec 'Files '.fnameescape(project_dir)
 endfunc
 " Fuzzy-find files in project directory
