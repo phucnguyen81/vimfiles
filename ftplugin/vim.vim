@@ -6,9 +6,6 @@ setlocal suffixesadd+=.vim
 " Source current vim file
 nnoremap <buffer> <Leader>so :source %<CR>
 
-" Use lookup function from 'mhinz/vim-lookup'
-let b:my_goto_definition_command = 'call lookup#lookup()'
-
 " TODO have to set a global variable here since the indent/vim.vim settings
 " use this variable for indenting its comments, should find a better way
 let g:vim_indent_cont = 4

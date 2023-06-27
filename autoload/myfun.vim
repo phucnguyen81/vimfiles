@@ -1,26 +1,6 @@
-" Run a list of shell commands in the terminal
-func! myfun#run_terminal_commands(commands) abort
-    " Open a terminal over current buffer
-    let buf = term_start(&shell, {
-        \ 'curwin': 1,
-        \ 'term_finish': 'close',
-        \ })
-
-    " Close buffer on terminal exit
-    if exists('*term_setkill')
-        call term_setkill(buf, 'term')
-    endif
-
-    " Send each command into the terminal
-    for cmd in commands
-        call term_sendkeys(buf, cmd)
-        call term_sendkeys(buf, "\<CR>")
-    endfor
-endfunc
-
-" Set common local options for identation of width.
-" Here width is the number of spaces for a tab.
 func! myfun#set_local_indent(width) abort
+    " Set common local options for identation of width.
+    " Here width is the number of spaces for a tab.
     exec "setlocal tabstop=".a:width
     exec "setlocal softtabstop=".a:width
     exec "setlocal shiftwidth=".a:width
@@ -55,31 +35,7 @@ func! myfun#clear_screen()
     endif
 endfunc
 
-" Split based on window width and height ratio
-func! myfun#split_window()
-    let ratio = winwidth('%') / winheight('%')
-    if ratio > 2
-        vsplit
-    else
-        split
-    endif
-endfunc
-
-" Try to maximize the vim GUI screen
-func! myfun#maximize_screen()
-    if has('win32')
-        simalt ~x
-    elseif executable('wmctrl')
-        call system("wmctrl -ir ".v:windowid." -b add,maximized_vert,maximized_horz")
-        redraw!
-    elseif exists(':Fullscreen')
-        execute ':Fullscreen'
-    else
-        echomsg 'Failed to maximize window'
-    endif
-endfunc
-
-" Close window after moving to the alternate window
+" Close window then move to the alternate window
 func! myfun#close_window()
     let alt_win = win_getid(winnr('#'))
     close!
@@ -179,8 +135,7 @@ func! myfun#make_dir() abort
     endif
 endfunc
 
-" Read a file into current buffer.
-" Return the lines read.
+" Read a file into current buffer as a list of lines.
 func! myfun#read_file(fname) abort
     if filereadable(a:fname)
         let save_cursor = getcurpos()
@@ -385,99 +340,6 @@ func! myfun#current_file() abort
     return fnamemodify(files[0], ':p')
 endfunc
 
-" Return current path (file or directory) most relevant under current context
-" TODO get path of current file under netrw
-func! myfun#current_path()
-    let path = ''
-    if (&filetype ==? 'netrw') && exists('b:netrw_curdir')
-        let path = b:netrw_curdir
-    endif
-    if empty(path)
-        let path = expand('%:p')
-    endif
-    if empty(path)
-        let path = my#project#dir()
-    endif
-    return path
-endfunc
-
-func! myfun#open_current_path()
-    call myfun#open(myfun#current_path())
-    redraw!
-endfunc
-
-" Yank context path
-func! myfun#yank_path() abort
-    let path = myfun#current_path()
-    call setreg('', path)
-    call setreg('+', path)
-endfunc
-
-func! myfun#open(path)
-    let path = shellescape(a:path)
-
-    if executable('xdg-open')
-        return system('xdg-open '.path)
-    endif
-
-    if executable('open')
-        return system('open '.path)
-    endif
-
-    if executable('pwsh')
-        let cmd = join([
-            \ 'pwsh',
-            \ '-NoProfile',
-            \ '-NoLogo',
-            \ '-NonInteractive',
-            \ '-Command Start-Process '.path,
-            \ ])
-        return system(cmd)
-    endif
-
-    if executable('powershell')
-        let cmd = join([
-            \ 'powershell',
-            \ '-NoProfile',
-            \ '-NoLogo',
-            \ '-NonInteractive',
-            \ '-Command Start-Process '.path,
-            \ ])
-        return system(cmd)
-    endif
-
-    throw 'Found no executables to open '.path
-endfunc
-
-" Let user select a file from system browser.
-" Return the selected file.
-func! myfun#select_file() abort
-    " Browse only, not save file, title is the file path
-    return browse(0,
-        \ 'Select file',
-        \ my#project#dir(),
-        \ expand('%:p:t'))
-endfunc
-
-" Let user select a directory from system browser.
-" Return the selected directory.
-func! myfun#select_dir()
-    return browsedir('Select dir', my#project#dir())
-endfunc
-
-func! myfun#get_visual_selection() abort
-    " NOTE: to check visual mode is active, do mode() == 'v'
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-    if len(lines) == 0
-        return ''
-    endif
-    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-    let lines[0] = lines[0][column_start - 1:]
-    return join(lines, "\n")
-endfun
-
 " Paste from clipboard
 func! myfun#paste()
     if has('clipboard')
@@ -544,7 +406,7 @@ func! myfun#input(prompt, ...)
     return l:result
 endfunc
 
-" Create tags file for files under current dir, recursively
+" Create tags file for files under current project dir, recursively
 " (requires exuberant-ctags/universal-ctags)
 " Args:
 "   absolute_path: whether to use absolute paths in the tag file
@@ -594,19 +456,5 @@ func! myfun#search_doc(...) abort
         call call(b:my_search_doc_function, [search_terms])
     else
         call openbrowser#search(&filetype.' '.search_terms)
-    endif
-endfunc
-
-" Source:
-" https://damien.pobel.fr/post/configure-neovim-vim-gf-javascript-import/
-" ...)
-func! myfun#node_modules_include(fname) abort
-    let nodeModules = "./node_modules/"
-    let packageJsonPath = nodeModules . a:fname . "/package.json"
-
-    if filereadable(packageJsonPath)
-        return nodeModules . a:fname . "/" . json_decode(join(readfile(packageJsonPath))).main
-    else
-        return nodeModules . a:fname
     endif
 endfunc

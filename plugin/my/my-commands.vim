@@ -4,6 +4,18 @@ command! -nargs=0 Edit exec 'edit '.fnameescape(tempname())
 command! -nargs=0 New exec 'new '.fnameescape(tempname())
 command! -nargs=0 Vnew exec 'vnew '.fnameescape(tempname())
 
+" Notes
+if exists('g:my_notesdir')
+    command! -nargs=0 Note exec 'edit '.fnameescape(g:my_notesdir)
+endif
+
+" Todos
+if exists('g:my_todosdir')
+    command! -nargs=0 Todo exec 'edit '.fnameescape(g:my_todosdir)
+endif
+
+command! -nargs=0 Paste call myfun#paste()
+
 " Search documentation for current filetype
 command! -nargs=* K call myfun#search_doc(<f-args>)
 
@@ -53,9 +65,6 @@ command! RemoveCR %substitute/\r//
 
 " Toggle between light and dark background
 command! Bg :let &background = (&background=="light"?"dark":"light")
-
-" Maximize screen
-command! Maximize call myfun#maximize_screen()
 
 " Toggle spell-check
 command! Spell :set spell!

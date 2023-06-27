@@ -5,6 +5,18 @@ let g:my_session_dir = expand(g:my_vim_dir.'/session')
 let g:my_plug_dir = expand(g:my_vim_dir.'/plugged')
 let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
+if !empty($MY_TODOS) && isdirectory($MY_TODOS)
+    let g:my_todosdir = expand($MY_TODOS)
+else
+    let g:my_todosdir = expand(g:my_vim_dir.'/todos')
+    call mkdir(g:my_todosdir, 'p')
+endif
+if !empty($MY_NOTES) && isdirectory($MY_NOTES)
+    let g:my_notesdir = expand($MY_NOTES)
+else
+    let g:my_notesdir = expand(g:my_vim_dir.'/notes')
+    call mkdir(g:my_notesdir, 'p')
+endif
 if !isdirectory(g:my_undodir)
     call mkdir(g:my_undodir, 'p')
 endif
@@ -162,6 +174,7 @@ Plug 'tmhedberg/SimpylFold'  " python code folding
 Plug 'kevinoid/vim-jsonc'
 Plug 'PProvost/vim-ps1'
 Plug 'leafgarland/typescript-vim'
+Plug 'Scuilion/markdown-drawer'
 
 " Colorschemes
 Plug 'sainnhe/everforest'  " green-based color scheme

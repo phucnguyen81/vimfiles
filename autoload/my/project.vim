@@ -29,13 +29,6 @@ endfunc
 
 " Return the project directory under current context
 func! my#project#dir() abort
-    " netrw visible directory
-    if (&filetype ==? 'netrw')
-        \ && exists('b:netrw_curdir')
-        \ && isdirectory(b:netrw_curdir)
-        return expand(b:netrw_curdir)
-    endif
-
     " b:git_dir is from fugitive plugin
     if (&filetype ==? 'fugitive')
         \ && exists('b:git_dir')
@@ -43,6 +36,19 @@ func! my#project#dir() abort
         return fnamemodify(b:git_dir, ':h')
     endif
 
+    " search for the closest directory that contains marker files
     let root = s:find_root_dir()
-    return empty(root) ? getcwd() : root
+    if !empty(root)
+        return root
+    endif
+
+    " netrw visible directory
+    if (&filetype ==? 'netrw')
+        \ && exists('b:netrw_curdir')
+        \ && isdirectory(b:netrw_curdir)
+        return expand(b:netrw_curdir)
+    endif
+
+    " fall back to current working directory
+    return getcwd()
 endfunc
