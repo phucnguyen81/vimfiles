@@ -1,6 +1,6 @@
 " My options {{
 let g:my_vimrc_file = expand('<sfile>:p')
-let g:my_vim_dir = fnamemodify(g:my_vimrc_file, ':h')
+let g:my_vim_dir = expand(fnamemodify(g:my_vimrc_file, ':h'))
 let g:my_session_dir = expand(g:my_vim_dir.'/session')
 let g:my_plug_dir = expand(g:my_vim_dir.'/plugged')
 let g:my_plug_init = !isdirectory(g:my_plug_dir)
@@ -16,6 +16,15 @@ if !empty($MY_NOTES) && isdirectory($MY_NOTES)
 else
     let g:my_notesdir = expand(g:my_vim_dir.'/notes')
     call mkdir(g:my_notesdir, 'p')
+endif
+if !empty(&pythonthreedll) && filereadable(expand(g:my_vim_dir.'/pythonthreehome/'.&pythonthreedll))
+    let &pythonthreehome = expand(g:my_vim_dir.'/pythonthreehome')
+    let &pythonthreedll = expand(&pythonthreehome.'/'.&pythonthreedll)
+
+    if !empty($OPENAI_API_KEY)
+        " This is for gpt-vim plugin which does not work without python
+        let g:gpt_api_key = $OPENAI_API_KEY
+    endif
 endif
 if !isdirectory(g:my_undodir)
     call mkdir(g:my_undodir, 'p')
@@ -143,6 +152,11 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'  " fzf-vim integration
 Plug 'mhinz/vim-grepper'  " use multiple grep tools
 Plug 'tpope/vim-dispatch'  " run compiler plugin asynchronously
+
+" ChatGPT integration
+if exists('g:gpt_api_key')
+    Plug 'kamou/gpt-vim'
+endif
 
 " Programming
 Plug 'scrooloose/nerdtree'  " file explorer
