@@ -1,14 +1,5 @@
 {
-  "autoload/my/*.vim": {
-    "type": "fun",
-  },
-  "session/*": {
-    "type": "session",
-  },
   "plugin/my/*.vim": {
-    "type": "my",
-  },
-  "plugin/cfg/*.vim": {
-    "type": "config",
-  },
+    "type": "my"
+  }
 }

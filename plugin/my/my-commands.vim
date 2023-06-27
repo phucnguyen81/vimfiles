@@ -4,6 +4,11 @@ command! -nargs=0 Edit exec 'edit '.fnameescape(tempname())
 command! -nargs=0 New exec 'new '.fnameescape(tempname())
 command! -nargs=0 Vnew exec 'vnew '.fnameescape(tempname())
 
+if exists('g:my_shell')
+    command! -nargs=0 Term call term_start(g:my_shell)
+    command! -nargs=0 VTerm call term_start(g:my_shell, {'vertical':1})
+endif
+
 " Notes
 if exists('g:my_notesdir')
     command! -nargs=0 Note exec 'edit '.fnameescape(g:my_notesdir)

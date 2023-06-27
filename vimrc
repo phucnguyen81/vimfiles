@@ -5,6 +5,9 @@ let g:my_session_dir = expand(g:my_vim_dir.'/session')
 let g:my_plug_dir = expand(g:my_vim_dir.'/plugged')
 let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
+if !empty($MY_SHELL)
+    let g:my_shell = $MY_SHELL
+endif
 if !empty($MY_TODOS) && isdirectory($MY_TODOS)
     let g:my_todosdir = expand($MY_TODOS)
 else
@@ -20,11 +23,6 @@ endif
 if !empty(&pythonthreedll) && filereadable(expand(g:my_vim_dir.'/pythonthreehome/'.&pythonthreedll))
     let &pythonthreehome = expand(g:my_vim_dir.'/pythonthreehome')
     let &pythonthreedll = expand(&pythonthreehome.'/'.&pythonthreedll)
-
-    if !empty($OPENAI_API_KEY)
-        " This is for gpt-vim plugin which does not work without python
-        let g:gpt_api_key = $OPENAI_API_KEY
-    endif
 endif
 if !isdirectory(g:my_undodir)
     call mkdir(g:my_undodir, 'p')
@@ -153,11 +151,6 @@ Plug 'junegunn/fzf.vim'  " fzf-vim integration
 Plug 'mhinz/vim-grepper'  " use multiple grep tools
 Plug 'tpope/vim-dispatch'  " run compiler plugin asynchronously
 
-" ChatGPT integration
-if exists('g:gpt_api_key')
-    Plug 'kamou/gpt-vim'
-endif
-
 " Programming
 Plug 'scrooloose/nerdtree'  " file explorer
 Plug 'mcchrish/nnn.vim'  " integrate with nnn file manager
@@ -174,7 +167,6 @@ Plug 'thinca/vim-quickrun'  " run script files
 Plug 'skywind3000/asyncrun.vim'  " run commands asynchronously
 Plug 'jpalardy/vim-slime'  " send texts from vim to a REPL
 Plug 'itchyny/lightline.vim'  " configurable status line
-Plug 'mtth/scratch.vim'  " open scratch buffers with `gs`
 Plug 'dense-analysis/ale'  " linters
 Plug 'ap/vim-css-color'  " live preview css colors
 " Language server LSP

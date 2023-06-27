@@ -123,8 +123,28 @@ nnoremap <Leader>lG :lvimgrep /\V\c<C-r>=escape(expand('<cWORD>'), '/\')<CR>/ %<
 " Grep all files in current directory, populate quickfix list, case-sensitive
 nnoremap <Leader>vg :noautocmd vimgrep /\V\C<C-r>=escape(expand('<cword>'), '/\')<CR>/ *<Left><Left><Left>
 nnoremap <Leader>vG :noautocmd vimgrep /\V\C<C-r>=escape(expand('<cWORD>'), '/\')<CR>/ *<Left><Left><Left>
+
 " Go to the last cursor location saved in viminfo
 nnoremap <Leader>gl :normal! g`"<CR>
+" Go to the first column of current line
+nnoremap <silent> gh :normal! 0<CR>
+" Go to the last column of current line
+nnoremap <silent> gl :normal! $<CR>
+" Go to the first non-blank character of current line
+nnoremap <silent> gs :normal! _<CR>
+" Moves to the middle of the current physical line, i.e. the middle of
+" the first character and the last character.
+" Source: https://vim.fandom.com/wiki/A_better_gm_command
+function! s:BetterGm()
+    execute 'normal! ^'
+    let first_col = virtcol('.')
+    execute 'normal! g_'
+    let last_col  = virtcol('.')
+    execute 'normal! ' . (first_col + last_col) / 2 . '|'
+endfunction
+nnoremap <silent> gm :call <SID>BetterGm()<CR>
+onoremap <silent> gm :call <SID>BetterGm()<CR>
+
 " swap moving linewise with logical-linewise
 nnoremap <silent> j gj
 nnoremap <silent> k gk
