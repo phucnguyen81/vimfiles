@@ -8,12 +8,27 @@ elseif executable("rg")
     let $FZF_DEFAULT_COMMAND="rg --files"
 endif
 
+" Fuzzy-find files in project directory
 func! s:find_project_files() abort
     let project_dir = myfun#project_dir()
     exec 'Files '.fnameescape(project_dir)
 endfunc
-" Fuzzy-find files in project directory
 nnoremap <silent> <C-p> :<C-u>call <SID>find_project_files()<CR>
+
+" Fuzzy-find texts in project directory
+func! s:find_project_texts() abort
+    let project_dir = myfun#project_dir()
+
+    " Create a temporary buffer with local project directory
+    10new  " new buffer, 10 rows
+    silent nnoremap <silent> q :<C-u>close!<CR>
+    exe ':lcd '.fnameescape(project_dir)
+    call setline('.', 'Search in directory: '.project_dir)
+
+    Rg!
+endfunc
+command! Search call s:find_project_texts()
+nnoremap <C-Space>s :<C-u>call <SID>find_project_texts()<CR>
 
 " Fuzzy-find files in current directory
 nnoremap <silent> <Leader>ff :<C-u>FZF<CR>
