@@ -56,6 +56,9 @@ func! s:ToggleVietnameseKeymap() abort
 endfunc
 command! VnKeymap call s:ToggleVietnameseKeymap()
 
+" Move current window to a new tab
+command! MoveToNewTab wincmd T
+
 " Bulk-delete buffers not attached to files
 command! DelNofileBuffers call myfun#delete_nofile_buffers()
 
