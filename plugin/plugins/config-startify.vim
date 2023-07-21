@@ -8,7 +8,7 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
-    \ {'e': [' Explorer', 'NERDTree']},
+    \ {'e': [' File Explorer', 'NERDTree']},
     \ {'n': [' New', 'enew']},
     \ {'o': [' Open', 'browse edit']},
     \ {'s': [' Sessions', 'Sessions']},
