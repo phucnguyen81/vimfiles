@@ -4,6 +4,8 @@ command! -nargs=0 Edit exec 'edit '.fnameescape(tempname())
 command! -nargs=0 New exec 'new '.fnameescape(tempname())
 command! -nargs=0 Vnew exec 'vnew '.fnameescape(tempname())
 command! -nargs=0 Oldfiles browse oldfiles
+command! -nargs=0 Date normal i<C-R>=strftime('%Y-%m-%d')<CR><Esc>
+command! -nargs=0 Time normal i<C-R>=strftime('%Y-%m-%d %H:%M:%S')<CR><Esc>
 
 if exists('g:my_shell')
     command! -nargs=0 Term call term_start(g:my_shell)
@@ -23,6 +25,11 @@ endif
 " Bookmarks
 if exists('g:my_bookmarks')
     command! -nargs=0 Bookmarks exec 'edit '.fnameescape(g:my_bookmarks)
+endif
+
+" Journal
+if exists('g:my_journal')
+    command! -nargs=0 Journal exec 'edit '.fnameescape(g:my_journal)
 endif
 
 command! -nargs=0 Paste call myfun#paste()

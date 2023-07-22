@@ -16,6 +16,7 @@ let g:startify_commands = [
     \ {'t': [' Todos', 'Todo']},
     \ {'N': [' Notes', 'Note']},
     \ {'b': [' Bookmarks', 'Bookmarks']},
+    \ {'J': [' Journal', 'Journal']},
     \ {'q': [' Quit', 'qa']},
   \ ]
 

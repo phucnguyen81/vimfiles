@@ -62,21 +62,25 @@ func! myfun#openai_complete(...) abort
     let lines = []
 
     " If provided, use the argument as the first line
-    if a:0 > 0
+    if a:0 >= 1
         call add(lines, a:1)
     endif
 
-    " Add selected lines
-    if mode() !=? 'n'
-        let [line_start, column_start] = getpos("'<")[1:2]
-        let [line_end, column_end] = getpos("'>")[1:2]
+    " Add selected lines if <bang> is not provided
+    if a:0 >= 2 && (a:0 < 4 || !a:4)
+        let line_start = a:2
+        let line_end = a:0 >= 3 ? a:3 : a:2
+        call extend(lines, getline(line_start, line_end))
+    elseif mode() !=? 'n'
+        let line_start = getpos("'<")[1]
+        let line_end = getpos("'>")[1]
         call extend(lines, getline(line_start, line_end))
     endif
 
-    " Use current line as fallback
+    " Include current line as fallback
     if empty(lines)
         let current_line = trim(getline('.'))
-        let default_line = 'Common template with detailed comments.'
+        let default_line = 'Full template'
         call extend(lines, [empty(current_line) ? default_line : current_line])
     endif
 

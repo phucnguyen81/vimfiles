@@ -6,21 +6,26 @@ let g:my_plug_dir = expand(g:my_vim_dir.'/plugged')
 let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
 let g:my_shell = empty($MY_SHELL) ? &shell : $MY_SHELL
-if !empty($MY_TODOS) && isdirectory($MY_TODOS)
-    let g:my_todosdir = expand($MY_TODOS)
+
+" START: My assets
+if !empty($MY_BASE) && isdirectory($MY_BASE)
+    let g:my_base = expand($MY_BASE)
 else
-    let g:my_todosdir = expand(g:my_vim_dir.'/todos')
-    call mkdir(g:my_todosdir, 'p')
+    let g:my_base = g:my_vim_dir
 endif
-if !empty($MY_NOTES) && isdirectory($MY_NOTES)
-    let g:my_notesdir = expand($MY_NOTES)
-else
-    let g:my_notesdir = expand(g:my_vim_dir.'/notes')
-    call mkdir(g:my_notesdir, 'p')
-endif
-if !empty($MY_BOOKMARKS) && filereadable($MY_BOOKMARKS)
-    let g:my_bookmarks = expand($MY_BOOKMARKS)
-endif
+
+let g:my_todosdir = expand(g:my_base.'/todos')
+call mkdir(g:my_todosdir, 'p')
+
+let g:my_notesdir = expand(g:my_base.'/notes')
+call mkdir(g:my_notesdir, 'p')
+
+let g:my_bookmarks = expand(g:my_notesdir.'/bookmarks.csv')
+
+let g:my_journal = expand(g:my_base.'/journal')
+call mkdir(g:my_journal, 'p')
+" END: My assets
+
 if !empty(&pythonthreedll) && filereadable(expand(g:my_vim_dir.'/pythonthreehome/'.&pythonthreedll))
     let &pythonthreehome = expand(g:my_vim_dir.'/pythonthreehome')
     let &pythonthreedll = expand(&pythonthreehome.'/'.&pythonthreedll)
@@ -118,7 +123,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-scriptease'
