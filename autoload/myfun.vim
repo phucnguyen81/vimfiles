@@ -49,6 +49,55 @@ func! myfun#project_dir() abort
     return getcwd()
 endfunc
 
+" Calls OpenAI API to completes either current line or the visual selection.
+func! myfun#openai_complete() abort
+    " Required to use OpenAI API
+    if empty($OPENAI_API_KEY)
+        echoerr 'OPENAI_API_KEY environment variable is not set.'
+        return
+    endif
+	let openai_api_key = $OPENAI_API_KEY
+    let endpoint = 'https://api.openai.com/v1/chat/completions'
+
+	let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_end, column_end] = getpos("'>")[1:2]
+	let lines = getline(line_start, line_end)
+    if empty(lines)
+        let current_line = trim(getline('.'))
+        let default_line = 'Common template with detailed comments.'
+        let lines = [empty(current_line) ? default_line : current_line]
+    endif
+    let text = join(lines, "\n")
+
+    let messages = []
+    if !empty(&filetype)
+        call add(messages, {
+            \ 'role': 'system',
+            \ 'content': 'You are working with ' . &filetype
+            \ })
+    endif
+    call add(messages, { 'role': 'user', 'content': trim(text) })
+    let data = json_encode({
+        \ 'model': 'gpt-3.5-turbo',
+        \ 'messages': messages
+        \ })
+
+	let command = "curl -sSL -H 'Content-Type: application/json' -H 'Authorization: Bearer " . openai_api_key . "' --data @- ".endpoint
+    let json_output = trim(system(command, data))
+    let dict_output = json_decode(json_output)
+    if has_key(dict_output, 'choices')
+        let output = dict_output['choices'][0]['message']['content']
+    elseif has_key(dict_output, 'message')
+        let output = dict_output['message']
+    else
+        let output = 'Error: ' . json_output
+    endif
+
+	" Insert the completion
+    let line_insert = empty(line_end) ? line('.') : line_end
+	call append(line_insert, split(output, "\n"))
+endfunc
+
 " Set common local options for identation of width.
 " Here width is the number of spaces for a tab.
 func! myfun#set_local_indent(width) abort
