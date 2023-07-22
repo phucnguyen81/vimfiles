@@ -56,22 +56,24 @@ func! myfun#openai_complete(...) abort
         echoerr 'OPENAI_API_KEY environment variable is not set.'
         return
     endif
-	let openai_api_key = $OPENAI_API_KEY
+    let openai_api_key = $OPENAI_API_KEY
     let endpoint = 'https://api.openai.com/v1/chat/completions'
 
     let lines = []
 
-    " Add first argument if provided
+    " If provided, use the argument as the first line
     if a:0 > 0
         call add(lines, a:1)
     endif
 
     " Add selected lines
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    call extend(lines, getline(line_start, line_end))
+    if mode() !=? 'n'
+        let [line_start, column_start] = getpos("'<")[1:2]
+        let [line_end, column_end] = getpos("'>")[1:2]
+        call extend(lines, getline(line_start, line_end))
+    endif
 
-    " Add current line as default prompt
+    " Use current line as fallback
     if empty(lines)
         let current_line = trim(getline('.'))
         let default_line = 'Common template with detailed comments.'
@@ -93,7 +95,7 @@ func! myfun#openai_complete(...) abort
         \ 'messages': messages
         \ })
 
-	let command = 'curl -sSL -H "Content-Type: application/json" -H "Authorization: Bearer ' . openai_api_key . '" --data @- ' . endpoint
+    let command = 'curl -sSL -H "Content-Type: application/json" -H "Authorization: Bearer ' . openai_api_key . '" --data @- ' . endpoint
     let json_output = trim(system(command, data))
     let dict_output = json_decode(json_output)
     if has_key(dict_output, 'choices')
@@ -104,10 +106,10 @@ func! myfun#openai_complete(...) abort
         let output = 'Error: ' . json_output
     endif
 
-	" Insert the generated message
+    " Insert the generated message
     vnew
     setlocal filetype=markdown
-	call append(0, split(output, '\r\?\n'))
+    call append(0, split(output, '\r\?\n'))
 endfunc
 
 " Set common local options for identation of width.
