@@ -82,7 +82,7 @@ func! myfun#openai_complete() abort
         \ 'messages': messages
         \ })
 
-	let command = "curl -sSL -H 'Content-Type: application/json' -H 'Authorization: Bearer " . openai_api_key . "' --data @- ".endpoint
+	let command = 'curl -sSL -H "Content-Type: application/json" -H "Authorization: Bearer ' . openai_api_key . '" --data @- ' . endpoint
     let json_output = trim(system(command, data))
     let dict_output = json_decode(json_output)
     if has_key(dict_output, 'choices')
