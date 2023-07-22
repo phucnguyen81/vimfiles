@@ -50,7 +50,7 @@ func! myfun#project_dir() abort
 endfunc
 
 " Calls OpenAI API to completes either current line or the visual selection.
-func! myfun#openai_complete() abort
+func! myfun#openai_complete(...) abort
     " Required to use OpenAI API
     if empty($OPENAI_API_KEY)
         echoerr 'OPENAI_API_KEY environment variable is not set.'
@@ -59,14 +59,25 @@ func! myfun#openai_complete() abort
 	let openai_api_key = $OPENAI_API_KEY
     let endpoint = 'https://api.openai.com/v1/chat/completions'
 
-	let [line_start, column_start] = getpos("'<")[1:2]
-	let [line_end, column_end] = getpos("'>")[1:2]
-	let lines = getline(line_start, line_end)
+    let lines = []
+
+    " Add first argument if provided
+    if a:0 > 0
+        call add(lines, a:1)
+    endif
+
+    " Add selected lines
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    call extend(lines, getline(line_start, line_end))
+
+    " Add current line as default prompt
     if empty(lines)
         let current_line = trim(getline('.'))
         let default_line = 'Common template with detailed comments.'
-        let lines = [empty(current_line) ? default_line : current_line]
+        call extend(lines, [empty(current_line) ? default_line : current_line])
     endif
+
     let text = join(lines, "\n")
 
     let messages = []
@@ -93,9 +104,10 @@ func! myfun#openai_complete() abort
         let output = 'Error: ' . json_output
     endif
 
-	" Insert the completion
-    let line_insert = empty(line_end) ? line('.') : line_end
-	call append(line_insert, split(output, "\n"))
+	" Insert the generated message
+    vnew
+    setlocal filetype=markdown
+	call append(0, split(output, '\r\?\n'))
 endfunc
 
 " Set common local options for identation of width.
