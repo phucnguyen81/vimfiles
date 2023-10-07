@@ -12,9 +12,28 @@ if exists('g:my_shell')
     command! -nargs=0 VTerm call term_start(g:my_shell, {'vertical':1})
 endif
 
+" Base dir
+if exists('g:my_base')
+    command! -nargs=0 Base exec 'edit '.fnameescape(g:my_base)
+endif
+
 " Notes
 if exists('g:my_notesdir')
-    command! -nargs=0 Note exec 'edit '.fnameescape(g:my_notesdir)
+    function! MyCompleteNotes(ArgLead, CmdLine, CursorPos)
+        " Get the list of note files in g:my_notesdir
+        let notesdir = fnameescape(g:my_notesdir)
+        let note_files = glob(notesdir . '/' . a:ArgLead . '*', 0, 1)
+
+        " Filter the list to include only file names (not directories)
+        let filtered_files = []
+        for file in note_files
+            call add(filtered_files, fnamemodify(file, ':t'))
+        endfor
+
+        " Return the filtered file names for auto-completion
+        return filtered_files
+    endfunction
+    command! -nargs=? -complete=customlist,MyCompleteNotes Note exec 'edit '.fnameescape(g:my_notesdir.'/'.<q-args>)
 endif
 
 " Todos
