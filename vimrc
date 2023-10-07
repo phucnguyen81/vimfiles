@@ -7,7 +7,13 @@ let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
 let g:my_shell = empty($MY_SHELL) ? &shell : $MY_SHELL
 
-" START: My assets
+if !empty($MY_SECRETS) && isdirectory($MY_SECRETS)
+    let g:my_secrets = expand($MY_SECRETS)
+    if filereadable(g:my_secrets.'/secrets.json')
+        let g:my_secrets_file = expand(g:my_secrets.'/secrets.json')
+    endif
+endif
+
 if !empty($MY_BASE) && isdirectory($MY_BASE)
     let g:my_base = expand($MY_BASE)
 else
@@ -24,7 +30,6 @@ let g:my_bookmarks = expand(g:my_notesdir.'/bookmarks.csv')
 
 let g:my_journal = expand(g:my_base.'/journal')
 call mkdir(g:my_journal, 'p')
-" END: My assets
 
 if !empty(&pythonthreedll) && filereadable(expand(g:my_vim_dir.'/pythonthreehome/'.&pythonthreedll))
     let &pythonthreehome = expand(g:my_vim_dir.'/pythonthreehome')

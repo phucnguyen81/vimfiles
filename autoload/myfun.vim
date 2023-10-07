@@ -52,12 +52,15 @@ endfunc
 " Calls OpenAI API to completes either current line or the visual selection.
 func! myfun#openai_complete(...) abort
     " Required to use OpenAI API
-    if empty($OPENAI_API_KEY)
-        echoerr 'OPENAI_API_KEY environment variable is not set.'
+    if !exists('g:my_secrets_file')
+        echoerr 'My secrets file not found.'
         return
     endif
-    let openai_api_key = $OPENAI_API_KEY
-    let endpoint = 'https://api.openai.com/v1/chat/completions'
+
+    let secrets_json = join(readfile(g:my_secrets_file), "\n")
+    let secrets = json_decode(secrets_json)
+    let openai_url = secrets['AZURE_OPENAI_URL']
+    let openai_api_key = secrets['AZURE_OPENAI_API_KEY']
 
     let lines = []
 
@@ -95,11 +98,10 @@ func! myfun#openai_complete(...) abort
     endif
     call add(messages, { 'role': 'user', 'content': trim(text) })
     let data = json_encode({
-        \ 'model': 'gpt-3.5-turbo',
         \ 'messages': messages
         \ })
 
-    let command = 'curl -sSL -H "Content-Type: application/json" -H "Authorization: Bearer ' . openai_api_key . '" --data @- ' . endpoint
+    let command = 'curl -sSL -H "Content-Type: application/json" -H "api-key: ' . openai_api_key . '" --data @- ' . openai_url
     let json_output = trim(system(command, data))
     let dict_output = json_decode(json_output)
     if has_key(dict_output, 'choices')
