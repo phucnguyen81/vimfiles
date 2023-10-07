@@ -41,6 +41,11 @@ if exists('g:my_todosdir')
     command! -nargs=0 Todo exec 'edit '.fnameescape(g:my_todosdir)
 endif
 
+" Today
+if exists('g:my_todosdir')
+    command! -nargs=0 Today exec 'edit '.fnameescape(g:my_todosdir.'/today.md')
+endif
+
 " Bookmarks
 if exists('g:my_bookmarks')
     command! -nargs=0 Bookmarks exec 'edit '.fnameescape(g:my_bookmarks)

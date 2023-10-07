@@ -191,6 +191,7 @@ Plug 'kevinoid/vim-jsonc'
 Plug 'PProvost/vim-ps1'
 Plug 'leafgarland/typescript-vim'
 Plug 'Scuilion/markdown-drawer'
+Plug 'chrisbra/csv.vim'
 
 " Colorschemes
 Plug 'sainnhe/everforest'  " green-based color scheme
