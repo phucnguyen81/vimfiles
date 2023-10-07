@@ -8,9 +8,9 @@ let g:my_undodir = expand(g:my_vim_dir.'/undodir')
 let g:my_shell = empty($MY_SHELL) ? &shell : $MY_SHELL
 
 if !empty($MY_SECRETS) && isdirectory($MY_SECRETS)
-    let g:my_secrets = expand($MY_SECRETS)
-    if filereadable(g:my_secrets.'/secrets.json')
-        let g:my_secrets_file = expand(g:my_secrets.'/secrets.json')
+    let g:my_secrets_dir = expand($MY_SECRETS)
+    if filereadable(expand(g:my_secrets_dir.'/secrets.json'))
+        let g:my_secrets = json_decode(join(readfile(expand(g:my_secrets_dir.'/secrets.json')), "\n"))
     endif
 endif
 

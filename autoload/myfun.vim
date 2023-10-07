@@ -52,15 +52,13 @@ endfunc
 " Calls OpenAI API to completes either current line or the visual selection.
 func! myfun#openai_complete(...) abort
     " Required to use OpenAI API
-    if !exists('g:my_secrets_file')
-        echoerr 'My secrets file not found.'
+    if !exists('g:my_secrets')
+        echoerr 'My secrets not set.'
         return
     endif
 
-    let secrets_json = join(readfile(g:my_secrets_file), "\n")
-    let secrets = json_decode(secrets_json)
-    let openai_url = secrets['AZURE_OPENAI_URL']
-    let openai_api_key = secrets['AZURE_OPENAI_API_KEY']
+    let openai_url = g:my_secrets['AZURE_OPENAI_URL']
+    let openai_api_key = g:my_secrets['AZURE_OPENAI_API_KEY']
 
     let lines = []
 
