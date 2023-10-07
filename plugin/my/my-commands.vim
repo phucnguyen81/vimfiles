@@ -7,6 +7,21 @@ command! -nargs=0 Oldfiles browse oldfiles
 command! -nargs=0 Date normal i<C-R>=strftime('%Y-%m-%d')<CR><Esc>
 command! -nargs=0 Time normal i<C-R>=strftime('%Y-%m-%d %H:%M:%S')<CR><Esc>
 
+" Run completion script on current file
+function! s:Complete() abort
+    let file_path = expand('%:p')
+    if file_path == ''
+        echo 'No file associated with current buffer'
+        return
+    endif
+    if !filereadable(file_path)
+        echo 'File not readable: '.file_path
+        return
+    endif
+    call system('pwsh -NoLogo -', 'complete.ps1 '.shellescape(file_path))
+endfunc
+command! -nargs=0 Complete call s:Complete()
+
 if exists('g:my_shell')
     command! -nargs=0 Term call term_start(g:my_shell)
     command! -nargs=0 VTerm call term_start(g:my_shell, {'vertical':1})
