@@ -31,6 +31,9 @@ let g:my_bookmarks = expand(g:my_notesdir.'/bookmarks.csv')
 let g:my_journal = expand(g:my_base.'/journal')
 call mkdir(g:my_journal, 'p')
 
+let g:my_minai = expand(g:my_base.'/minai')
+call mkdir(g:my_minai, 'p')
+
 if !empty(&pythonthreedll) && filereadable(expand(g:my_vim_dir.'/pythonthreehome/'.&pythonthreedll))
     let &pythonthreehome = expand(g:my_vim_dir.'/pythonthreehome')
     let &pythonthreedll = expand(&pythonthreehome.'/'.&pythonthreedll)

@@ -22,6 +22,21 @@ function! s:Complete() abort
 endfunc
 command! -nargs=0 Complete call s:Complete()
 
+" Run google search script on current file
+function! s:GSearch() abort
+    let file_path = expand('%:p')
+    if file_path == ''
+        echo 'No file associated with current buffer'
+        return
+    endif
+    if !filereadable(file_path)
+        echo 'File not readable: '.file_path
+        return
+    endif
+    call system('pwsh -NoLogo -', 'gsearch.ps1 '.shellescape(file_path))
+endfunc
+command! -nargs=0 GSearch call s:GSearch()
+
 if exists('g:my_shell')
     command! -nargs=0 Term call term_start(g:my_shell)
     command! -nargs=0 VTerm call term_start(g:my_shell, {'vertical':1})
@@ -69,6 +84,11 @@ endif
 " Journal
 if exists('g:my_journal')
     command! -nargs=0 Journal exec 'edit '.fnameescape(g:my_journal)
+endif
+
+" Minai workspace
+if exists('g:my_minai')
+    command! -nargs=0 Minai exec 'edit '.fnameescape(g:my_minai)
 endif
 
 command! -nargs=0 Paste call myfun#paste()
