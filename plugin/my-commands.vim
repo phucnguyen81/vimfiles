@@ -19,6 +19,7 @@ function! s:Complete() abort
         return
     endif
     call system('pwsh -NoLogo -', 'complete.ps1 '.shellescape(file_path))
+    edit
 endfunc
 command! -nargs=0 Complete call s:Complete()
 
@@ -34,6 +35,7 @@ function! s:GSearch() abort
         return
     endif
     call system('pwsh -NoLogo -', 'gsearch.ps1 '.shellescape(file_path))
+    edit
 endfunc
 command! -nargs=0 GSearch call s:GSearch()
 

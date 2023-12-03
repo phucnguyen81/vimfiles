@@ -2,21 +2,17 @@
 
 " What to show on Startify screen
 let g:startify_lists = [
-  \ { 'type': 'commands',  'header': ['   Files'] },
-  \ { 'type': 'sessions',  'header': ['   Sessions'] },
+  \ { 'type': 'commands',  'header': ['   Commands'] },
   \ { 'type': 'files',     'header': ['   Recent'] },
   \ ]
 
 let g:startify_commands = [
-    \ {'e': [' File Explorer', 'NERDTree']},
-    \ {'n': [' New', 'enew']},
+    \ {'t': [' Today', 'Today']},
     \ {'o': [' Open', 'browse edit']},
     \ {'s': [' Sessions', 'Sessions']},
     \ {'h': [' Recent files', 'History']},
-    \ {'t': [' Todos', 'Todo']},
-    \ {'N': [' Notes', 'Note']},
-    \ {'b': [' Bookmarks', 'Bookmarks']},
-    \ {'J': [' Journal', 'Journal']},
+    \ {'n': [' Notes', 'Note']},
+    \ {'m': [' Bookmarks', 'Bookmarks']},
     \ {'q': [' Quit', 'qa']},
   \ ]
 
@@ -46,10 +42,11 @@ augroup my_save_session
     autocmd!
     autocmd VimLeave * call <SID>SaveSession()
 augroup end
+
 " Save latest session
 function! s:SaveSession() abort
     if exists(':SSave') ==# 2
-        SSave! default
+        SSave! lastest
     endif
 endfunction
 

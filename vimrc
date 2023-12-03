@@ -43,10 +43,10 @@ if !isdirectory(g:my_undodir)
 endif
 if has('termguicolors')
     set termguicolors
-    let g:my_colorscheme = 'everforest'
+    let g:my_colorscheme = 'catppuccin'
     let g:my_statuscolor = 'Tomorrow_Night_Blue'
 else
-    let g:my_colorscheme = 'gruvbox8'
+    let g:my_colorscheme = 'catppuccin'
     let g:my_statuscolor = 'Tomorrow_Night_Blue'
 endif
 " }}
@@ -190,8 +190,10 @@ Plug 'PProvost/vim-ps1'
 Plug 'leafgarland/typescript-vim'
 Plug 'Scuilion/markdown-drawer'
 Plug 'chrisbra/csv.vim'
+Plug 'NoahTheDuke/vim-just'
 
 " Colorschemes
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'sainnhe/everforest'  " green-based color scheme
 Plug 'junegunn/seoul256.vim'
 Plug 'lifepillar/vim-gruvbox8'  " a better gruvbox
