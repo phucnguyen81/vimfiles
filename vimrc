@@ -41,7 +41,6 @@ endif
 if !isdirectory(g:my_undodir)
     call mkdir(g:my_undodir, 'p')
 endif
-let g:my_coc_enabled = executable('node')
 if has('termguicolors')
     set termguicolors
     let g:my_colorscheme = 'everforest'
@@ -182,10 +181,6 @@ Plug 'jpalardy/vim-slime'  " send texts from vim to a REPL
 Plug 'itchyny/lightline.vim'  " configurable status line
 Plug 'dense-analysis/ale'  " linters
 Plug 'ap/vim-css-color'  " live preview css colors
-" Language server LSP
-if exists('g:my_coc_enabled') && g:my_coc_enabled
-    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-endif
 
 " Language syntax
 Plug 'sheerun/vim-polyglot'  " language packs, include optimized `vim-sleuth` for auto-detect indentation
