@@ -33,6 +33,6 @@ elseif g:my_colorscheme ==# 'tokyonight'
         set termguicolors
     endif
     colorscheme tokyonight
-elseif exists(g:my_colorscheme)
-    colorscheme g:my_colorscheme
+elseif exists('g:my_colorscheme')
+    exec 'colorscheme '.g:my_colorscheme
 endif

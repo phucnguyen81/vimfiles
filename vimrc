@@ -43,7 +43,7 @@ if !isdirectory(g:my_undodir)
 endif
 if has('termguicolors')
     set termguicolors
-    let g:my_colorscheme = 'catppuccin'
+    let g:my_colorscheme = 'onedark'
     let g:my_statuscolor = 'Tomorrow_Night_Blue'
 else
     let g:my_colorscheme = 'catppuccin'
