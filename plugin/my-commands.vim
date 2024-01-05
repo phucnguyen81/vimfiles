@@ -71,10 +71,6 @@ endif
 " Todos
 if exists('g:my_todosdir')
     command! -nargs=0 Todo exec 'edit '.fnameescape(g:my_todosdir)
-endif
-
-" Today
-if exists('g:my_todosdir')
     command! -nargs=0 Today exec 'edit '.fnameescape(g:my_todosdir.'/today.md')
 endif
 
