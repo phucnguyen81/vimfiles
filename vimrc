@@ -16,6 +16,8 @@ endif
 
 if !empty($MY_BASE) && isdirectory($MY_BASE)
     let g:my_base = expand($MY_BASE)
+elseif !empty($BASE) && isdirectory($BASE)
+    let g:my_base = expand($BASE)
 else
     let g:my_base = g:my_vim_dir
 endif
