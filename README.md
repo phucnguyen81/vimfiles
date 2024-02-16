@@ -1,6 +1,6 @@
 # Description
 
-My vim configs on Windows and Linux.
+My vim configs on Windows.
 
 # Installation
 
