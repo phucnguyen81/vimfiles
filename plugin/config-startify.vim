@@ -7,13 +7,14 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
-    \ {'t': [' Today', 'Today']},
-    \ {'o': [' Open', 'browse edit']},
-    \ {'s': [' Sessions', 'Sessions']},
     \ {'h': [' Recent files', 'History']},
-    \ {'n': [' Notes', 'Note']},
+    \ {'j': [' Journal', 'Journal']},
     \ {'m': [' Bookmarks', 'Bookmarks']},
+    \ {'n': [' Notes', 'Note']},
+    \ {'o': [' Open', 'browse edit']},
     \ {'q': [' Quit', 'qa']},
+    \ {'s': [' Sessions', 'Sessions']},
+    \ {'t': [' Today', 'Today']},
   \ ]
 
 let g:startify_disable_at_vimenter = 0
