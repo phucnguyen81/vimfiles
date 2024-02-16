@@ -7,8 +7,8 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
+    \ {'J': [' Journal', 'Journal']},
     \ {'h': [' Recent files', 'History']},
-    \ {'j': [' Journal', 'Journal']},
     \ {'m': [' Bookmarks', 'Bookmarks']},
     \ {'n': [' Notes', 'Note']},
     \ {'o': [' Open', 'browse edit']},
