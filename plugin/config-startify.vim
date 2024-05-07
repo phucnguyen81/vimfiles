@@ -7,6 +7,8 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
+    \ {'t': [' Today', 'Today']},
+    \ {'T': [' Todo', 'Todo']},
     \ {'J': [' Journal', 'Journal']},
     \ {'h': [' Recent files', 'History']},
     \ {'m': [' Bookmarks', 'Bookmarks']},
@@ -14,7 +16,6 @@ let g:startify_commands = [
     \ {'o': [' Open', 'browse edit']},
     \ {'q': [' Quit', 'qa']},
     \ {'s': [' Sessions', 'Sessions']},
-    \ {'t': [' Today', 'Today']},
   \ ]
 
 let g:startify_disable_at_vimenter = 0
@@ -37,6 +38,7 @@ endif
 nnoremap <Leader><Leader> :Startify<CR>
 nnoremap <Leader>st :Startify<CR>
 nnoremap <Leader>ss :SSave!<CR>
+command! -nargs=0 Dashbard Startify
 
 " Save session before exit
 augroup my_save_session
