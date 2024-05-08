@@ -126,7 +126,7 @@ set viewoptions-=options
 " }}
 " Plugins  {{
 call plug#begin(g:my_plug_dir)
-" Utilities
+" Internal utilities
 Plug 'mhinz/vim-startify'  " dashboard: recent files, sessions, commands
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-vinegar'
@@ -136,53 +136,49 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
+Plug 'tomtom/tcomment_vim'
 Plug 'jszakmeister/vim-togglecursor'
-Plug 'christoomey/vim-system-copy'  " use `cp` operator for copy, `cv` operator for paste
 Plug 'wesQ3/vim-windowswap'  " swap window buffers
 Plug 'tmhedberg/matchit'
 Plug 'mbbill/undotree'  " shows undo history as tree structure
 Plug 'skywind3000/vim-preview'  " improve preview file
-Plug 'tyru/open-browser.vim'  " launch browsers
 Plug 'stefandtw/quickfix-reflector.vim'  " reflect quickfix changes in files
-
-" Plain texts
 Plug 'easymotion/vim-easymotion'  " enhance movements
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-rsi'
-Plug 'chrisbra/NrrwRgn'  " call :NR to focus on a selected region
-Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-rsi'  " readline-like key bindings
+Plug 'tommcdo/vim-exchange'  " text exchange operator: cx then cx
 Plug 'wellle/targets.vim'  " text objects: file, line, function, arguments,...
 Plug 'kana/vim-textobj-user'  " text object common for kana plugins
 Plug 'kana/vim-textobj-entire'  " text object entire buffer
+Plug 'chrisbra/NrrwRgn'  " call :NR to focus on a selected region
 Plug 'godlygeek/tabular'  " align texts with Tabularize command
 Plug 'junegunn/vim-easy-align'  " align texts with command :EasyAlign
+Plug 'FooSoft/vim-argwrap'  " format long argument list arg1,arg2,arg3,...
 Plug 'junegunn/goyo.vim'  " focus zen mode
 Plug 'junegunn/limelight.vim'  " focus paragraph
+Plug 'scrooloose/nerdtree'  " file explorer
+Plug 'itchyny/lightline.vim'  " configurable status line
+Plug 'ap/vim-css-color'  " live preview css colors
+Plug 's3rvac/AutoFenc'
 
-" Search tools
-Plug 'junegunn/fzf'
+" External utilities
+Plug 'christoomey/vim-system-copy'  " use `cp` operator for copy, `cv` operator for paste
+Plug 'tyru/open-browser.vim'  " launch browsers
+Plug 'junegunn/fzf'  " fuzzy finder using fzf executable
 Plug 'junegunn/fzf.vim'  " fzf-vim integration
 Plug 'mhinz/vim-grepper'  " use multiple grep tools
 Plug 'tpope/vim-dispatch'  " run compiler plugin asynchronously
-
-" Programming
-Plug 'scrooloose/nerdtree'  " file explorer
-Plug 'mcchrish/nnn.vim'  " integrate with nnn file manager
-Plug 'qpkorr/vim-renamer'  " batch file renamer
-Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'  " git integration
 Plug 'whiteinge/diffconflicts'  " merge git conflicts
 Plug 'airblade/vim-gitgutter'  " git status on gutter
 Plug 'junegunn/gv.vim'  " git graph view
+Plug 'mcchrish/nnn.vim'  " integrate with nnn file manager
+Plug 'qpkorr/vim-renamer'  " batch file renamer
 Plug 'editorconfig/editorconfig-vim'
-Plug 's3rvac/AutoFenc'
-Plug 'FooSoft/vim-argwrap'  " format long argument list arg1,arg2,arg3,...
 Plug 'thinca/vim-quickrun'  " run script files
 Plug 'skywind3000/asyncrun.vim'  " run commands asynchronously
 Plug 'jpalardy/vim-slime'  " send texts from vim to a REPL
-Plug 'itchyny/lightline.vim'  " configurable status line
 Plug 'dense-analysis/ale'  " linters
-Plug 'ap/vim-css-color'  " live preview css colors
 
 " Language syntax
 Plug 'sheerun/vim-polyglot'  " language packs, include optimized `vim-sleuth` for auto-detect indentation
