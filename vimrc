@@ -169,6 +169,7 @@ Plug 'mhinz/vim-grepper'  " use multiple grep tools
 Plug 'tpope/vim-dispatch'  " run compiler plugin asynchronously
 Plug 'tpope/vim-fugitive'  " git integration
 Plug 'whiteinge/diffconflicts'  " merge git conflicts
+Plug 'samoshkin/vim-mergetool'  " merge git conflicts
 Plug 'airblade/vim-gitgutter'  " git status on gutter
 Plug 'junegunn/gv.vim'  " git graph view
 Plug 'mcchrish/nnn.vim'  " integrate with nnn file manager

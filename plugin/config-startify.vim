@@ -7,8 +7,7 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
-    \ {'t': [' Today', 'Today']},
-    \ {'T': [' Todo', 'Todo']},
+    \ {'t': [' Todo', 'Todo']},
     \ {'J': [' Journal', 'Journal']},
     \ {'h': [' Recent files', 'History']},
     \ {'m': [' Bookmarks', 'Bookmarks']},
