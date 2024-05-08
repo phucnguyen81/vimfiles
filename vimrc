@@ -162,7 +162,6 @@ Plug 'ap/vim-css-color'  " live preview css colors
 Plug 's3rvac/AutoFenc'
 
 " External utilities
-Plug 'christoomey/vim-system-copy'  " use `cp` operator for copy, `cv` operator for paste
 Plug 'tyru/open-browser.vim'  " launch browsers
 Plug 'junegunn/fzf'  " fuzzy finder using fzf executable
 Plug 'junegunn/fzf.vim'  " fzf-vim integration
