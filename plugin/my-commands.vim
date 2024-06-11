@@ -6,6 +6,9 @@ command! -nargs=0 Vnew exec 'vnew '.fnameescape(tempname())
 command! -nargs=0 Oldfiles browse oldfiles
 command! -nargs=0 Date normal i<C-R>=strftime('%Y-%m-%d')<CR><Esc>
 command! -nargs=0 Time normal i<C-R>=strftime('%Y-%m-%d %H:%M:%S')<CR><Esc>
+command! -nargs=0 Glocal diffget LOCAL
+command! -nargs=0 Gremote diffget REMOTE
+command! -nargs=0 Gbase diffget BASE
 
 " Run completion script on current file
 function! s:Complete() abort
