@@ -7,17 +7,15 @@ let g:my_plug_init = !isdirectory(g:my_plug_dir)
 let g:my_undodir = expand(g:my_vim_dir.'/undodir')
 let g:my_shell = empty($MY_SHELL) ? &shell : $MY_SHELL
 
-if !empty($MY_SECRETS) && isdirectory($MY_SECRETS)
-    let g:my_secrets_dir = expand($MY_SECRETS)
-    if filereadable(expand(g:my_secrets_dir.'/secrets.json'))
-        let g:my_secrets = json_decode(join(readfile(expand(g:my_secrets_dir.'/secrets.json')), "\n"))
-    endif
-endif
-
+" Try to find base directory, fallback to vim directory
 if !empty($MY_BASE) && isdirectory($MY_BASE)
     let g:my_base = expand($MY_BASE)
 elseif !empty($BASE) && isdirectory($BASE)
     let g:my_base = expand($BASE)
+elseif isdirectory('/base')
+    let g:my_base = '/base'
+elseif isdirectory('~/base')
+    let g:my_base = '~/base'
 else
     let g:my_base = g:my_vim_dir
 endif
@@ -40,9 +38,11 @@ if !empty(&pythonthreedll) && filereadable(expand(g:my_vim_dir.'/pythonthreehome
     let &pythonthreehome = expand(g:my_vim_dir.'/pythonthreehome')
     let &pythonthreedll = expand(&pythonthreehome.'/'.&pythonthreedll)
 endif
+
 if !isdirectory(g:my_undodir)
     call mkdir(g:my_undodir, 'p')
 endif
+
 if has('termguicolors')
     set termguicolors
     let g:my_colorscheme = 'onedark'
@@ -159,15 +159,15 @@ Plug 'junegunn/limelight.vim'  " focus paragraph
 Plug 'scrooloose/nerdtree'  " file explorer
 Plug 'itchyny/lightline.vim'  " configurable status line
 Plug 'ap/vim-css-color'  " live preview css colors
-Plug 's3rvac/AutoFenc'
+Plug 's3rvac/AutoFenc'  " auto detect file encoding
 
 " External utilities
-Plug 'tyru/open-browser.vim'  " launch browsers
 Plug 'junegunn/fzf'  " fuzzy finder using fzf executable
 Plug 'junegunn/fzf.vim'  " fzf-vim integration
+Plug 'tpope/vim-fugitive'  " git integration
+Plug 'tyru/open-browser.vim'  " launch browsers
 Plug 'mhinz/vim-grepper'  " use multiple grep tools
 Plug 'tpope/vim-dispatch'  " run compiler plugin asynchronously
-Plug 'tpope/vim-fugitive'  " git integration
 Plug 'whiteinge/diffconflicts'  " merge git conflicts
 Plug 'samoshkin/vim-mergetool'  " merge git conflicts
 Plug 'airblade/vim-gitgutter'  " git status on gutter
@@ -182,13 +182,13 @@ Plug 'dense-analysis/ale'  " linters
 
 " Language syntax
 Plug 'sheerun/vim-polyglot'  " language packs, include optimized `vim-sleuth` for auto-detect indentation
+Plug 'NoahTheDuke/vim-just'  " vim syntax for justfiles
 Plug 'tmhedberg/SimpylFold'  " python code folding
 Plug 'kevinoid/vim-jsonc'
 Plug 'PProvost/vim-ps1'
 Plug 'leafgarland/typescript-vim'
 Plug 'Scuilion/markdown-drawer'
 Plug 'chrisbra/csv.vim'
-Plug 'NoahTheDuke/vim-just'
 
 " Colorschemes
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
